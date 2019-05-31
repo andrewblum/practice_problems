@@ -74,6 +74,7 @@ function reverseWords(words) {
   }
 }
 
+// can be done with STACK as well, read in and then out, 2n
 function reverseSingleWord(words, start, end) {
   while (start < end) {
     let temp = words[start]
