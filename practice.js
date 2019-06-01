@@ -247,25 +247,20 @@ function prodExceptSelf(arr) {
   return answer
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+var subsets = function(nums) {
+  if (nums === [] || !nums) {
+      return [[]]
+  }
+  if (nums.length === 1) {
+      return [nums]
+  }
+  let first = nums[0];
+  let rest = nums.slice(1)
+  let result = subsets(rest)
+  for (let i = 0; i < result.length; i++) {
+    result[i].push(first)
+  }
+  return result;
+};
 
 
