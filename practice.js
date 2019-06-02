@@ -263,4 +263,33 @@ var subsets = function(nums) {
   return result;
 };
 
+const a = [1, 3, 4, 1, 2]
+const b = [2, 1, 3, 4, 4]
+const c = [1, 2, 1]
+
+// if a number ever directed us somewhere and we ended up back there, it must be because we hit the same numnber again. 
+// keep track of the last two number's we saw 
+// go to whatever index the number were on takes us to 
+// if the number we saw 2 numbers ago == current, the last number we saw must be a dupe 
+
+function findDupe(arr) {
+  let lastNumber; 
+  let twoNumbersAgo;
+  let idx = 0;
+  while(true) {
+    if (twoNumbersAgo === arr[idx]) {
+      return lastNumber;
+    }
+    twoNumbersAgo = lastNumber;
+    lastNumber = arr[idx];
+    idx = arr[idx]
+  }
+}
+
+
+
+
+
+
+
 
