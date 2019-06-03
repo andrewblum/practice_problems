@@ -286,6 +286,19 @@ function findDupe(arr) {
   }
 }
 
+function isValidBST(node) {
+  if (!node) return true;
+  let rightBalanced = true;
+  let leftBalanced = true;
+  if (node.right) {
+    rightBalanced = node.left.val < node.val && isValidBST(node.left)
+  }
+  if (node.left) {
+    leftBalanced = node.right.val > node.val && isValidBST(node.right)
+  }
+  return rightBalanced && leftBalanced;
+}
+
 
 
 
