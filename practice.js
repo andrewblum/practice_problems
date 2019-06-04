@@ -63,6 +63,7 @@ const message = [ 'c', 'a', 'k', 'e', ' ',
 'p', 'o', 'u', 'n', 'd', ' ',
 's', 't', 'e', 'a', 'l' ];
 
+
 function reverseWords(words) {
   reverseSingleWord(words, 0, words.length - 1)
   firstLetter = 0;
@@ -290,14 +291,21 @@ function isValidBST(node) {
   if (!node) return true;
   let rightBalanced = true;
   let leftBalanced = true;
-  if (node.right) {
-    rightBalanced = node.left.val < node.val && isValidBST(node.left)
-  }
   if (node.left) {
-    leftBalanced = node.right.val > node.val && isValidBST(node.right)
+    rightBalanced = node.left.value <= node.value && isValidBST(node.left)
+  }
+  if (node.right) {
+    leftBalanced = node.right.value >= node.value && isValidBST(node.right)
   }
   return rightBalanced && leftBalanced;
 }
+
+
+function inPlaceShuffle(arr) { 
+  
+}
+
+
 
 
 
