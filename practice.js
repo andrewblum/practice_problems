@@ -264,9 +264,9 @@ var subsets = function(nums) {
   return result;
 };
 
-const a = [1, 3, 4, 1, 2]
-const b = [2, 1, 3, 4, 4]
-const c = [1, 2, 1]
+const aDupe = [1, 3, 4, 1, 2]
+const bDupe = [2, 1, 3, 4, 4]
+const cDupe = [1, 2, 1]
 
 // if a number ever directed us somewhere and we ended up back there, it must be because we hit the same numnber again. 
 // keep track of the last two number's we saw 
@@ -301,12 +301,39 @@ function isValidBST(node) {
 }
 
 
-function inPlaceShuffle(arr) { 
-  
+// choose a number from range 0 - length - 1, and swap that number from the front of the array 
+// increase our starting point by 1 
+
+// this is the Fisher-Yates shuffle 
+
+// when we pick A for the first slot, that has a 1/N chance of happening. 
+// lets say we pick A for the second slot, the chances of the happening would be 
+// the chance of any other number being selected first: (n - 1) / N 
+// follow by (multiplied by) the chance of A then being selected: (1 / (n - 1))
+// so we get ((n - 1) / N)  * (1 / (n - 1))
+// this simplifies to 1/N 
+// So each number, no matter when its choosen, has the same 1/N chance of ending up in any slot
+// This makes it a even, truly random shuffle. 
+
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
 }
 
+function inPlaceShuffle(arr) { 
+  let start = 0 
+  let end = arr.length
+  while (start < end) {
+    let rand = getRandomInt(start, end);
+    [arr[start], arr[rand]] = [arr[rand], arr[start]]
+    start++;
+  }
+}
 
-
+const randArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+inPlaceShuffle(randArr)
+console.log(randArr)
 
 
 
