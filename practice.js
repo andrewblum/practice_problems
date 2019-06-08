@@ -343,6 +343,50 @@ function reverseLinkedList(node) {
   return prevNode;
 }
 
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} m
+ * @param {number} n
+ * @return {ListNode}
+ */
+var reverseBetween = function(node, m, n) {
+  if (m === n) return node;
+  let veryFirst = node;
+  let i = 1
+  let prevNode = null;
+  let storedNode;
+  let lastSeen;
+  while (node) {
+    if (i === m - 1) {
+        frontSwap = node;
+        prevNode = node
+    }
+    if (i === m) {
+        storedNode = node
+    }
+    lastSeen = node;
+     if (i === n) {
+        frontSwap.next = node;
+     }
+    if (i === n + 1) {
+        storedNode.next = node
+    }
+    if (i >= m && i <= n) {
+        [node.next, prevNode, node] = [prevNode, node, node.next]
+    } else {
+        node = node.next
+    }
+    i += 1;
+  }
+  return veryFirst;
+};
 
 
 
