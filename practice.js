@@ -335,7 +335,13 @@ const randArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 inPlaceShuffle(randArr)
 console.log(randArr)
 
-
+function reverseLinkedList(node) {
+  let prevNode = null;
+  while (node) {
+    [node.next, prevNode, node] = [prevNode, node, node.next]
+  }
+  return prevNode;
+}
 
 
 
