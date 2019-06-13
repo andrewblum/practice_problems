@@ -391,6 +391,23 @@ var reverseBetween = function(node, m, n) {
 
 
 
+const words = [
+  'ptolemaic',
+  'retrograde',
+  'supplant',
+  'undulate',
+  'xenoepist',
+  'asymptote',  // <-- rotates here!
+  'babka',
+  'banoffee',
+  'engender',
+  'karpatka',
+  'othellolagkage',
+];
+
+
+
+
 
 
 
