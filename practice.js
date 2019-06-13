@@ -362,8 +362,8 @@ var reverseBetween = function(node, m, n) {
   let i = 1
   let prevNode = null;
   let storedNode;
-  let lastSeen;
   while (node) {
+
     if (i === m - 1) {
         frontSwap = node;
         prevNode = node
@@ -371,13 +371,14 @@ var reverseBetween = function(node, m, n) {
     if (i === m) {
         storedNode = node
     }
-    lastSeen = node;
-     if (i === n) {
-        frontSwap.next = node;
-     }
+    if (i === n) {
+      frontSwap.next = node;
+    }
     if (i === n + 1) {
         storedNode.next = node
     }
+
+
     if (i >= m && i <= n) {
         [node.next, prevNode, node] = [prevNode, node, node.next]
     } else {
