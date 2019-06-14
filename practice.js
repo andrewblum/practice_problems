@@ -389,7 +389,11 @@ var reverseBetween = function(node, m, n) {
   return veryFirst;
 };
 
+// find the middle point of a rotated array, as determined by alphabetical ordering 
+// also consider 
 
+// should return 2 as the point of rotation. 
+const numbers = [5, 4, 1, 2, 3] 
 
 const words = [
   'ptolemaic',
@@ -405,6 +409,10 @@ const words = [
   'othellolagkage',
 ];
 
+
+
+
+// you have a string and number, return the length of the longests sequence of the same letter with up to X replacements 
 
 
 
