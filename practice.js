@@ -332,8 +332,8 @@ function inPlaceShuffle(arr) {
 }
 
 const randArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-inPlaceShuffle(randArr)
-console.log(randArr)
+// inPlaceShuffle(randArr)
+// console.log(randArr)
 
 function reverseLinkedList(node) {
   let prevNode = null;
@@ -393,7 +393,7 @@ var reverseBetween = function(node, m, n) {
 // also consider 
 
 // should return 2 as the point of rotation. 
-const numbers = [5, 4, 1, 2, 3] 
+const numbers = [4, 5, 1, 2, 3] 
 
 const words = [
   'ptolemaic',
@@ -409,10 +409,30 @@ const words = [
   'othellolagkage',
 ];
 
+// if youre going left or right and hit the end, loop to the other side 
+// if you move left to find a smaller or right to find a bigger item, and its not, then youve gone too far and 
+// you should go back and step half as far. 
+
+// compare current item to first item. if its smaller than first item, go left. if its larger, right. 
 
 function findStart(arr) {
-  
+  let start = 0;
+  let end = arr.length - 1;
+  let mid = end / 2;
+  let cur = arr[mid];
+  while (mid !== 0 && cur > arr[mid - 1]) {
+    if (cur < arr[0]) {
+      end = mid;
+    } else {
+      start = mid;
+    }
+    mid = end / 2;
+    cur = arr[mid];
+  }
+  return mid;
 }
+
+console.log(findStart(words))
 
 
 
