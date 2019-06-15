@@ -410,6 +410,11 @@ const words = [
 ];
 
 
+function findStart(arr) {
+  
+}
+
+
 
 
 // you have a string and number, return the length of the longests sequence of the same letter with up to X replacements 
