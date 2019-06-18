@@ -419,29 +419,33 @@ function findStart(arr) {
   let start = 0;
   let end = arr.length - 1;
   let mid = end / 2;
-  let cur = arr[mid];
-  while (mid !== 0 && cur > arr[mid - 1]) {
-    if (cur < arr[0]) {
+  while (mid !== 0 && arr[mid] > arr[mid - 1]) {
+    if (arr[mid] < arr[0]) {
       end = mid;
     } else {
       start = mid;
     }
     mid = end / 2;
-    cur = arr[mid];
   }
   return mid;
 }
 
 console.log(findStart(words))
 
+// find the first duplicate in an array with numbers from 1 to n and a lenth of n + 1 without
+// using extra space
 
+function findDupe(arr) {
+
+}
 
 
 // you have a string and number, return the length of the longests sequence of the same letter with up to X replacements 
 
 
-
-
+function findLongestSeq(str) {
+  
+}
 
 
 
