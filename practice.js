@@ -444,7 +444,10 @@ function findDupe(arr) {
 
 
 function findLongestSeq(str) {
-  
+  for (let i; i < str.length; i++) {
+    let cur = str[i];
+    
+  }
 }
 
 
