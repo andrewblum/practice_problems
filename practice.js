@@ -446,9 +446,16 @@ function findDupe(arr) {
 function findLongestSeq(str) {
   for (let i; i < str.length; i++) {
     let cur = str[i];
-    
+
   }
 }
 
 
+// delete node from a singlely linked list given only a pointer to that node 
 
+// traverse LL until x.next is target node, then set x's next to targets .next 
+// we can be faster, but besides we dont even have a ref to the start!
+
+function deleteNode(pointer) {
+
+}
