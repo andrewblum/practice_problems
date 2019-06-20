@@ -456,6 +456,13 @@ function findLongestSeq(str) {
 // traverse LL until x.next is target node, then set x's next to targets .next 
 // we can be faster, but besides we dont even have a ref to the start!
 
-function deleteNode(pointer) {
+// we just change the current node to its next's value and then delete it's next
 
+function deleteNode(target) {
+  if (target.next) {
+    target.val = target.next.val;
+    target.next = target.next.next;
+  } else {
+    throw new Error('Cant delete the last node in a SLL');
+  }
 }
