@@ -466,3 +466,9 @@ function deleteNode(target) {
     throw new Error('Cant delete the last node in a SLL');
   }
 }
+
+// see if a singley linked list has a cycle 
+
+function containsCycle(head) {
+  
+}
