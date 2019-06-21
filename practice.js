@@ -469,6 +469,17 @@ function deleteNode(target) {
 
 // see if a singley linked list has a cycle 
 
+// slow runner fast runner 
+
 function containsCycle(head) {
-  
+  let slow = head;
+  let fast = head.next; 
+  while (head.next) {
+    if (slow === fast) {
+      return true;
+    } 
+    slow = slow.next;
+    fast = fast.next.next;
+  }
+  return false; 
 }
