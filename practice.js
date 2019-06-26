@@ -483,3 +483,13 @@ function containsCycle(head) {
   }
   return false; 
 }
+
+// two linked lists, unknown lengths, merge at some point, return node they meet at 
+// do it in constant space, linear time
+
+// one will reach the end first, and you can count how many nodes ahead of the other runner it was
+// this is your offset and will let you compare accross to the two ll's and find the merge, this is 2m + 2n time. 
+
+function mergeNode(l1, l2) {
+  
+}
