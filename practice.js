@@ -468,13 +468,12 @@ function deleteNode(target) {
 }
 
 // see if a singley linked list has a cycle 
-
-// slow runner fast runner 
+// slow runner fast runner, slow takes 1 step at as time, fast takes 2
 
 function containsCycle(head) {
   let slow = head;
   let fast = head.next; 
-  while (head.next) {
+  while (slow.next && fast.next.next) {
     if (slow === fast) {
       return true;
     } 
