@@ -356,37 +356,31 @@ function reverseLinkedList(node) {
  * @param {number} n
  * @return {ListNode}
  */
-var reverseBetween = function(node, m, n) {
-  if (m === n) return node;
-  let veryFirst = node;
-  let i = 1
-  let prevNode = null;
-  let storedNode;
-  while (node) {
-
-    if (i === m - 1) {
-        frontSwap = node;
-        prevNode = node
-    }
-    if (i === m) {
-        storedNode = node
-    }
-    if (i === n) {
-      frontSwap.next = node;
-    }
-    if (i === n + 1) {
-        storedNode.next = node
-    }
-
-
-    if (i >= m && i <= n) {
-        [node.next, prevNode, node] = [prevNode, node, node.next]
-    } else {
-        node = node.next
-    }
-    i += 1;
+var reverseBetween = function(head, m, n) {
+  let currentPos = 1; 
+  let current = head; 
+  let prevNode;
+  let beginSwapNode;
+  let endSwapNode;
+  while (current) {
+      if (currentPos === (m - 1)) {
+          beginSwapNode = current; 
+      }
+      if (currentPos === m) {
+          endSwapNode = current; 
+      }
+      if (currentPos === n) {
+          beginSwapNode.next = current;
+          endSwapNode.next = current.next;
+      }
+      if (currentPos >= m && currentPos <= n) {
+          [current.next, prevNode, current] = [prevNode, current, current.next]
+      } else {
+          current = current.next;  
+      }
+      currentPos += 1; 
   }
-  return veryFirst;
+  return head; 
 };
 
 // find the middle point of a rotated array, as determined by alphabetical ordering 
@@ -437,7 +431,7 @@ console.log(findStart(words))
 
 function findDupe(arr) {
 
-}
+} 
 
 
 // you have a string and number, return the length of the longests sequence of the same letter with up to X replacements 
@@ -492,3 +486,4 @@ function containsCycle(head) {
 function mergeNode(l1, l2) {
 
 }
+
