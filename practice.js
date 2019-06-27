@@ -472,8 +472,8 @@ function deleteNode(target) {
 
 function containsCycle(head) {
   let slow = head;
-  let fast = head.next; 
-  while (slow.next && fast.next.next) {
+  let fast = head;
+  while (fast && fast.next) {
     if (slow === fast) {
       return true;
     } 
@@ -490,5 +490,5 @@ function containsCycle(head) {
 // this is your offset and will let you compare accross to the two ll's and find the merge, this is 2m + 2n time. 
 
 function mergeNode(l1, l2) {
-  
+
 }
