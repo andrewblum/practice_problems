@@ -497,18 +497,18 @@ class LinkedListNode {
   }
 }
 
-const a = new LinkedListNode('Angel Food');
-const b = new LinkedListNode('Bundt');
-const c = new LinkedListNode('Cheese');
-const d = new LinkedListNode("Devil's Food");
-const e = new LinkedListNode('Eccles');
+const aN = new LinkedListNode('Angel Food');
+const bN = new LinkedListNode('Bundt');
+const cN = new LinkedListNode('Cheese');
+const dN = new LinkedListNode("Devil's Food");
+const eN = new LinkedListNode('Eccles');
 
-a.next = b;
-b.next = c;
-c.next = d;
-d.next = e;
+aN.next = bN;
+bN.next = cN;
+cN.next = dN;
+dN.next = eN;
 
-kthToLastNode(2, a);
+console.log(kthToLastNode(2, aN));
 
 function kthToLastNode(k, node) {
   let length = 0; 
@@ -518,7 +518,7 @@ function kthToLastNode(k, node) {
     head = head.next;
   }
   let stoppingPoint = length - k;
-  if (stoppPoing < 1) return null;
+  if (stoppingPoint < 1) return null;
   let current = 0;
   while (node) {
     current += 1;
