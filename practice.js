@@ -511,6 +511,21 @@ d.next = e;
 kthToLastNode(2, a);
 
 function kthToLastNode(k, node) {
-
+  let length = 0; 
+  let head = node; 
+  while (head) {
+    length += 1;
+    head = head.next;
+  }
+  let stoppingPoint = length - k;
+  if (stoppPoing < 1) return null;
+  let current = 0;
+  while (node) {
+    current += 1;
+    if (current === stoppingPoint) {
+      return node; 
+    }
+    node = node.next;
+  }
 }
 
