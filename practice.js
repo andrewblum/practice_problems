@@ -519,13 +519,10 @@ function kthToLastNode(k, node) {
   }
   let stoppingPoint = length - k;
   if (stoppingPoint < 1) return null;
-  let current = 0;
-  while (node) {
-    current += 1;
-    if (current === stoppingPoint) {
-      return node; 
-    }
+  for (let current = 0; current === stoppingPoint; current++) {
     node = node.next;
   }
+  return node;
 }
+
 
