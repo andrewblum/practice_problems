@@ -525,4 +525,24 @@ function kthToLastNode(k, node) {
   return node;
 }
 
+// find dup in an array thats n + 1 length and values are 1 .. n 
+// do this in n log n time, not the graph theory way
+
+// our dupe could then be (at least) one of 1 .. N
+// it must then be in either in the range of (1 .. n/2) or (n/2 .. n)
+
+// to test which range its in 
+// we can go through and count how many numbers are in which part of the range 
+// this is N 
+// we will need to do it log N times 
+// n log n runtime 
+
+// if a range 1 ... n/2 has a dupe then it will have one more number 
+// than whatever its ending range is, letting us know that this range 
+// contains the dupe
+
+
+function findDupeInArray(arr) {
+
+}
 
