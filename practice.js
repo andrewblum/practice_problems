@@ -542,7 +542,19 @@ function kthToLastNode(k, node) {
 // contains the dupe
 
 
+
+
 function findDupeInArray(arr) {
 
+}
+
+function checkRangeForDupe(arr, from, to) {
+  count = 0;
+  arr.forEach(num => {
+    if (num >= from && num <= to) {
+      count += 1;
+    }
+  })
+  return count === (to - from);
 }
 
