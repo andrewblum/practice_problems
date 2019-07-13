@@ -558,3 +558,18 @@ function checkRangeForDupe(arr, from, to) {
   return count === (to - from);
 }
 
+
+// leetcode 905 sort things into even then odd order
+var sortArrayByParity = function(A) {
+  const even = []
+  const odd = []
+  A.forEach(each => {
+      if (each % 2 === 0) {
+          even.push(each)
+      } else {
+          odd.push(each)
+      }
+  })
+  return even.concat(odd);
+};
+
