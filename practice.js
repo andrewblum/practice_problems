@@ -584,3 +584,12 @@ var flipAndInvertImage = function(A) {
   return A
 };
 
+var hammingDistance = function(x, y) {
+  let num = x ^ y;
+  let distance = 0;
+  while (num > 0) {
+      distance += num & 1
+      num = num >> 1
+  }
+  return distance;
+};
