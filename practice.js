@@ -609,7 +609,6 @@ function helper(n, mem) {
 
 
 // leetcode 581 shortest unsorted continuous subarray! 
-
 /**
  * @param {number[]} nums
  * @return {number}
@@ -633,28 +632,23 @@ var findUnsortedSubarray = function(nums) {
       }
   }
   
-  console.log(firstUnordered)
-  console.log(lastUnordered)
-  
-  let min = Math.min(nums.slice(firstUnordered, lastUnordered + 1))
-  let max = Math.max(nums.slice(firstUnordered, lastUnordered + 1))
+  let min = Math.min(...nums.slice(firstUnordered, lastUnordered + 1))
+  let max = Math.max(...nums.slice(firstUnordered, lastUnordered + 1))
   
   for (let i = 0; i < firstUnordered; i++) {
       if (min < nums[i]) {
+          console.log('setting new front')
           firstUnordered = i;   
       }
   }
   
-  for (let i = nums.length - 1; i >= lastUnordered; i--) {
+  for (let i = nums.length - 1; i > lastUnordered; i--) {
       if (max > nums[i]) {
           console.log('setting new end')
           lastUnordered = i;   
       } 
   }
   
-  
-  console.log(firstUnordered)
-  console.log(lastUnordered)
   if (lastUnordered === 0 && firstUnordered === 0) return 0;
   let answer = (lastUnordered - firstUnordered) + 1;
   if (answer < 0) return 0;
@@ -674,6 +668,7 @@ var findUnsortedSubarray = function(nums) {
 
 // find first and last unordered thing. 
 // find min and max from that segment 
+
 
 
 
