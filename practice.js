@@ -589,7 +589,20 @@ var hammingDistance = function(x, y) {
   let distance = 0;
   while (num > 0) {
       distance += num & 1
-      num = num >> 1
+      num = num >>> 1
   }
   return distance;
 };
+
+// basic memoized fibonacci 
+const fib = function(n) {
+  return helper(n, {})
+};
+
+function helper(n, mem) {
+  if (n === 0) return 0;
+  if (n === 1) return 1;
+  if (mem[n]) return mem[n];
+  mem[n] = helper(n - 1, mem) + helper(n - 2, mem);
+  return mem[n];
+}
