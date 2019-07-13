@@ -606,3 +606,74 @@ function helper(n, mem) {
   mem[n] = helper(n - 1, mem) + helper(n - 2, mem);
   return mem[n];
 }
+
+
+// leetcode 581 shortest unsorted continuous subarray! 
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var findUnsortedSubarray = function(nums) {
+  if (nums.length === 1) return 0;
+  let firstUnordered = 0; 
+  let lastUnordered = nums.length - 1; 
+  for (let i = 0; i < nums.length; i++) {
+      if (nums[i] <= nums[i + 1]) {
+          firstUnordered++;   
+      } else {
+          break;
+      }
+  }
+  for (let i = nums.length - 1; i >= 0; i--) {
+      if (nums[i] >= nums[i - 1]) {
+          lastUnordered--;   
+      } else {
+          break;
+      }
+  }
+  
+  console.log(firstUnordered)
+  console.log(lastUnordered)
+  
+  let min = Math.min(nums.slice(firstUnordered, lastUnordered + 1))
+  let max = Math.max(nums.slice(firstUnordered, lastUnordered + 1))
+  
+  for (let i = 0; i < firstUnordered; i++) {
+      if (min < nums[i]) {
+          firstUnordered = i;   
+      }
+  }
+  
+  for (let i = nums.length - 1; i >= lastUnordered; i--) {
+      if (max > nums[i]) {
+          console.log('setting new end')
+          lastUnordered = i;   
+      } 
+  }
+  
+  
+  console.log(firstUnordered)
+  console.log(lastUnordered)
+  if (lastUnordered === 0 && firstUnordered === 0) return 0;
+  let answer = (lastUnordered - firstUnordered) + 1;
+  if (answer < 0) return 0;
+  return answer;
+};
+
+// find the start of the unordering going forward
+// find the start of the unordering going backwards
+// any single sub sort to order the entire thing must cover minium
+// from the start to the end found this way 
+
+// get the min and max from this sorted segment
+// if the max is larger than the number right in front of the end of our segment, walk
+// it forward until we encompass it
+// same thing for the smallest! 
+
+
+// find first and last unordered thing. 
+// find min and max from that segment 
+
+
+
