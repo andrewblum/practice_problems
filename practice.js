@@ -573,3 +573,14 @@ var sortArrayByParity = function(A) {
   return even.concat(odd);
 };
 
+// leetcode 832, reverse then invert all subarrays.
+var flipAndInvertImage = function(A) {
+  A.forEach(subArr => {
+      subArr.reverse()
+      for (let i = 0; i < subArr.length; i++) {
+          subArr[i] = subArr[i] ^ 1;
+      }
+  })
+  return A
+};
+
