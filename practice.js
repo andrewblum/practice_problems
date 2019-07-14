@@ -477,16 +477,6 @@ function containsCycle(head) {
   return false; 
 }
 
-// two linked lists, unknown lengths, merge at some point, return node they meet at 
-// do it in constant space, linear time
-
-// one will reach the end first, and you can count how many nodes ahead of the other runner it was
-// this is your offset and will let you compare accross to the two ll's and find the merge, this is 2m + 2n time. 
-
-function mergeNode(l1, l2) {
-
-}
-
 
 // return the kth to last node of a singly LL
 
@@ -724,3 +714,22 @@ var getIntersectionNode = function(headA, headB) {
       headB = headB.next;
   }
 };
+
+
+// leetcode 70 memoized steps 
+
+const mem = {}
+
+var climbStairs = function(n) {
+    return helper(n, {})
+};
+
+function helper(n) {
+    if (n === 0) return 0; 
+    if (n === 1) return 1; 
+    if (n === 2) return 2; 
+    if (mem[n]) return mem[n]
+    mem[n] = helper(n - 1) + helper(n - 2)
+    return mem[n]
+}
+
