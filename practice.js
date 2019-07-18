@@ -744,4 +744,30 @@ function dynamicStairs(n) {
 }
 
 
+// leet code 56 merge intervals  
+
+
+var mergeIntervals = function(intervals) {
+  if (intervals.length === 0) return [];
+  intervals.sort((a, b) => a[0] - b[0])
+  let newIntervals = [intervals[0]];
+  let start; 
+  let end;
+  for (let i = 1; i < intervals.length; i++) {
+      start = intervals[i][0];
+      end = intervals[i][1];
+      let curEnd = newIntervals[newIntervals.length - 1][1];
+      if (start <= curEnd) {
+          if (end > curEnd) {
+              newIntervals[newIntervals.length - 1][1] = end;
+          }
+      } else {
+          newIntervals.push([start, end]);
+      }     
+  }
+  return newIntervals;
+};
+
+
+
 
