@@ -743,10 +743,7 @@ function dynamicStairs(n) {
   return arr[arr.length - 1];
 }
 
-
 // leet code 56 merge intervals  
-
-
 var mergeIntervals = function(intervals) {
   if (intervals.length === 0) return [];
   intervals.sort((a, b) => a[0] - b[0])
@@ -767,6 +764,8 @@ var mergeIntervals = function(intervals) {
   }
   return newIntervals;
 };
+
+
 
 
 
