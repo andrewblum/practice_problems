@@ -774,11 +774,10 @@ var maxDepth = function(root) {
 };
 
 function helper(root, count) {
-  if (root === null) return count;
   if (root.left !== null && root.right !== null)  {
       return Math.max(helper(root.right, count + 1), helper(root.left, count + 1))
   }
-  if (root.left === null && root.right !== null)  {
+  if (root.right !== null)  {
       return helper(root.right, count + 1)
   }
   if (root.left !== null) {
