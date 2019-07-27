@@ -766,7 +766,26 @@ var mergeIntervals = function(intervals) {
 };
 
 
+//leet code 104 max depth binary tree 
 
+var maxDepth = function(root) {
+  if (root === null) return 0;
+  return helper(root, 1);
+};
+
+function helper(root, count) {
+  if (root === null) return count;
+  if (root.left !== null && root.right !== null)  {
+      return Math.max(helper(root.right, count + 1), helper(root.left, count + 1))
+  }
+  if (root.left === null && root.right !== null)  {
+      return helper(root.right, count + 1)
+  }
+  if (root.left !== null) {
+      return helper(root.left, count + 1)
+  }
+  return count;
+}
 
 
 
