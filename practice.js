@@ -786,5 +786,28 @@ function helper(root, count) {
   return count;
 }
 
-
-
+//leet code valid parenths 
+var isValid = function(s) {
+  let paren = [];
+  let temp;
+  for (let i = 0; i < s.length; i++) {
+      if (s[i] === '(') {
+          paren.push('(')
+      } else if (s[i] === '{') {
+          paren.push('{')
+      } else if (s[i] === '[') {
+          paren.push('[')
+      } else if (s[i] === ')') {
+          temp = paren.pop()
+           if (!temp || temp !== '(') return false;
+      } else if (s[i] === '}') {
+          temp = paren.pop()
+          if (!temp || temp !== '{') return false;
+      } else {
+          temp = paren.pop()
+          if (!temp || temp !== '[') return false; 
+      } 
+  }
+  if (paren.length > 0) return false;
+  return true; 
+};
