@@ -789,13 +789,12 @@ function helper(root, count) {
 //leet code valid parenths 
 var isValid = function(s) {
   let paren = [];
-  let temp;
   for (let i = 0; i < s.length; i++) {
       let cur = s[i]
       if (cur === '(' || cur === '{' || cur === '[') {
           paren.push(cur);
       } else {
-          temp = paren.pop()
+          let temp = paren.pop()
           if (!temp) return false;
           temp = temp + cur
           if (temp !== '()' && temp !== '{}' && temp !== '[]') {
