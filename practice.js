@@ -791,13 +791,10 @@ var isValid = function(s) {
   let paren = [];
   let temp;
   for (let i = 0; i < s.length; i++) {
-      if (s[i] === '(') {
-          paren.push('(')
-      } else if (s[i] === '{') {
-          paren.push('{')
-      } else if (s[i] === '[') {
-          paren.push('[')
-      } else if (s[i] === ')') {
+      temp = s[i]
+      if (temp === '(' || temp === '{' || temp === '[') {
+          paren.push(temp);
+      } else if (temp === ')') {
           temp = paren.pop()
            if (!temp || temp !== '(') return false;
       } else if (s[i] === '}') {
