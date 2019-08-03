@@ -856,3 +856,8 @@ var moveZeroes2 = function(nums) {
 console.log('move zeros')
 moveZeroes(moveZ1)
 console.log(moveZ1)
+
+var deleteNode = function(node) {
+  node.val = node.next.val
+  node.next = node.next.next
+};
