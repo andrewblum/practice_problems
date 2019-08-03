@@ -861,3 +861,28 @@ var deleteNode = function(node) {
   node.val = node.next.val
   node.next = node.next.next
 };
+
+
+//sorting 
+var majorityElement = function(nums) {
+  if (nums.length === 1 || nums.length === 2) return nums[0]
+  nums.sort((a, b) => a - b)
+  return nums[((nums.length - 1)/2) >> 0]
+};
+
+//voting with boyer moore
+var majorityElement = function(nums) {
+  let count = 0;
+  let candidate;
+  for (let i = 0; i < nums.length; i++) {
+      if (count === 0) {
+          candidate = nums[i];
+      }
+      if (nums[i] === candidate) {
+          count += 1;
+      } else {
+          count -= 1;
+      }
+  }
+  return candidate;
+}
