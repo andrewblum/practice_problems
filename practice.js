@@ -805,3 +805,26 @@ var isValid = function(s) {
   if (paren.length > 0) return false;
   return true; 
 };
+
+
+// max width sliding window problem 
+// max sum of a window of width W 
+const holes = [0, 1, 1, 0, 1, 1, 0, 1, 0, 0, 0]; 
+
+function whackAMole(holes, width) {
+  let i = 0; 
+  let currentWindow = holes.slice(0, width).reduce((a, b) => a + b, 0); 
+  let max = currentWindow;
+  if (holes.length < width) return holes.reduce((a, b) => a + b, 0)
+  for (let k = width; k < holes.length; k++) {
+    currentWindow = currentWindow - holes[i] + holes[k];
+    if (currentWindow > max) {
+      max = currentWindow;
+    }
+    i++;
+  }
+  return max; 
+}
+
+console.log('whack a mole')
+console.log(whackAMole(holes, 5));
