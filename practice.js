@@ -840,6 +840,19 @@ var moveZeroes = function(nums) {
 
 const moveZ1 = [0,0,1]
 
+var moveZeroes2 = function(nums) {
+  let lastNonZeroFoundAt = 0; 
+  let temp;
+  for (let cur = 0; cur < nums.length; cur++) {
+      if (nums[cur] !== 0) {
+          temp = nums[lastNonZeroFoundAt];
+          nums[lastNonZeroFoundAt] = nums[cur];
+          nums[cur] = temp;
+          lastNonZeroFoundAt += 1;
+      }
+  }
+};
+
 console.log('move zeros')
 moveZeroes(moveZ1)
 console.log(moveZ1)
