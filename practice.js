@@ -828,3 +828,18 @@ function whackAMole(holes, width) {
 
 console.log('whack a mole')
 console.log(whackAMole(holes, 5));
+
+var moveZeroes = function(nums) {
+  let count = 0;
+  while (nums.indexOf(0) > -1) {
+    nums.splice(nums.indexOf(0), 1)
+    count += 1;
+  }
+  nums.push(... new Array(count).fill(0));
+};
+
+const moveZ1 = [0,0,1]
+
+console.log('move zeros')
+moveZeroes(moveZ1)
+console.log(moveZ1)
