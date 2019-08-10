@@ -886,3 +886,49 @@ var majorityElement = function(nums) {
   }
   return candidate;
 }
+
+
+class MaxStack {
+  constructor() {
+
+    // Initialize an empty stack
+    this.items = [];
+    this.max = [0, 0];
+  }
+
+  // Push a new item onto the stack
+  push(item) {
+    this.items.push([item, this.max[1]])
+    if (this.max[0] < item) {
+      this.max = [item, this.items.length - 1];
+    }
+  }
+
+  getMax() {
+    return this.max[0];
+  }
+
+  // Remove and return the last item
+  pop() {
+    if (this.items[this.items.length - 1])
+    // If the stack is empty, return null
+    // (It would also be reasonable to throw an exception)
+    if (!this.items.length) {
+      return null;
+    }
+
+    const last = this.items.pop();
+    if (last[0] === this.max[0]) {
+      this.max = this.items[this.max[1]]
+    }
+    return 
+  }
+
+  // Returns the last item without removing it
+  peek() {
+    if (!this.items.length) {
+      return null;
+    }
+    return this.items[this.items.length - 1];
+  }
+}
