@@ -898,9 +898,9 @@ class MaxStack {
 
   // Push a new item onto the stack
   push(item) {
-    this.items.push(item)
-    if (this.max[this.max.length - 1] < item) {
-      this.max.push(item);
+    this.items.push(x)
+    if (this.max.length === 0 || this.max[this.max.length - 1] >= x) {
+      this.max.push(x);
     }
   }
 
@@ -910,17 +910,11 @@ class MaxStack {
 
   // Remove and return the last item
   pop() {
-    // If the stack is empty, return null
-    // (It would also be reasonable to throw an exception)
-    if (!this.items.length) {
-      return null;
-    }
-
     const last = this.items.pop();
     if (last === this.max[this.max.length - 1]) {
       this.max.pop();
     }
-    return 
+    return last
   }
 
   // Returns the last item without removing it
