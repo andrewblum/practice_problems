@@ -928,7 +928,7 @@ class MaxStack {
 
 
 // KNAP SACK BABY 
-const items = {
+const menu = {
   "Fruit": 215,
   "Fries": 275,
   "Salad": 335,
@@ -937,23 +937,21 @@ const items = {
   "Plate": 580
 }
 
-function tryAllKnapsack(amount, items, taken, solutions) {
-  if (amount === 0) { solutions.push(taken); return }
-  for (const [item, cost] of Object.entries(items)) {
-    if (cost <= amount) {
-      taken = taken.slice();
-      taken.push(item);
-      console.log(taken)
-      tryAllKnapsack(amount - cost, items, taken, solutions)
+function tryAllKnapsack(budget, menu, order, solutions) {
+  if (budget === 0) { solutions.push(order); return }
+  for (const [item, cost] of Object.entries(menu)) {
+    if (cost <= budget) {
+      let currentOrder = [...order];
+      currentOrder.push(item);
+      tryAllKnapsack(budget - cost, menu, currentOrder, solutions)
     }
   }
 }
 
-function tryALlKnapSackStarter(amount, items) {
+function tryAllKnapSackStarter(budget, menu) {
   const solutions = [];
-  const taken = [];
-  tryAllKnapsack(amount, items, taken, solutions)
+  tryAllKnapsack(budget, menu, [], solutions)
   return solutions;
 }
 
-console.log(tryALlKnapSackStarter(1505, items));
+console.log(tryAllKnapSackStarter(1505, menu));
