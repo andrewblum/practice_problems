@@ -925,3 +925,34 @@ class MaxStack {
     return this.items[this.items.length - 1];
   }
 }
+
+
+// KNAP SACK BABY 
+const items = {
+  "Fruit": 215,
+  "Fries": 275,
+  "Salad": 335,
+  "Wings": 355,
+  "Mozzarella": 420,
+  "Plate": 580
+}
+
+function tryAllKnapsack(amount, items, taken, solutions) {
+  if (amount === 0) { solutions.push(taken); return }
+  for (const [item, cost] of Object.entries(items)) {
+    if (cost <= amount) {
+      taken = taken.slice();
+      taken.push(item);
+      tryAllKnapsack(amount - cost, items, taken, solutions)
+    }
+  }
+}
+
+function tryALlKnapSackStarter(amount, items) {
+  const solutions = [];
+  const taken = [];
+  tryAllKnapsack(amount, items, taken, solutions)
+  return solutions;
+}
+
+console.log(tryALlKnapSackStarter(1505, items));
