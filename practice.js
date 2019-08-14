@@ -955,3 +955,98 @@ function tryAllKnapSackStarter(budget, menu) {
 }
 
 console.log(tryAllKnapSackStarter(1505, menu));
+
+
+const numberTranslations =  {
+  0: 'zero',
+  1: 'one',
+  2: 'two',
+  3: 'three',
+  4: 'four',
+  5: 'five',
+  6: 'six',
+  7: 'seven',
+  8: 'eight',
+  9: 'nine',
+  10: 'ten',
+  11: 'eleven',
+  12: 'twelve',
+  13: 'thirteen',
+  14: 'fourteen',
+  15: 'fifteen',
+  16: 'sixteen',
+  17: 'seventeen',
+  18: 'eighteen',
+  19: 'nineteen',
+  20: 'twenty',
+  30: 'thirty',
+  40: 'fourty',
+  50: 'fifty',
+  60: 'sixty',
+  70: 'seventy',
+  80: 'eighty',
+  90: 'ninety'
+}
+
+const magnitudes = ['', ' thousand ', ' million ', ' billion ', ' trillion '];
+
+// 7 - > seven 
+// 30 -> thirty 
+// 32 -> thirty two
+// 123 -> one hundred twenty three 
+// 723 -> seven hundred twenty three
+// 7001 -> seven thousand one
+// 7023 -> seven thousand twenty three 
+// 74023 -> seventy four thousand twenty three
+
+// convert blocks of 0-99 then x00, and then lace magnitude marker after each block 
+
+// 0-19 direct conversion, special 
+// xx - convert the first then the second, ignore zeros
+// xxx - convert the first, add marker, then the next 2 
+// 
+
+// 990 nine hundred ninety  
+// 9/99/  THOUSAND , 1/00 nintey nine hundred 
+
+function translateNumToString(num) {
+  let result = '';
+  for (let i = 0; num > 0; i++) {
+    result = (convertBlock(num % 1000) + magnitudes[i]) + result;
+    num = Math.floor(num/1000);
+  }
+  return result; 
+}
+
+// convert numbers 0 - 999
+function convertBlock(num) {
+  let result = '';
+  // handle 0-20
+  if (num <= 20) return numberTranslations[num];
+  // handle hundreds if applicable
+  if (num >= 100) {
+    let hundredsDigit = Math.floor(num / 100) % 10
+    result += numberTranslations[hundredsDigit] + ' hundred';
+  }
+  // handle first digit of 21-99
+  let tensDigit = Math.floor(num / 10) % 10
+  if (tensDigit !== 0) result += ' ' + numberTranslations[tensDigit * 10];
+  // handle last digit
+  if (num % 10 !== 0) result += ' ' + numberTranslations[num % 10];
+  return result; 
+}
+
+console.log(convertBlock(829));
+console.log(convertBlock(0));
+console.log(convertBlock(17));
+console.log(convertBlock(127));
+console.log(convertBlock(999));
+console.log(translateNumToString(383));
+console.log(translateNumToString(1383));
+console.log(translateNumToString(31383));
+console.log(translateNumToString(13564));
+console.log(translateNumToString(1883564));
+
+
+
+
