@@ -943,6 +943,7 @@ function tryAllKnapsack(amount, items, taken, solutions) {
     if (cost <= amount) {
       taken = taken.slice();
       taken.push(item);
+      console.log(taken)
       tryAllKnapsack(amount - cost, items, taken, solutions)
     }
   }
