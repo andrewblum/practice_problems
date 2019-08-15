@@ -1012,6 +1012,7 @@ const magnitudes = ['', ' thousand ', ' million ', ' billion ', ' trillion '];
 function translateNumToString(num) {
   let result = '';
   for (let i = 0; num > 0; i++) {
+    if (i >= magnitudes.length) throw new Error('Number is too large to convert.');
     result = (convertBlock(num % 1000) + magnitudes[i]) + result;
     num = Math.floor(num/1000);
   }
@@ -1025,7 +1026,7 @@ function convertBlock(num) {
   if (num <= 20) return numberTranslations[num];
   // handle hundreds if applicable
   if (num >= 100) {
-    let hundredsDigit = Math.floor(num / 100) % 10
+    let hundredsDigit = Math.floor(num / 100)
     result += numberTranslations[hundredsDigit] + ' hundred';
   }
   // handle first digit of 21-99
