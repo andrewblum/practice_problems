@@ -1049,5 +1049,15 @@ console.log(translateNumToString(13564));
 console.log(translateNumToString(1883564));
 
 
-
+// 841 leetcode 
+var canVisitAllRooms = function(rooms) {
+  let seen = new Set();
+  let toVisit = [0];
+  while (toVisit.length > 0) {
+      let key = toVisit.pop()
+      seen.add(key)
+      rooms[key].forEach(e => { if (!seen.has(e)) toVisit.push(e) });
+  }
+  return seen.size === rooms.length;
+};  
 
