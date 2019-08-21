@@ -1081,16 +1081,20 @@ var canVisitAllRooms = function(rooms) {
 
 // Given an unsigned value, implement the two's complement value.  
 
-
 var lengthOfLongestSubstring = function(s) {
   let max = 0;
   let set = new Set(); 
-  for (let i = 0; i < s.length; i++) {
-      if (set.has(s[i]) {
-          set.clear();
-      } else {
-          set.add(s[i]);
-          max = Math.max(set.size, max);
+  let current = 0;
+  while (current < s.length) {
+      for (let i = current; i < s.length; i++) {
+          if (set.has(s[i])) {
+              current += 1;
+              set.clear();
+              break;
+          } else {
+              set.add(s[i]);
+              max = Math.max(set.size, max);
+          }
       }
   }
   return max; 
