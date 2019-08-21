@@ -1061,3 +1061,23 @@ var canVisitAllRooms = function(rooms) {
   return seen.size === rooms.length;
 };  
 
+
+// Given a hallway with a set of lights in various positions and of various light casting radii,
+// determine if the hallway can be crossed while remaining in the unlit areas of the hallway.
+// ** OR **
+//Given the radius / x and y coordinates of the middle of a list of circles, and the height of the 
+// y axis, determine if a grid is traversible on the x axis by a 1x1 square.
+
+
+// Print out a tree's paths from root to leaves 
+
+// find k top values from a data set
+
+// Compare a hash table by key and by value, including recursively flattening nested hash tables. 
+
+// 
+
+// priority q, with comparator 
+
+// Given an unsigned value, implement the two's complement value.  
+
