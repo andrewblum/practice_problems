@@ -1099,3 +1099,33 @@ var lengthOfLongestSubstring = function(s) {
   }
   return max; 
 };
+
+
+// leet code 17 
+
+const phoneetters = {
+  '2': 'abc',
+  '3': 'def',
+  '4': 'ghi',
+  '5': 'jkl',
+  '6': 'mno',
+  '7': 'pqrs',
+  '8': 'tuv',
+  '9': 'wxyz'
+}
+
+var letterCombinations = function(digits) {
+  if (digits.length === 1 ) return phoneletters[digits].split('');
+  if (digits === '') return [];
+  let result = [];
+  let cur = digits[0];
+  digits = digits.slice(1);
+  for (let i = 0; i < phoneletters[cur].length; i++) {
+      let letter = phoneletters[cur][i];
+      let previous = letterCombinations(digits);
+      previous.forEach(combo => {
+          result.push(letter + combo);
+      })
+  }
+  return result; 
+};
