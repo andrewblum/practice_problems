@@ -1129,3 +1129,18 @@ var letterCombinations = function(digits) {
   }
   return result; 
 };
+
+
+function allPerms(str, set = []) {
+  if (str.length === 1) return [str];
+  for (let i = 0; i < str.length; i++) {
+    let cur = str[i];
+    let result = allPerms(str.replace(cur, ''));
+    set = set.concat(result.map(each => cur + each))
+  }
+  return set;
+}
+
+console.log('perms')
+console.log(allPerms('ab'))
+console.log(allPerms('abc'))
