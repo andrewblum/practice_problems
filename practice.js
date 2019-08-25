@@ -1144,3 +1144,47 @@ function allPerms(str, set = []) {
 console.log('perms')
 console.log(allPerms('ab'))
 console.log(allPerms('abc'))
+
+function makeChange(money, coins) {
+  let result = 0;
+  let answers = {}
+  for (let i = 0; i < coins.length; i++) {
+    if (money - coin > 0) {
+
+    }
+  }
+  return result;
+}
+
+
+console.log(makeChange(4, [1,2,3]));
+
+const cakeTypes = [
+  { weight: 7, value: 160 },
+  { weight: 3, value: 90 },
+  { weight: 2, value: 15 },
+];
+
+const capacity = 20;
+
+function maxDuffelBagValue(cakeTypes, capacity, mem = {}) {
+  const maxValuesAtCapacities = new Array(capacity + 1).fill(0);
+  for (let curCapacity = 1; curCapacity <= capacity; i++) {
+    cakeTypes.forEach(cakeType => {
+      if (cakeType.weight <= curCapacity) {
+        takeCurrentCake = maxValuesAtCapacities[curCapcity - cakeType.weight] + cakeType.value;
+        mem[curCapcity] = Math.max(mem[curCapcity], takeCurrentCake)
+      }
+    })
+  }
+  return maxValuesAtCapacities[capacity]; 
+}
+
+maxDuffelBagValue 
+
+
+// "Of course, I'd love to get the job. But whether you hire me, or someone else:
+//  when you think about the future, a year from now, how will you know whether or not 
+//  you hired the right person? What will that person have to have done, for you to know 
+//  that they were the right choice?"
+
