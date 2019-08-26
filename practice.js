@@ -1191,3 +1191,9 @@ maxDuffelBagValue
 //  you hired the right person? What will that person have to have done, for you to know 
 //  that they were the right choice?"
 
+var LCmissingNumber = function(nums) {
+  let expectedSum = (nums.length * (nums.length + 1)) / 2;
+  let actualSum = 0;
+  nums.forEach(each => actualSum += each)
+  return expectedSum - actualSum;
+};
