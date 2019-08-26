@@ -1171,6 +1171,9 @@ function maxDuffelBagValue(cakeTypes, capacity, mem = {}) {
   const maxValuesAtCapacities = new Array(capacity + 1).fill(0);
   for (let curCapacity = 1; curCapacity <= capacity; i++) {
     cakeTypes.forEach(cakeType => {
+      if (cakeType.weight === 0 && cakeType.value > 0) {
+        // return Infinity
+      }
       if (cakeType.weight <= curCapacity) {
         takeCurrentCake = maxValuesAtCapacities[curCapcity - cakeType.weight] + cakeType.value;
         mem[curCapcity] = Math.max(mem[curCapcity], takeCurrentCake)
