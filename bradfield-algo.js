@@ -39,7 +39,15 @@ function isPangram2(str) {
   return Object.keys(count).length === 26;
 }
 
+// Take the letters we know must be there and then search for  
+// each of them in the string 
 
-
+function isPangram3(str) {
+  let alpha = 'abcdefghijklmnopqrstuvwxyz';
+  for (let i = 0; i < alpha.length; i++) {
+    if (str.indexOf(alpha[i]) === -1) return false;
+  }
+  return true;
+}
 
 
