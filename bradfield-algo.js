@@ -14,11 +14,32 @@
 // If we reach the end of the loop without an empty set, its not a pangram.
 
 function isPangram(str) {
-  set = new Set([...Array(26)].reduce(a=>a+String.fromCharCode(i++),'',i=97));
+  let set = new Set([...Array(26)].reduce(a=>a+String.fromCharCode(i++),'',i=97));
   for(let i =0; i < str.length; i++) {
     if (set.has(str[i])) set.delete(str[i]);
     if (set.size === 0) return true;
   }
   return false;
 }
+
+
+// Count each letter in our string and at the end if there is at least 
+// 1 of every letter then it must be a pangram. this assumes only valid
+// letters will be in the string.
+
+function isPangram2(str) {
+  let count = {}
+  for(let i =0; i < str.length; i++) {
+    if (count[str[i]]) { 
+      count[str[i]] += 1;
+    } else {
+      count[str[i]] = 1;
+    }
+  }
+  return Object.keys(count).length === 26;
+}
+
+
+
+
 
