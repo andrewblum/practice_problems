@@ -187,6 +187,57 @@ function validParen(str) {
 console.log(validParen('([{})]'))
 
 
+// implement a q using a linked list
+
+class LinkedListNode {
+  constructor(value) {
+    this.value = value;
+    this.next = null;
+    this.prev = null;
+  }
+}
+class qWithLL {
+  constructor() {
+    this._head = null;
+    this._tail = null;
+    this._size = 0;
+  }
+  is_empty() {
+    return this._size === 0;
+  }
+  enqueue(item) {
+    item = new LinkedListNode(item);
+    if (this._tail) this._tail.next = item;
+    this._tail = item;
+    this._size += 1;
+  }
+  dequeue() {
+    let itemToRemove = this._head;
+    if (itemToRemove === null) return null;
+
+    if (this._head !== null) this._head.next.prev = null;
+    if (this._head !== null) this._head = this._head.next;
+    
+    this._size -= 1;
+    return itemToRemove;
+  }
+  size() {
+      return this._size;
+  }
+}
+
+let qll = new qWithLL() 
+qll.enqueue(1)
+qll.enqueue(2)
+qll.enqueue(3)
+console.log(qll.dequeue())
+console.log(qll.dequeue())
+
+
+
+
+
+
 
 
 
