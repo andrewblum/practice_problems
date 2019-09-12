@@ -102,17 +102,50 @@ console.log(reverseListUsingStack2([1, 2, 3]))
 class Queue {
   constructor() {
       this._items = []
+      this._flippedItems = []
   }
   is_empty() {
-      return this._items === []
+      return this._items === [] && this._flippedItems === [];
   }
   enqueue(item) {
-      this._items.insert(0, item)
+      this._items.push(item)
   }
-  dequeue(self) {
-      return this._items.pop()
+  dequeue() {
+    if (this._flippedItems.length === 0) {   
+      this._flip();
+    }
+    return this._flippedItems.pop()
   }
   size() {
-      return this._items.length
+      return this._items.length + this._flippedItems.length;
+  }
+  _flip() {
+    while(this._items.length > 0) {
+      this._flippedItems.push(this._items.pop());
+    }
   }
 }
+
+let q = new Queue();
+q.enqueue(1)
+q.enqueue(2)
+q.enqueue(3)
+console.log(q.dequeue())
+q.enqueue(4)
+q.enqueue(5)
+console.log(q.dequeue())
+console.log(q.dequeue())
+q.enqueue(6)
+console.log(q.dequeue())
+console.log(q.dequeue())
+console.log(q.dequeue())
+q.enqueue(7)
+q.enqueue(8)
+console.log(q.dequeue())
+
+
+
+
+
+
+
