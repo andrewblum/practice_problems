@@ -144,6 +144,30 @@ q.enqueue(8)
 console.log(q.dequeue())
 
 
+// file paths 
+// given a path 
+// path can contain .. to mean go up 
+// . means in current directory 
+// simplify out the single and double dots 
+
+function parsePath(path) {
+  let stack = []; 
+  path = path.split('/');
+  path.forEach(each => {
+    if (each === '..') {
+      stack.pop()
+      stack.pop()
+    } else if (each !== '.') {
+      stack.push('/')
+      stack.push(each);
+    }
+  })
+  return stack.join('');
+}
+
+const path = 'usr/elliot/foo/.././bar';
+console.log(parsePath(path));
+
 
 
 
