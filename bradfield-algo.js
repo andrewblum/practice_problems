@@ -193,7 +193,6 @@ class LinkedListNode {
   constructor(value) {
     this.value = value;
     this.next = null;
-    this.prev = null;
   }
 }
 class qWithLL {
@@ -215,15 +214,12 @@ class qWithLL {
   dequeue() {
     let itemToRemove = this._head;
     if (itemToRemove === null) return null;
-
-    // if (this._head !== null) this._head.next.prev = null;
     if (this._head !== null) this._head = this._head.next;
-
     this._size -= 1;
     return itemToRemove.value;
   }
   size() {
-      return this._size;
+    return this._size;
   }
 }
 
@@ -237,8 +233,16 @@ qll.enqueue(4)
 console.log(qll.dequeue())
 
 
+function maxSum(arr) {
+  let best = [arr[0]]; 
+  for (let i = 1; i < arr.length; i++) {
+    best[i] = Math.max(best[i - 1] + arr[i], arr[i]);
+  }
+  return best[best.length - 1];
+}
 
-
+console.log(maxSum([0, 1, 2, 3, 4, 5]))
+console.log(maxSum([-4, 0, -2, 3, -1, 2]))
 
 
 
