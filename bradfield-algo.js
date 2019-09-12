@@ -98,3 +98,21 @@ console.log(reverseListUsingStack2([1, 2, 3]))
 // where stacks are much more convenient to implement “from scratch” than queues. 
 // Your solution should have the same interface as the queue implementation in algos, 
 // but use stacks instead of a list in the implementation.
+
+class Queue {
+  constructor() {
+      this._items = []
+  }
+  is_empty() {
+      return this._items === []
+  }
+  enqueue(item) {
+      this._items.insert(0, item)
+  }
+  dequeue(self) {
+      return this._items.pop()
+  }
+  size() {
+      return this._items.length
+  }
+}
