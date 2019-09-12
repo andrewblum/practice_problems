@@ -156,10 +156,8 @@ function parsePath(path) {
   path.forEach(each => {
     if (each === '..') {
       stack.pop()
-      stack.pop()
     } else if (each !== '.') {
-      stack.push('/')
-      stack.push(each);
+      stack.push('/' + each);
     }
   })
   return stack.join('');
@@ -167,6 +165,8 @@ function parsePath(path) {
 
 const path = 'usr/elliot/foo/.././bar';
 console.log(parsePath(path));
+
+
 
 
 
