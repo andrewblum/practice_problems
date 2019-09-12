@@ -166,7 +166,25 @@ function parsePath(path) {
 const path = 'usr/elliot/foo/.././bar';
 console.log(parsePath(path));
 
+const symbols = { '{':'}',
+                  '(':')',
+                  '[':']'
+                }
 
+function validParen(str) {
+  let stack = []
+  for (let i = 0; i < str.length; i++) {
+    let current = str[i]
+    if (Object.keys(symbols).indexOf(current) > -1) {
+      stack.push(current);
+    } else {
+      if (symbols[stack.pop()] !== current) return false;
+    }
+  }
+  return stack.length === 0;
+}
+
+console.log(validParen('([{})]'))
 
 
 
