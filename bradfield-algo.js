@@ -207,6 +207,7 @@ class qWithLL {
   }
   enqueue(item) {
     item = new LinkedListNode(item);
+    if (this._size === 0) this._head = item;
     if (this._tail) this._tail.next = item;
     this._tail = item;
     this._size += 1;
@@ -215,11 +216,11 @@ class qWithLL {
     let itemToRemove = this._head;
     if (itemToRemove === null) return null;
 
-    if (this._head !== null) this._head.next.prev = null;
+    // if (this._head !== null) this._head.next.prev = null;
     if (this._head !== null) this._head = this._head.next;
-    
+
     this._size -= 1;
-    return itemToRemove;
+    return itemToRemove.value;
   }
   size() {
       return this._size;
@@ -232,6 +233,8 @@ qll.enqueue(2)
 qll.enqueue(3)
 console.log(qll.dequeue())
 console.log(qll.dequeue())
+console.log(qll.dequeue())
+
 
 
 
