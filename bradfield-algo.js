@@ -238,7 +238,7 @@ function maxSum(arr) {
   for (let i = 1; i < arr.length; i++) {
     best[i] = Math.max(best[i - 1] + arr[i], arr[i]);
   }
-  return best[best.length - 1];
+  return Math.max(...best);
 }
 
 console.log(maxSum([0, 1, 2, 3, 4, 5]))
