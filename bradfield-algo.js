@@ -233,6 +233,7 @@ qll.enqueue(2)
 qll.enqueue(3)
 console.log(qll.dequeue())
 console.log(qll.dequeue())
+qll.enqueue(4)
 console.log(qll.dequeue())
 
 
