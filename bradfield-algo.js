@@ -70,14 +70,27 @@ function isPangram3(str) {
 
 // Write a function that uses a stack (you can use the stack implementation in /algos) 
 // to return a reversed copy of a list.
+
+// Well, the call stack is a stack so... :P
 function reverseListUsingStack(lst) {
   if (lst.length === 0) return lst;
   let rest = lst.slice(1);
   return reverseListUsingStack(rest).concat(lst[0])
 }
-
 console.log(reverseListUsingStack([1, 2, 3]))
 
+function reverseListUsingStack2(lst) {
+  let [stack, result] = [[],[]];
+  lst.forEach(item => {
+    stack.push(item);
+  })
+  for (let i = 0; i < lst.length; i++) {
+    result.push(stack.pop())
+  }
+  return result;
+}
+
+console.log(reverseListUsingStack2([1, 2, 3]))
 
 // Implement a queue using stacks.Although this problem might seem contrived, 
 // implementing a queue using stacks is actually a common strategy 
