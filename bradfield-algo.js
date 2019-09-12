@@ -22,7 +22,6 @@ function isPangram(str) {
   return false;
 }
 
-
 // Count each letter in our string and at the end if there is at least 
 // 1 of every letter then it must be a pangram. this assumes only valid
 // letters will be in the string.
@@ -51,3 +50,38 @@ function isPangram3(str) {
 }
 
 
+
+// Given a width and a height make a 2D array with a spiral pattern. 
+// "How do you go right?"" what does it mean to go right? 
+// left, down, up, etc
+
+// we can keep track of a current posistion cursor (row, col) 
+// going right would mean incrementing row 
+// going down means incrementing col 
+
+// "How do I know when to stop?"
+// "When do I turn?"
+// "How do I turn?"
+// "How do I know what my current direction is"
+
+
+
+
+
+// Write a function that uses a stack (you can use the stack implementation in /algos) 
+// to return a reversed copy of a list.
+function reverseListUsingStack(lst) {
+  if (lst.length === 0) return lst;
+  let rest = lst.slice(1);
+  return reverseListUsingStack(rest).concat(lst[0])
+}
+
+console.log(reverseListUsingStack([1, 2, 3]))
+
+
+// Implement a queue using stacks.Although this problem might seem contrived, 
+// implementing a queue using stacks is actually a common strategy 
+// in functional programming languages (such as Haskell or Standard ML) 
+// where stacks are much more convenient to implement “from scratch” than queues. 
+// Your solution should have the same interface as the queue implementation in algos, 
+// but use stacks instead of a list in the implementation.
