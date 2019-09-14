@@ -1206,12 +1206,8 @@ var rotatedBS = function(nums, target) {
 
 var firstMissingPositive = function(nums) {
     for (let i = 0; i < nums.length; i++) {
-      let num = nums[i];
-      if (num > 0 && num <= nums.length && num != i + 1) {
-        recSwap(nums, num) 
-      }
+      recSwap(nums, nums[i]) 
     }
-    console.log(nums)
     for (let i = 0; i < nums.length; i++) {
       if (nums[i] !== i + 1) return i + 1; 
     }
@@ -1219,10 +1215,10 @@ var firstMissingPositive = function(nums) {
 };
 
 function recSwap(nums, numToMove) {
-  let num = numToMove;
-  if (num === nums[num - 1]) return; 
-  if (num > 0 || num > nums.length) return; 
-  let displacedNum = nums[numToMove - 1];
+  let canIgnore = numToMove > 0 || numToMove > nums.length;
+  let alreadyThere = numToMove === nums[num - 1]
+  if (canIgnore || alreadyThere) return;
+  const displacedNum = nums[numToMove - 1];
   nums[numToMove - 1] = numToMove;
   recSwap(nums, displacedNum);
 }
