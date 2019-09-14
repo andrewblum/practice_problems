@@ -1205,6 +1205,7 @@ var rotatedBS = function(nums, target) {
 };
 
 var firstMissingPositive = function(nums) {
+    if (nums.length === 0) return 1;
     for (let i = 0; i < nums.length; i++) {
       recSwap(nums, nums[i]) 
     }
@@ -1212,12 +1213,12 @@ var firstMissingPositive = function(nums) {
     for (let i = 0; i < nums.length; i++) {
       if (nums[i] !== i + 1) return i + 1; 
     }
-    return nums.length; 
+    return nums.length + 1; 
 };
 
 function recSwap(nums, numToMove) {
-  let canIgnore = numToMove < 1 || numToMove > nums.length;
-  let alreadyThere = numToMove === nums[numToMove - 1]
+  const canIgnore = numToMove < 1 || numToMove > nums.length;
+  const alreadyThere = numToMove === nums[numToMove - 1]
   if (canIgnore || alreadyThere) return;
   const displacedNum = nums[numToMove - 1];
   nums[numToMove - 1] = numToMove;
@@ -1228,6 +1229,8 @@ console.log('first missing positive')
 console.log(firstMissingPositive([3, 4, -1, 1]))
 console.log(firstMissingPositive([7, 8, 9, 11, 12]))
 console.log(firstMissingPositive([1, 2, 0]))
+console.log(firstMissingPositive([1]))
+
 
 // if the num is > the array size then we can ignore it
 // can ignore negatives 
