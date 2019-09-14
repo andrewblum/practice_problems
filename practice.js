@@ -1,3 +1,4 @@
+
 // INPUT:
 let a = [
   { startTime: 0,  endTime: 1 },
@@ -1145,19 +1146,6 @@ console.log('perms')
 console.log(allPerms('ab'))
 console.log(allPerms('abc'))
 
-function makeChange(money, coins) {
-  let result = 0;
-  let answers = {}
-  for (let i = 0; i < coins.length; i++) {
-    if (money - coin > 0) {
-
-    }
-  }
-  return result;
-}
-
-
-console.log(makeChange(4, [1,2,3]));
 
 const cakeTypes = [
   { weight: 7, value: 160 },
@@ -1206,7 +1194,7 @@ var rotatedBS = function(nums, target) {
   while(left <= right) {
       console.log(nums[mid])
       if (nums[mid] === target) return mid;
-      if () {
+      if (true) {
           left = mid + 1; 
       } else {
           right = mid - 1; 
@@ -1215,3 +1203,57 @@ var rotatedBS = function(nums, target) {
   }
   return -1;
 };
+
+var firstMissingPositive = function(nums) {
+    for (let i = 0; i < nums.length; i++) {
+      let num = nums[i];
+      if (num > 0 && num <= nums.length && num != i + 1) {
+        recSwap(nums, num) 
+      }
+    }
+    console.log(nums)
+    for (let i = 0; i < nums.length; i++) {
+      if (nums[i] !== i + 1) return i + 1; 
+    }
+    return nums.length; 
+};
+
+function recSwap(nums, numToMove) {
+  let num = numToMove;
+  if (num === nums[num - 1]) return; 
+  if (num > 0 || num > nums.length) return; 
+  let displacedNum = nums[numToMove - 1];
+  nums[numToMove - 1] = numToMove;
+  recSwap(nums, displacedNum);
+}
+
+console.log('first missing positive')
+console.log(firstMissingPositive([3, 4, -1, 1]))
+console.log(firstMissingPositive([7, 8, 9, 11, 12]))
+console.log(firstMissingPositive([1, 2, 0]))
+
+// if the num is > the array size then we can ignore it
+// can ignore negatives 
+// can ignore duplicates 
+// can ignore 0 
+
+// place each item in its place in the array 
+// go over it again and return first non-seqenutial hit 
+
+// if you replace a number that isnt to be ignored,
+// then place it and if you replace a number that shouldnt be ingored, etc
+
+// *iter
+// [3 2 1]
+// [3 2 3] need to place 1
+// [1 2 3] need to place 3 
+// [1 2 3] 3 already there so stop 
+// *iter
+// [1 2 3] 2 already there so stop
+// *iter
+// [1 2 3] 3 already there so stop
+
+
+
+
+
