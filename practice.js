@@ -1197,3 +1197,21 @@ var LCmissingNumber = function(nums) {
   nums.forEach(each => actualSum += each)
   return expectedSum - actualSum;
 };
+
+
+var rotatedBS = function(nums, target) {
+  let mid = Math.floor(nums.length / 2);
+  let left = 0;
+  let right = nums.length -1; 
+  while(left <= right) {
+      console.log(nums[mid])
+      if (nums[mid] === target) return mid;
+      if () {
+          left = mid + 1; 
+      } else {
+          right = mid - 1; 
+      }
+      mid = Math.floor((right + left) / 2);
+  }
+  return -1;
+};
