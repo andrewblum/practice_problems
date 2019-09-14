@@ -1208,6 +1208,7 @@ var firstMissingPositive = function(nums) {
     for (let i = 0; i < nums.length; i++) {
       recSwap(nums, nums[i]) 
     }
+    console.log(nums)
     for (let i = 0; i < nums.length; i++) {
       if (nums[i] !== i + 1) return i + 1; 
     }
@@ -1215,8 +1216,8 @@ var firstMissingPositive = function(nums) {
 };
 
 function recSwap(nums, numToMove) {
-  let canIgnore = numToMove > 0 || numToMove > nums.length;
-  let alreadyThere = numToMove === nums[num - 1]
+  let canIgnore = numToMove < 1 || numToMove > nums.length;
+  let alreadyThere = numToMove === nums[numToMove - 1]
   if (canIgnore || alreadyThere) return;
   const displacedNum = nums[numToMove - 1];
   nums[numToMove - 1] = numToMove;
