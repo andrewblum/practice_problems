@@ -1209,7 +1209,6 @@ var firstMissingPositive = function(nums) {
     for (let i = 0; i < nums.length; i++) {
       recSwap(nums, nums[i]) 
     }
-    console.log(nums)
     for (let i = 0; i < nums.length; i++) {
       if (nums[i] !== i + 1) return i + 1; 
     }
@@ -1253,7 +1252,49 @@ console.log(firstMissingPositive([1]))
 // *iter
 // [1 2 3] 3 already there so stop
 
+var searchMatrix = function(matrix, target) {
+  let row = findRow(matrix, target) 
+  if (row === -1) return false;
+  let cur = Math.floor(matrix[row].length / 2)
+  let start = 0;
+  let end = matrix[row].length - 1;
+  while (start <= end) {
+      if (matrix[row][cur] === target) return true; 
+      if (target < matrix[row][cur]) { 
+        end = cur - 1; 
+      } else {
+        start  = cur + 1;
+      }
+      cur = Math.floor((start + end) / 2)
+  }
+  return false; 
+};
 
+function findRow(matrix, target) {
+  let cur = Math.floor((matrix.length - 1) / 2);
+  let start = 0;
+  let end = matrix.length - 1;
+  while (start <= end) {
+      if (target >= matrix[cur][0] && target <= matrix[cur][matrix[cur].length - 1]) return cur; 
+      if (target < matrix[cur][0]) { 
+        end = cur - 1; 
+      } else {
+        start  = cur + 1;
+      }
+      cur = Math.floor((start + end) / 2)
+  }
+  return -1; 
+}
 
+const matrix1 = [
+  [1,   3,  5,  7],
+  [10, 11, 16, 20],
+  [23, 30, 34, 50]
+]
 
-
+console.log('afjkhlf')
+console.log(findRow(matrix1, 9))
+console.log(findRow(matrix1, 11))
+console.log(findRow(matrix1, 60))
+console.log(findRow(matrix1, 31))
+console.log(findRow([[1, 3]], 3))
