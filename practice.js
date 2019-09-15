@@ -1303,11 +1303,9 @@ var countNodes = function(root) {
   if (root === null) return 0;
   const stack = [root];
   const seen = new Set();
-  let count = 0;
   while (stack.length > 0) {
       let cur = stack.pop()
       seen.add(cur);
-      count += 1; 
       if (cur.left && !seen.has(cur.left)) {
           stack.push(cur.left)
       }
@@ -1315,5 +1313,14 @@ var countNodes = function(root) {
           stack.push(cur.right)
       }
   }
-  return count;
+  return seen.size;
+};
+
+var countNodes2 = function(root) {
+  let left = 0; 
+  let right = 0;
+  if (!root) return 0;
+  if (root.right) right = countNodes(root.right);
+  if (root.left) left = countNodes(root.left);
+  return 1 + left + right;
 };
