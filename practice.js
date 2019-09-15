@@ -1298,3 +1298,22 @@ console.log(findRow(matrix1, 11))
 console.log(findRow(matrix1, 60))
 console.log(findRow(matrix1, 31))
 console.log(findRow([[1, 3]], 3))
+
+var countNodes = function(root) {
+  if (root === null) return 0;
+  const stack = [root];
+  const seen = new Set();
+  let count = 0;
+  while (stack.length > 0) {
+      let cur = stack.pop()
+      seen.add(cur);
+      count += 1; 
+      if (cur.left && !seen.has(cur.left)) {
+          stack.push(cur.left)
+      }
+      if (cur.right && !seen.has(cur.right)) {
+          stack.push(cur.right)
+      }
+  }
+  return count;
+};
