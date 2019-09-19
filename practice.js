@@ -1325,4 +1325,38 @@ var countNodes2 = function(root) {
   return 1 + left + right;
 };
 
+// import heapq 
 
+// # class Solution:
+// #     def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+// #         if not lists: 
+// #             return None
+// #         result = ListNode(0)
+// #         heap = []
+// #         for idx, sublist in enumerate(lists): 
+// #             if sublist:
+// #                 heapq.heappush(heap, (sublist.val, idx))
+// #                 sublist = sublist.next
+// #         head = result
+// #         while heap:
+// #             cur = heapq.heappop(heap)
+// #             result.next = ListNode(cur[0])
+// #             result = result.next
+// #             if (lists[cur[1]].next):
+// #                 lists[cur[1]] = lists[cur[1]].next
+// #                 heapq.heappush(heap, (lists[cur[1]].val, cur[1]))
+// #         return head.next
+
+// class Solution:
+//     def mergeKLists(self, lists: List[ListNode]) -> ListNode:
+//         curr = head = ListNode(0)
+//         queue = []
+//         for i, l in enumerate(lists):
+//             if l is not None:
+//                 heapq.heappush(queue, (l.val, i, l))
+//         while queue:
+//             _, i, curr.next = heapq.heappop(queue)
+//             curr = curr.next
+//             if curr.next is not None:
+//                 heapq.heappush(queue, (curr.next.val, i, curr.next))
+//         return head.next   
