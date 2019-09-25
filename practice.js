@@ -1360,3 +1360,22 @@ var countNodes2 = function(root) {
 //             if curr.next is not None:
 //                 heapq.heappush(queue, (curr.next.val, i, curr.next))
 //         return head.next   
+
+
+var removeNthFromEnd = function(head, n) {
+  let total = 1;
+  let copy = head;
+  let result = head;
+  if (!head) return head;
+  while (head.next) {
+      head = head.next;
+      total += 1
+  }
+  let cur = 1;
+  while (cur != total - n ) {
+      copy = copy.next;
+      cur += 1;
+  }
+  copy.next = copy.next.next;
+  return result;
+};
