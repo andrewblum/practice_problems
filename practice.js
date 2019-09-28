@@ -1379,3 +1379,14 @@ var removeNthFromEnd = function(head, n) {
   copy.next = copy.next.next;
   return result;
 };
+
+var minDepth = function(root) {
+  if (!root) return 0; 
+  let left = null;
+  let right = null;
+  if (root.left) left = minDepth(root.left);
+  if (root.right) right = minDepth(root.right);
+  if (!left) return right + 1;
+  if (!right) return left + 1;
+  return Math.min(left, right) + 1;
+};
