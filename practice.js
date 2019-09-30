@@ -1386,3 +1386,59 @@ var minDepth = function(root) {
   if (!root.right) return minDepth(root.left) + 1;
   return Math.min(minDepth(root.right), minDepth(root.left)) + 1;
 };
+
+
+function jugFiller() {
+  let goal = 4
+  let max = [5, 3]
+  let stack = [[0, 0]]
+  while (stack) {
+    let cur = stack.pop(0)
+    if (cur[1] === goal) //// return
+    if (cur[0] === 0) { 
+      // fill
+      stack.push([5, cur[1]])
+    } else {
+      // empty
+      stack.push([0, cur[1]])
+      // pour into other 
+      let amount = Math.min(cur[0], (max[1] - cur[1]))
+      let jug1 = cur[0] - amount
+      let jug2 = cur[1] + amount
+      stack.push([jug1, jug2])
+    }
+    if (cur[1] === 0) { 
+      // fill
+      stack.push([cur[0], 3])
+    } else {
+      // empty
+      stack.push([cur[0], 0])
+      // pour into other
+      let amount = Math.min(cur[1], (max[0] - cur[0]))
+      let jug1 = cur[0] + amount
+      let jug2 = cur[1] - amount
+      stack.push([jug1, jug2])
+    }
+  }
+}
+
+var numIslands = function(grid) {
+  let islands = 0;
+  for (let row = 0; row < grid.length; row++) {
+      for (let col = 0; col < grid[0].length; col++) {
+          if (grid[row][col] === '1') {
+              islands += 1;
+              exploreIsland(row, col, grid)
+          }
+      }
+  }
+  return islands;
+};
+
+function exploreIsland(x, y, grid) {
+  grid[x][y] = 'x';
+  if (grid[x-1] && grid[x-1][y] === '1') exploreIsland(x-1, y, grid)
+  if (grid[x][y-1] === '1') exploreIsland(x, y-1, grid)
+  if (grid[x+1] && grid[x+1][y] === '1') exploreIsland(x+1, y, grid)
+  if (grid[x][y+1] === '1') exploreIsland(x, y+1, grid)
+}
