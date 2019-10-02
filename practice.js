@@ -1520,3 +1520,18 @@ class SetQ {
       return this.s.size;
   }
 }
+
+
+var minDepthBFS = function(root) {
+  let q = [root];
+  let level = 1;
+  while (q.length > 0) {
+    let count = q.length;
+    for (let i = 0; i < count; i++) {
+      if (root.left) q.push(root.right)
+      if (root.right) q.push(root.left)
+      if (!root.right && !root.left) return level;
+    }
+    level += 1;
+  }
+}; 
