@@ -1470,3 +1470,53 @@ var numSquares = function(n) {
     count += 1;
   }
 };
+
+
+
+class Node {
+  constructor(x) {
+      this.val = x;
+      this.next = null;
+  }
+}
+
+class SetQ {
+  constructor() {
+      this.s = new Set;
+      this.head = null;
+      this.tail = null;
+  }
+  
+  has(x) {
+      return this.s.has(x);
+  }
+  
+  push(x) {
+      this.s.add(x)
+      let node = new Node(x)
+      if (!this.head) {
+          this.head = node;
+          this.tail = node;
+      } else {
+          this.tail.next = node;
+          this.tail = node 
+      }
+  }
+  
+  shift() {
+      if (this.s.size === 0) return;
+      let node = this.head;
+      if (this.s.size === 1) {
+          this.head = null;
+          this.tail = null;
+      } else {
+          this.head = this.head.next;
+      }
+      this.s.delete(node.val)
+      return node.val;
+  }
+  
+  length() {
+      return this.s.size;
+  }
+}
