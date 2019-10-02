@@ -1442,3 +1442,31 @@ function exploreIsland(x, y, grid) {
   if (grid[x+1] && grid[x+1][y] === '1') exploreIsland(x+1, y, grid)
   if (grid[x][y+1] === '1') exploreIsland(x, y+1, grid)
 }
+
+var numSquares = function(n) {
+  let listOfSquares = [1]
+  let i = 2;
+  let cur = 4;
+  while (cur <= n) {
+      cur = i * i;
+      listOfSquares.push(cur)
+      i += 1;
+  }    
+  listOfSquares = listOfSquares.reverse();
+  let q2 = new SetQ()
+  q2.push(n)
+  // let q2 =[n]
+  let count = 0;
+  while (q2.length() > 0) {
+      let qLength = q2.length();
+      for (let z = 0; z < qLength; z++) {
+          let cur = q2.shift();
+          for (let i = 0; i < listOfSquares.length; i++) {
+              if ((cur - listOfSquares[i]) === 0) return count + 1;
+              // if (q2.has(cur - listOfSquares[i])) continue;
+              if ((cur - listOfSquares[i]) > 0) q2.push(cur - listOfSquares[i]) 
+          }
+    }
+    count += 1;
+  }
+};
