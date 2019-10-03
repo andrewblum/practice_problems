@@ -320,6 +320,14 @@ function makePath(prev, last) {
   return path;
 }
 
+// Keeping Track of How many Levels Deep we Are: 
+
+// 1) can build up a hash of each nodes level. for each node look up its parents level then just add 1 
+// 2) can also just store the level of a node in the Q with it, then add 1 to whatever currents level is
+// when you add the child to the q 
+
+
+
 
 
 
