@@ -1568,3 +1568,40 @@ function findAdjacent(word, wordList, seen) {
   })
   return results;
 }
+
+var findLadders = function(beginWord, endWord, wordList) {
+  let q = [[beginWord]]; 
+  let results = [];
+  let seen = [];
+  while (q.length > 0) {
+      let count = q.length; 
+      let justSeen = [];
+      for (let z = 0; z < count; z++) {
+          let cur = q.shift();
+          let children = findAdjacent(cur[cur.length - 1], wordList, seen);
+          for (let i = 0; i < children.length; i++) {
+              justSeen.push(children[i])
+              let tmp = cur.slice()
+              tmp.push(children[i])
+              q.push(tmp);
+              if (children[i] === endWord) results.push(tmp)
+          } 
+      }
+      seen = seen.concat(justSeen)
+      if (results.length > 0) break;
+  }
+  return results;
+};
+
+function findAdjacent(word, wordList, seen) {
+  let results = [];
+  wordList.forEach(each => {
+      let count = 0;
+      if (seen.indexOf(each) > -1) return;
+      for(let i = 0; i < word.length; i++) {
+           if (word[i] === each[i]) count += 1;
+      }
+      if (word.length - count < 2) results.push(each)
+  })
+  return results;
+} 
