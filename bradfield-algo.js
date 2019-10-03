@@ -246,6 +246,81 @@ console.log(maxSum([-4, 0, -2, 3, -1, 2]))
 console.log(maxSum([-4, 0, -2, 3, 1, -2]))
 
 
+function pancakeSort(panStack) {
+  // panstack = [4, 1, 3, 2]
+  let end = panStack.length - 1; 
+  while(end > 0) {
+    let i = getIdxOfLargest(0, end); 
+    flip(panStack, 0, i);
+    flip(0, end);
+    end -= 1; 
+  }
+}
+
+function flip(panStack, start, end) {
+
+}
+
+function getIdxOfLargest(panStack, start, end) {
+
+}
+
+function pancakeGraphSort(panStack) {
+  let goal = panStack.sorted(); 
+  let q = [panStack];
+  let level = 0; 
+  while (q.length > 0) {
+    let count = q.length; 
+    for (let i = 0; i < count; i++) {
+      let cur = q.shift();
+      generatePanChildren(cur).forEach(each => {
+        if (cur === goal) return level;
+        q.push(each);
+      })
+    }
+    level += 1; 
+  }
+}
+
+function generatePanChildren() {
+
+}
+
+function printNodesBFS(adjList) {
+  let q = [1]
+  let level = 0;
+  let last = -1;
+  prev = { 1: null }
+  while (q.length > 0) {
+    let count = q.length; 
+    for (let i = 0; i < count; i++) {
+      let cur = q.shift();
+      let children = adjList[cur]; 
+      console.log(cur);
+      last = cur;
+      children.forEach(child => {
+        if (!prev[child]) {
+          prev[child] = cur;
+          q.push(child);
+        }
+      })
+    }
+    level += 1; 
+  }
+  return makePath(prev, goal);
+}
+
+function makePath(prev, last) {
+  let path = [];
+  while(last !== 1) {
+    let cur = prev[last];
+    path.push(cur);l
+    last = cur; 
+  }
+  return path;
+}
+
+
 
 
 
