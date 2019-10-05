@@ -326,12 +326,70 @@ function makePath(prev, last) {
 // 2) can also just store the level of a node in the Q with it, then add 1 to whatever currents level is
 // when you add the child to the q 
 
+var slidingPuzzle = function(board) {
+  let q = [board];
+  let level = 1; 
+  let goal = JSON.stringify([[1,2,3],[4,5,0]]);
+  if (JSON.stringify(board) === goal) return 0;
+  let seen = new Set();
+  while (q.length > 0) {
+    let count = q.length; 
+    for (let i = 0; i < count; i++) {
+      let cur = q.shift();
+      let children = getChildren(cur)
+      for (let z = 0; z < children.length; z++) {
+        let each = children[z]
+        if (JSON.stringify(each) === goal) return level;
+        if (!seen.has(JSON.stringify(each))) {
+            q.push(each);
+            seen.add(JSON.stringify(each))
+        }
+      }
+    }
+    level += 1; 
+  }
+  return -1;
+};
 
+function getChildren(board) {
+    let result = [];
+    let z1 = board[0].indexOf(0);
+    let z2 = board[1].indexOf(0);
+    if (z1 > -1) { 
+        result.push(swap(board, z1, z1, 0, 1))
+        if (z1 + 1 < 3) result.push(swap(board, z1, z1 + 1, 0, 0))
+        if (z1 - 1 > -1) result.push(swap(board, z1, z1 - 1, 0, 0))
+    } else {
+        result.push(swap(board, z2, z2, 1, 0))
+        if (z2 + 1 < 3) result.push(swap(board, z2, z2 + 1, 1, 1))
+        if (z2 - 1 > -1) result.push(swap(board, z2, z2 - 1, 1, 1))
+    }
+    return result;
+}
 
+function swap(arr, xZ, x2, yZ, y2) {
+    let result = [arr[0].slice(), arr[1].slice()]
+    result[yZ][xZ] = result[y2][x2];
+    result[y2][x2] = 0;
+    return result;
+}
 
+function frog1(numStones, stones) {
+  let cur = 2;
+  let mem = [0, Math.abs(stones[0] - stones[1])]
+  while (cur < numStones ) {
+    let jump1 = Math.abs(stones[cur] - stones[cur - 1]) + mem[cur - 1];
+    let jump2 = Math.abs(stones[cur] - stones[cur - 2]) + mem[cur - 2];
+    mem[cur] = Math.min(jump1, jump2);
+    cur += 1;
+    console.log(mem)
+  }
+  return mem[mem.length - 1];
+}
 
+// [0, cost, cheapest of 2 or prev, cheapest of prev, or prev prev, plus cost from there]
 
-
-
-
-
+console.log('frog')
+console.log(frog1(4, [10,30,40,20]))
+console.log(frog1(6, [30,10,60,10,60,50]))
+console.log(frog1(2, [10,10]))
