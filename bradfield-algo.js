@@ -382,14 +382,15 @@ function frog1(numStones, stones) {
     let jump2 = Math.abs(stones[cur] - stones[cur - 2]) + mem[cur - 2];
     mem[cur] = Math.min(jump1, jump2);
     cur += 1;
-    console.log(mem)
   }
   return mem[mem.length - 1];
 }
 
-// [0, cost, cheapest of 2 or prev, cheapest of prev, or prev prev, plus cost from there]
+// [0, cost, cheapest of 2 or prev, cheapest of prev, or prev pr2ev, plus cost from there]
 
 console.log('frog')
 console.log(frog1(4, [10,30,40,20]))
 console.log(frog1(6, [30,10,60,10,60,50]))
 console.log(frog1(2, [10,10]))
+
+
