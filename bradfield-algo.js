@@ -1,3 +1,6 @@
+import { DH_UNABLE_TO_CHECK_GENERATOR, SSL_OP_DONT_INSERT_EMPTY_FRAGMENTS } from 'constants';
+import { clearScreenDown } from 'readline';
+
 // A pangram is a phrase which contains every letter at least once, 
 // such as “the quick brown fox jumps over the lazy dog”. 
 // Write a function which determines if a given string is a pangram.
@@ -393,4 +396,35 @@ console.log(frog1(4, [10,30,40,20]))
 console.log(frog1(6, [30,10,60,10,60,50]))
 console.log(frog1(2, [10,10]))
 
+[1,2,3,0,2]
+output: 3
+[buy, sell, cooldown, buy, sell]
 
+max profit ending with a buy
+mx profit ending with a sell 
+
+buy = [0, 0, 0]
+sell = [0, 1, 2]
+
+
+const numPathsDp = (grid) {
+  const memo = Array.from(Array(len(grid) + 1)).map(
+    () => Array.from(Array(len(grid[0]) + 1)).map(() => 1)
+  )
+  for (let i = 1; i < memo.length; i++) {
+    const row = memo[i]
+    for (let j = 1; j < row.length; j++) {
+      if (memo[i][j] === 'x') continue;
+      up = memo[i - 1][j] if memo[i - 1][j] != 'x' else 0
+      left = memo[i][j - 1] if memo[i][j - 1] != 'x' else 0
+      memo[i][j] = up + left
+    }
+  }
+  return memo[height][width]
+}
+
+
+1 1 1 X 0 0 0
+1 2 3 X 0 0 0 
+1 3 6 6 6 6 6 
+1 4 10 X 6 12 18 
