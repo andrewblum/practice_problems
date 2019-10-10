@@ -411,6 +411,7 @@ const numPathsDp = (grid) {
   const memo = Array.from(Array(len(grid) + 1)).map(
     () => Array.from(Array(len(grid[0]) + 1)).map(() => 1)
   )
+  // fill top and left with 1's until a wall then 0's
   for (let i = 1; i < memo.length; i++) {
     const row = memo[i]
     for (let j = 1; j < row.length; j++) {
@@ -422,9 +423,3 @@ const numPathsDp = (grid) {
   }
   return memo[height][width]
 }
-
-
-1 1 1 X 0 0 0
-1 2 3 X 0 0 0 
-1 3 6 6 6 6 6 
-1 4 10 X 6 12 18 
