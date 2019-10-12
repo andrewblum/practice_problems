@@ -396,38 +396,87 @@ console.log(frog1(4, [10,30,40,20]))
 console.log(frog1(6, [30,10,60,10,60,50]))
 console.log(frog1(2, [10,10]))
 
-[1,2,3,0,2]
-output: 3
-[buy, sell, cooldown, buy, sell]
+// [1,2,3,0,2]
+// output: 3
+// [buy, sell, cooldown, buy, sell]
 
-3 states: 
-i can either have just bought
-just sold
-or be in cooldown 
+// 3 states: 
+// i can either have just bought
+// just sold
+// or be in cooldown 
 
-most money i can make today if i buy
--- best i could do if i either was on a cooldown
-most money i can make today if i am on cooldown 
--- then its just whatever my max was the previous day was, over the THREE histories
-most money i can make today if i sell
--- if am selling then i must of just bought because i cant of just sold or had a cooldown
--- so this is the price from BUY array minus todays price 
+// most money i can make today if i buy
+// -- best i could do if i either was on a cooldown
+// most money i can make today if i am on cooldown 
+// -- then its just whatever my max was the previous day was, over the THREE histories
+// most money i can make today if i sell
+// -- if am selling then i must of just bought because i cant of just sold or had a cooldown
+// -- so this is the price from BUY array minus todays price 
 
 
 
-const numPathsDp = (grid) {
-  const memo = Array.from(Array(len(grid) + 1)).map(
-    () => Array.from(Array(len(grid[0]) + 1)).map(() => 1)
-  )
-  // fill top and left with 1's until a wall then 0's
-  for (let i = 1; i < memo.length; i++) {
-    const row = memo[i]
-    for (let j = 1; j < row.length; j++) {
-      if (memo[i][j] === 'x') continue;
-      up = memo[i - 1][j] if memo[i - 1][j] != 'x' else 0
-      left = memo[i][j - 1] if memo[i][j - 1] != 'x' else 0
-      memo[i][j] = up + left
-    }
-  }
-  return memo[height][width]
+// const numPathsDp = (grid) {
+//   const memo = Array.from(Array(len(grid) + 1)).map(
+//     () => Array.from(Array(len(grid[0]) + 1)).map(() => 1)
+//   )
+//   // fill top and left with 1's until a wall then 0's
+//   for (let i = 1; i < memo.length; i++) {
+//     const row = memo[i]
+//     for (let j = 1; j < row.length; j++) {
+//       if (memo[i][j] === 'x') continue;
+//       up = memo[i - 1][j] if memo[i - 1][j] != 'x' else 0
+//       left = memo[i][j - 1] if memo[i][j - 1] != 'x' else 0
+//       memo[i][j] = up + left
+//     }
+//   }
+//   return memo[height][width]
+// }
+
+ 
+// start at the end
+function longestCommonSubsequence(str1, str2, pos1, pos2) {
+if (pos1 === 0 || pos2 === 0) return 0;
+if (str1[pos1] === str2[pos2]) {
+  return 1 + longestCommonSubsequence(str1, str2, pos1 - 1, pos2 - 1)
 }
+return Math.max(longestCommonSubsequence(str1, str2, pos1 - 1, pos2), 
+  longestCommonSubsequence(str1, str2, pos1, pos2 - 1))
+}
+
+// start at the front
+function longestCommonSubsequence2(str1, str2, pos1, pos2) {
+if (pos1 === str1.length - 1 || pos2 === str2.length - 1) return 0;
+if (str1[pos1] === str2[pos2]) {
+  return 1 + longestCommonSubsequence(str1, str2, pos1 + 1, pos2 + 1)
+}
+return Math.max(longestCommonSubsequence(str1, str2, pos1 + 1, pos2), 
+  longestCommonSubsequence(str1, str2, pos1, pos2 + 1))
+}
+
+//2^n runtime, yikes 
+// with memo 
+ function longestCommonSubsequence2(str1, str2, pos1, pos2, memo) {
+  if (pos1 === str1.length - 1 || pos2 === str2.length - 1) return 0;
+  if (str1[pos1] === str2[pos2]) {
+    return 1 + longestCommonSubsequence(str1, str2, pos1 + 1, pos2 + 1)
+  }
+  return Math.max(longestCommonSubsequence(str1, str2, pos1 + 1, pos2), 
+    longestCommonSubsequence(str1, str2, pos1, pos2 + 1))
+ }
+
+ // tabulation ?? 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
