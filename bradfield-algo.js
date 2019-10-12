@@ -400,11 +400,19 @@ console.log(frog1(2, [10,10]))
 output: 3
 [buy, sell, cooldown, buy, sell]
 
-max profit ending with a buy
-mx profit ending with a sell 
+3 states: 
+i can either have just bought
+just sold
+or be in cooldown 
 
-buy = [0, 0, 0]
-sell = [0, 1, 2]
+most money i can make today if i buy
+-- best i could do if i either was on a cooldown
+most money i can make today if i am on cooldown 
+-- then its just whatever my max was the previous day was, over the THREE histories
+most money i can make today if i sell
+-- if am selling then i must of just bought because i cant of just sold or had a cooldown
+-- so this is the price from BUY array minus todays price 
+
 
 
 const numPathsDp = (grid) {
