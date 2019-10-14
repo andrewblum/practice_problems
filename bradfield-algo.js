@@ -460,12 +460,13 @@ return Math.max(longestCommonSubsequence(str1, str2, pos1 + 1, pos2),
   if (str1[pos1] === str2[pos2]) {
     return 1 + longestCommonSubsequence(str1, str2, pos1 + 1, pos2 + 1)
   }
-  return Math.max(longestCommonSubsequence(str1, str2, pos1 + 1, pos2), 
-    longestCommonSubsequence(str1, str2, pos1, pos2 + 1))
+  let cut1 = longestCommonSubsequence(str1, str2, pos1 + 1, pos2)
+  let cut2 = longestCommonSubsequence(str1, str2, pos1, pos2 + 1)
+  return Math.max(cut1, cut2)
  }
 
  // tabulation ?? 
- 
+
 
 
 
