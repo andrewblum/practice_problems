@@ -61,4 +61,5 @@ class Solution:
                 for lst in subs: 
                     lst.append(each)
                 results = results + subs
-        return results
+        gross = set([tuple(sorted(x)) for x in results])
+        return [list(x) for x in set(gross)]
