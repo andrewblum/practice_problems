@@ -49,3 +49,16 @@ def findKids(state, deadends):
         copy = copy[:i] + down + copy[i + 1:]
         if copy not in deadends: vals[copy] = ''
     return list(vals)
+
+
+class Solution:
+    def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
+        if target == 0: return [[]]
+        results = []
+        for each in candidates: 
+            if target - each >= 0:
+                subs = self.combinationSum(candidates, target - each)
+                for lst in subs: 
+                    lst.append(each)
+                results = results + subs
+        return results
