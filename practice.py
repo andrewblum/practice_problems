@@ -63,3 +63,11 @@ class Solution:
                 results = results + subs
         gross = set([tuple(sorted(x)) for x in results])
         return [list(x) for x in set(gross)]
+
+class Solution:
+    def uniquePaths(self, m: int, n: int) -> int:
+        grid = [[1 for x in range(m)]] * n
+        for row in range(1, n):
+            for col in range(1, m):
+                grid[row][col] = grid[row - 1][col] + grid[row][col - 1]
+        return grid[-1][-1]
