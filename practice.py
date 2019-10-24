@@ -71,3 +71,11 @@ class Solution:
             for col in range(1, m):
                 grid[row][col] = grid[row - 1][col] + grid[row][col - 1]
         return grid[-1][-1]
+
+def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
+    if (not p and q) or (not q and p): return False
+    if not p and not q: return True
+    if p.val != q.val: return False
+    x = self.isSameTree(p.left, q.left)
+    y = self.isSameTree(p.right, q.right)
+    return x and y
