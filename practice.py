@@ -64,6 +64,24 @@ class Solution:
         gross = set([tuple(sorted(x)) for x in results])
         return [list(x) for x in set(gross)]
 
+# with memo 
+def combinationSum(self, candidates: List[int], target: int, memo = {}) -> List[List[int]]:
+    if target == 0: return [[]]
+    results = []
+    for each in candidates: 
+        if target - each >= 0:
+            if memo[target - each]:
+              subs = memo[target - each]
+            else: 
+              subs = self.combinationSum(candidates, target - each)
+              memo[target - each] = subs
+            for lst in subs: 
+                lst.append(each)
+            results = results + subs
+    gross = set([tuple(sorted(x)) for x in results])
+    return [list(x) for x in set(gross)]
+
+
 class Solution:
     def uniquePaths(self, m: int, n: int) -> int:
         grid = [[1 for x in range(m)]] * n
@@ -79,3 +97,5 @@ def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
     x = self.isSameTree(p.left, q.left)
     y = self.isSameTree(p.right, q.right)
     return x and y
+
+
