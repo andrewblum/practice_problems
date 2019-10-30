@@ -99,3 +99,17 @@ def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
     return x and y
 
 
+
+def coinChange(self, coins: List[int], amount: int, memo = {}) -> int:
+    if amount < 0: return -1
+    if amount == 0: return 0
+    results = []
+    for coin in coins: 
+        if not memo.get(amount - coin):
+            memo[amount - coin] = self.coinChange(coins, amount - coin, memo)
+        pos = memo[amount - coin]
+        if pos > -1:
+            results.append(pos + 1)
+    if results:
+        return min(results)
+    return -1
