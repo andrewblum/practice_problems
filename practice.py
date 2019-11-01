@@ -154,3 +154,28 @@ def coinChange(self, coins: List[int], amount: int) -> int:
           leastCoinsAtEachAmount[cur] = -1
     return leastCoinsAtEachAmount[-1]
 
+## BFS graph approach
+def coinChange(self, coins: List[int], amount: int) -> int:
+    if amount == 0: return 0
+    q = [amount]
+    depth = { amount: 0 }
+    coins.reverse()
+    seen = set()
+    while q: 
+        cur = q.pop(0)
+        children = self.getKids(cur, coins)
+        for child in children:
+            if child == 0:
+                return depth[cur] + 1
+            if child not in seen:
+                depth[child] = depth[cur] + 1
+                q.append(child)
+                seen.add(child)
+    return -1
+
+def getKids(self, cur, coins):
+    kids = []
+    for coin in coins:
+        if cur - coin > -1:
+            kids.append(cur - coin)
+    return kids
