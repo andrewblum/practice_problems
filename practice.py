@@ -130,3 +130,27 @@ def helper(self, coins, amount, memo):
     if results:
         return min(results)
     return -1
+
+# tabulation 
+
+# [0, -1 OR 1, ]
+# best we can do for each amount, in an array 
+# look back COIN num of slots for each coin and add that + 1 for each coin and then compute the min of our choices for our current
+# slot 
+
+def coinChange(self, coins: List[int], amount: int) -> int:
+    leastCoinsAtEachAmount = [-1] * (amount + 1)
+    leastCoinsAtEachAmount[0] = 0
+    cur = 1
+    while cur <= amount: 
+        possibleChange = []
+        for coin in coins: 
+            if coin <= cur:
+                used = leastCoinsAtEachAmount[cur - coin] + 1
+                if used > 0:
+                    possibleChange.append(used)
+        if (possibleChange):
+            leastCoinsAtEachAmount[cur] = min(possibleChange)
+        cur += 1
+    return leastCoinsAtEachAmount[-1]
+
