@@ -141,16 +141,16 @@ def helper(self, coins, amount, memo):
 def coinChange(self, coins: List[int], amount: int) -> int:
     leastCoinsAtEachAmount = [-1] * (amount + 1)
     leastCoinsAtEachAmount[0] = 0
-    cur = 1
-    while cur <= amount: 
-        possibleChange = []
+    for cur in range(1, amount + 1): 
+        minPossibleChange = []
         for coin in coins: 
             if coin <= cur:
                 used = leastCoinsAtEachAmount[cur - coin] + 1
                 if used > 0:
-                    possibleChange.append(used)
-        if (possibleChange):
-            leastCoinsAtEachAmount[cur] = min(possibleChange)
-        cur += 1
+                    minPossibleChange.append(used)
+        if minPossibleChange: 
+          leastCoinsAtEachAmount[cur] = min(minPossibleChange)
+        else:
+          leastCoinsAtEachAmount[cur] = -1
     return leastCoinsAtEachAmount[-1]
 
