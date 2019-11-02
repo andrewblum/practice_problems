@@ -225,22 +225,20 @@ class SolutionWordMaze:
         for rowIdx, row in enumerate(board):
             for colIdx, col in enumerate(row): 
                 if col == first:
-                    found = found or self.search(board, rest, (rowIdx, colIdx))
+                    seen = set([(rowIdx, colIdx)])
+                    found = found or self.search(board, rest, (rowIdx, colIdx), seen)
         return found
             
-    def search(self, board, word, pos): 
-        seen = set([pos])
-        q = [(pos, word)]
-        while q: 
-            pos, wordLeft = q.pop(0)
-            print(wordLeft)
-            if wordLeft == '': return True
-            moves = self.getMoves(pos, board)
-            for x, y in moves: 
-                if board[x][y] == wordLeft[0] and (x, y) not in seen:
-                    seen.add((x, y))
-                    q.append(((x, y), wordLeft[1:]))
-        return False
+    def search(self, board, word, pos, seen):
+        if word == '': return True
+        first = word[0]
+        rest = word[1:]
+        moves = self.getMoves(pos, board)
+        for x, y in moves: 
+            if board[x][y] == first and (x, y) not in seen:
+                seen.add((x, y))
+                self.search(board, rest, (x, y), seen.copy())
+
                 
     def getMoves(self, pos, board):
         moves = []
@@ -254,3 +252,28 @@ class SolutionWordMaze:
                 moves.append((newX, newY))
         return moves
                 
+
+# class Solution:
+#     def exist(self, board: List[List[str]], word: str) -> bool:
+#         found = False
+#         for rowIdx, row in enumerate(board):
+#             for colIdx, col in enumerate(row): 
+#                 if col == word[0]:
+#                     seen = set()
+#                     found = found or self.search(board, word, (rowIdx, colIdx), seen)
+#         return found
+            
+#     def search(self, board, word, pos, seen):
+#         x, y = pos[0], pos[1]
+#         if word == '': return True
+#         if pos in seen: return False
+#         if x < 0 or y < 0: return False 
+#         if x >= len(board) or y >= len(board[0]): return False
+#         if board[x][y] != word[0]: return False
+        
+#         seen.add(pos)
+#         found = (self.search(board, word[1:], (x + 1, y), seen.copy()) or 
+#         self.search(board, word[1:], (x - 1, y), seen.copy()) or 
+#         self.search(board, word[1:], (x, y + 1), seen.copy()) or 
+#         self.search(board, word[1:], (x, y - 1), seen.copy()))
+#         return found
