@@ -215,3 +215,42 @@ class Solution:
     # def writeZeroCol(self, col, matrix):
     #     for row, _ in enumerate(matrix):
     #         matrix[row][col] = 0
+
+
+class SolutionWordMaze:
+    def exist(self, board: List[List[str]], word: str) -> bool:
+        found = False
+        first = word[0]
+        rest = word[1:]
+        for rowIdx, row in enumerate(board):
+            for colIdx, col in enumerate(row): 
+                if col == first:
+                    found = found or self.search(board, rest, (rowIdx, colIdx))
+        return found
+            
+    def search(self, board, word, pos): 
+        seen = set([pos])
+        q = [(pos, word)]
+        while q: 
+            pos, wordLeft = q.pop(0)
+            print(wordLeft)
+            if wordLeft == '': return True
+            moves = self.getMoves(pos, board)
+            for x, y in moves: 
+                if board[x][y] == wordLeft[0] and (x, y) not in seen:
+                    seen.add((x, y))
+                    q.append(((x, y), wordLeft[1:]))
+        return False
+                
+    def getMoves(self, pos, board):
+        moves = []
+        directions = [(-1, 0), (0, -1), (1, 0), (0, 1)]
+        for x, y in directions:
+            newX = pos[0] + x
+            newY = pos[1] + y
+            tooLow = newX < 0 or newY < 0
+            tooHigh = newX >= len(board) or newY >= len(board[0])
+            if not tooLow and not tooHigh: 
+                moves.append((newX, newY))
+        return moves
+                
