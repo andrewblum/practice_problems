@@ -167,3 +167,30 @@ def coinChange(self, coins: List[int], amount: int) -> int:
                 q.append((cur[0] - coin, cur[1] + 1))
                 seen.add(cur[0] - coin)
     return -1
+
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        colsToZero = set()
+        rowsToZero = set()
+        for rowIdx, row in enumerate(matrix):
+            for colIdx, num in enumerate(row): 
+                if num == 0: 
+                    colsToZero.add(colIdx)
+                    rowsToZero.add(rowIdx)
+                    
+        for col in colsToZero:
+            self.writeZeroCol(col, matrix)
+        for row in rowsToZero:
+            self.writeZeroRow(row, matrix)
+            
+        
+    def writeZeroRow(self, row, matrix):
+        for col, _ in enumerate(matrix[row]):
+            matrix[row][col] = 0
+        
+    def writeZeroCol(self, col, matrix):
+        for row, _ in enumerate(matrix):
+            matrix[row][col] = 0
