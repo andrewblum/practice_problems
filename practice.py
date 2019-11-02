@@ -194,3 +194,24 @@ class Solution:
     def writeZeroCol(self, col, matrix):
         for row, _ in enumerate(matrix):
             matrix[row][col] = 0
+
+#  the same thing but simpler if we make a copy of the 2d array first 
+
+    # def setZeroes(self, matrix: List[List[int]]) -> None:
+    #     """
+    #     Do not return anything, modify matrix in-place instead.
+    #     """
+    #     copy = [row[:] for row in matrix]
+    #     for rowIdx, row in enumerate(copy):
+    #         for colIdx, num in enumerate(row): 
+    #             if num == 0: 
+    #                 self.writeZeroCol(colIdx, matrix)
+    #                 self.writeZeroRow(rowIdx, matrix)
+        
+    # def writeZeroRow(self, row, matrix):
+    #     for col, _ in enumerate(matrix[row]):
+    #         matrix[row][col] = 0
+        
+    # def writeZeroCol(self, col, matrix):
+    #     for row, _ in enumerate(matrix):
+    #         matrix[row][col] = 0
