@@ -255,13 +255,12 @@ class SolutionWordMaze:
 
 # class Solution:
 #     def exist(self, board: List[List[str]], word: str) -> bool:
-#         found = False
 #         for rowIdx, row in enumerate(board):
 #             for colIdx, col in enumerate(row): 
 #                 if col == word[0]:
-#                     seen = set()
-#                     found = found or self.search(board, word, (rowIdx, colIdx), seen)
-#         return found
+#                     if self.search(board, word, (rowIdx, colIdx), set()):
+#                         return True
+#         return False
             
 #     def search(self, board, word, pos, seen):
 #         x, y = pos[0], pos[1]
@@ -272,8 +271,38 @@ class SolutionWordMaze:
 #         if board[x][y] != word[0]: return False
         
 #         seen.add(pos)
-#         found = (self.search(board, word[1:], (x + 1, y), seen.copy()) or 
-#         self.search(board, word[1:], (x - 1, y), seen.copy()) or 
-#         self.search(board, word[1:], (x, y + 1), seen.copy()) or 
-#         self.search(board, word[1:], (x, y - 1), seen.copy()))
+#         rest = word[1:]
+#         found = (self.search(board, rest, (x + 1, y), seen) or 
+#         self.search(board, rest, (x - 1, y), seen) or 
+#         self.search(board, rest, (x, y + 1), seen) or 
+#         self.search(board, rest, (x, y - 1), seen))
+#         seen.remove(pos)
 #         return found
+
+def pacificAtlantic(self, matrix: List[List[int]]) -> List[List[int]]:
+    results = []
+    for rowIdx, row, in enumerate(matrix):
+        for colIdx, col in enumerate(row): 
+            if self.findEdge(matrix, rowIdx, colIdx):
+                results.append([rowIdx, colIdx])
+    return results
+                
+def findEdge(self, matrix, x, y): 
+    q = [((x, y), set())]
+    pacific, atlantic = False, False
+    while q: 
+        pos, seen = q.pop()
+        xI, yI = pos
+        for each in [(-1, 0), (1, 0), (0, 1), (0, -1)]:
+            x, y = xI + each[0], yI + each[1]  
+            if (x < 0 or y < 0): pacific = True
+            if (x >= len(matrix) or y >= len(matrix[0])): atlantic = True
+            if pacific and atlantic: return True
+            if ((x >= 0 and y >= 0) and 
+            (x < len(matrix) and y < len(matrix[0])) and 
+            (x, y) not in seen):
+                if matrix[xI][yI] >= matrix[x][y]:
+                    seen = seen.copy()
+                    seen.add((x, y))
+                    q.append(((x, y), seen))
+    return False

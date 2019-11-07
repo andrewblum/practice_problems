@@ -1,7 +1,6 @@
 {
-  "name": "practice_problems",
+  "name": "demo",
   "version": "1.0.0",
-  "description": "",
   "main": "gusto_tax_brackets.js",
   "scripts": {
     "test": "node ./node_modules/mocha/bin/mocha"
@@ -18,9 +17,12 @@
   "homepage": "https://github.com/andrewblum/practice_problems#readme",
   "dependencies": {
     "chai": "^4.2.0",
+    "d3": "^5.12.0",
     "lodash": "^4.17.15",
     "mocha": "^6.2.0",
     "sinon": "^7.4.1",
     "sinon-chai": "^3.3.0"
-  }
+  },
+  "devDependencies": {},
+  "description": ""
 }
