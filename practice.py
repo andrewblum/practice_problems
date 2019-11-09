@@ -306,3 +306,7 @@ def findEdge(self, matrix, x, y):
                     seen.add((x, y))
                     q.append(((x, y), seen))
     return False
+
+
+# pacific water flow with memo... 
+# mark (x,y) with if we can get to the ocean from there 
