@@ -310,3 +310,6 @@ def findEdge(self, matrix, x, y):
 
 # pacific water flow with memo... 
 # mark (x,y) with if we can get to the ocean from there 
+
+# set the edges in the memo to already having pacific / atlantic 
+# then only check for travel and P/A tag
