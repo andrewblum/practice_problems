@@ -1606,3 +1606,26 @@ function findAdjacent(word, wordList, seen) {
   return results;
 } 
 
+var isIsomorphic = function(s, t) {
+  let d1 = {};
+  let d2 = {};
+  for (let i = 0; i < s.length; i++) {
+      if (!d1[s[i]]) { d1[s[i]] = [] } 
+      d1[s[i]].push(i)
+  }
+  for (let i = 0; i < s.length; i++) {
+      if (!d2[t[i]]) { d2[t[i]] = [] }
+      d2[t[i]].push(i)
+  }
+  
+  let v1 = (Object.values(d1).sort())
+  let v2 = (Object.values(d2).sort())
+  
+  if (v1.length !== v2.length) return false
+  for (let i = 0; i < v1.length; i++) {
+      if (v1[i].length < 2) continue;
+      let res = v1[i].every((value, index) => value === v2[i][index])
+      if (!res) return false
+  }
+  return true
+};
