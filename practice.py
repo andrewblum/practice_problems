@@ -320,8 +320,8 @@ def treesolution(arr):
     # Type your solution here
     if not arr or len(arr) == 1: return ''
     arr.insert(0, None)
-    left = helper(arr, 2)
-    right = helper(arr, 3)
+    left = treehelper(arr, 2)
+    right = treehelper(arr, 3)
     if right > left: 
         return 'Right'
     elif right < left:
