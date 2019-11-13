@@ -313,3 +313,25 @@ def findEdge(self, matrix, x, y):
 
 # set the edges in the memo to already having pacific / atlantic 
 # then only check for travel and P/A tag
+
+
+# left or right subtree bigger
+def treesolution(arr):
+    # Type your solution here
+    if not arr or len(arr) == 1: return ''
+    arr.insert(0, None)
+    left = helper(arr, 2)
+    right = helper(arr, 3)
+    if right > left: 
+        return 'Right'
+    elif right < left:
+        return 'Left'
+    else:
+        return ''
+    
+def treehelper(arr, cur):
+    if cur >= len(arr): return 0
+    if arr[cur] == -1: return 0
+    left = helper(arr, cur * 2)
+    right = helper(arr, (cur * 2) + 1)
+    return arr[cur] + left + right
