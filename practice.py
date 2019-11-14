@@ -314,6 +314,18 @@ def findEdge(self, matrix, x, y):
 # set the edges in the memo to already having pacific / atlantic 
 # then only check for travel and P/A tag
 
+  def pacificAtlantic(self, matrix: List[List[int]]) -> List[List[int]]:
+      results = []
+      for rowIdx, row, in enumerate(matrix):
+          for colIdx, col in enumerate(row): 
+              if:
+                  results.append([rowIdx, colIdx])
+      return results
+  
+  def findEdge(self, matrix, x, y, last, seen, switch):
+
+
+
 
 # left or right subtree bigger
 def treesolution(arr):
@@ -335,3 +347,4 @@ def treehelper(arr, cur):
     left = helper(arr, cur * 2)
     right = helper(arr, (cur * 2) + 1)
     return arr[cur] + left + right
+
