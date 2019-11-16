@@ -314,16 +314,17 @@ def findEdge(self, matrix, x, y):
 # set the edges in the memo to already having pacific / atlantic 
 # then only check for travel and P/A tag
 
-  def pacificAtlantic(self, matrix: List[List[int]]) -> List[List[int]]:
-      results = []
-      for rowIdx, row, in enumerate(matrix):
-          for colIdx, col in enumerate(row): 
-              if:
-                  results.append([rowIdx, colIdx])
-      return results
-  
-  def findEdge(self, matrix, x, y, last, seen, switch):
+def pacificAtlantic(self, matrix: List[List[int]]) -> List[List[int]]:
+    results = []
+    # mark each edge as reaching the respective ocean to start the memo
+    for rowIdx, row, in enumerate(matrix, start=1):
+        for colIdx, col in enumerate(row, start=1): 
+            if:
+                results.append([rowIdx, colIdx])
+    return results
 
+def findEdge(self, matrix, x, y):
+    
 
 
 
