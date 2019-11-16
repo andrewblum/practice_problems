@@ -349,3 +349,39 @@ def treehelper(arr, cur):
     right = helper(arr, (cur * 2) + 1)
     return arr[cur] + left + right
 
+
+class Node(object):
+    def __init__(self, data):
+        self.left = None
+        self.right = None
+        self.data = data
+
+one = Node(1)
+two = Node(2)
+tree = Node(3)
+four = Node(4)
+five = Node(5)
+six = Node(6)
+seven = Node(7)
+
+one.left = two 
+one.right = three
+two.left = four 
+two.right = five
+three.left = six
+three.right = seven
+
+def iterInorder(node):
+    stack = []
+    seen = set()
+    while stack: 
+        peek = stack[-1]
+        if peek.left and peek.left not in seen: 
+            stack.append(peek.left)
+        if not peek.left or peek.left in seen: 
+            print(peek.data)
+            stack.pop()
+            seen.add(peek)
+            if peek.right: stack.append(peek.right)
+
+iterInorder(one)
