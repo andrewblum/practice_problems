@@ -316,14 +316,15 @@ def findEdge(self, matrix, x, y):
 
 def pacificAtlantic(self, matrix: List[List[int]]) -> List[List[int]]:
     results = []
+    memo = {}
     # mark each edge as reaching the respective ocean to start the memo
     for rowIdx, row, in enumerate(matrix, start=1):
         for colIdx, col in enumerate(row, start=1): 
-            if:
+            if findEdges(matrix, rowIdx, colIdx, memo):
                 results.append([rowIdx, colIdx])
     return results
 
-def findEdge(self, matrix, x, y):
+def findEdge(self, matrix, x, y, memo):
     
 
 
