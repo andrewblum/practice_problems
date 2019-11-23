@@ -389,3 +389,108 @@ iterInorder(one)
 
 
 # longest palindrome 
+
+def longest_palindrome(s):
+  memo = {}
+  if not s: return ""
+  # for window in range(1, len(s) - 1):
+  #   for startIdx, start in enumerate(s):
+  #     endIdx = startIdx
+  #     while (endIdx < len(s) - 1):
+  #       print(startIdx, endIdx)
+  #       endIdx += window
+  if s[1] == s[-1]:
+    r0 =  s[1] + longest_palindrome(s[1:-2]) + s[-1]
+  r1 = longest_palindrome(s[1:])
+  r2 = longest_palindrome(s[:-2])
+  return max([r0, r1, r2])
+
+
+
+
+def search_matrix(matrix, target)
+    if matrix.length == 0: return False
+    if matrix[0].length == 0: return False
+    row = 0
+    col = matrix[0].length - 1
+    while (row >= 0 && row < matrix.length && col >= 0 && col < matrix[0].length)
+        if matrix[row][col] == target:
+            return True
+        elif matrix[row][col] > target:
+            col -= 1
+        else:
+            row += 1
+    return False
+
+import heapq
+
+class MedianFinder:
+
+    def __init__(self):
+        """
+        initialize your data structure here.
+        """
+        self.left = []
+        self.right = []
+        
+    def addNum(self, num: int) -> None:
+        if not self.left and not self.right: 
+            heapq.heappush(self.right, num)
+            print('empty')
+            return
+        if not self.left and self.right:
+            if num > self.right[0]:
+                heapq.heappush(self.right, num)
+                self.left, self.right = self.right[:], self.right[:]
+            else:
+                heapq.heappush(self.left, num * -1)
+            print('uneven')
+            return
+
+        if not self.right and self.left:
+            if num < self.left[0] * -1:
+                heapq.heappush(self.right, num * -1)
+                self.left, self.right = self.right[:], self.right[:]
+                self.right[0] = self.right[0] * -1
+            else:
+                heapq.heappush(self.right, num)
+            print('uneven')
+            return   
+            
+        print('at least 2')
+        print(self.left, self.right)
+
+        largest_left = self.left[0]
+        smallest_right = self.right[0]
+        
+        if num > smallest_right:
+            heapq.heappush(self.right, num)
+        elif num < largest_left:
+            heapq.heappush(self.left, num * -1)
+        else: 
+            heapq.heappush(self.right, num)
+
+            
+        if len(self.left) > len(self.right) + 1:
+            n = heapq.heappop(self.left)
+            heapq.heappush(self.right, n * -1)
+
+        elif len(self.left) < len(self.right) + 1:
+            n = heapq.heappop(self.right)
+            heapq.heappush(self.left, n * -1)
+        
+        print('result')
+        print(self.left, self.right)
+
+    def findMedian(self) -> float:
+        if len(self.left) == len(self.right):
+            return (self.right[0] + (self.left[0] * -1)) / 2.0
+        elif len(self.right) > len(self.left):
+            return self.right[0]
+        else: 
+            return self.left[0] * -1
+
+# Your MedianFinder object will be instantiated and called as such:
+# obj = MedianFinder()
+# obj.addNum(num)
+# param_2 = obj.findMedian()
