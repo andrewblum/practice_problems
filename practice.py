@@ -479,3 +479,28 @@ class MedianFinder:
             return self.right[0]
         else: 
             return self.left[0] * -1
+
+
+
+def findEdge(self, x, y, matrix, seen, prev):
+    if x < 0 or y < 0: return 
+    if x >= len(matrix) or y >= len(matrix[0]): return
+    if matrix[x][y] < prev: return
+    if (x, y) in seen: return
+    seen.add((x, y))
+    self.findEdge(x + 1, y, matrix, seen, matrix[x][y])
+    self.findEdge(x - 1, y, matrix, seen, matrix[x][y])
+    self.findEdge(x, y + 1, matrix, seen, matrix[x][y])
+    self.findEdge(x, y - 1, matrix, seen, matrix[x][y])
+    
+def pacificAtlantic(self, matrix):
+    if not matrix: return []
+    p,a = set(),set()
+    for rowIdx in range(len(matrix[0])):
+        self.findEdge(0, rowIdx, matrix, p, -1)
+        self.findEdge(len(matrix) -1, rowIdx, matrix, a, -1)
+    for colIdx in range(len(matrix)):
+        self.findEdge(colIdx, 0, matrix, p, -1)
+        self.findEdge(colIdx, len(matrix[0]) - 1, matrix, a, -1)   
+    return list(p&a)
+                
