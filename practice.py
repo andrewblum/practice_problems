@@ -504,3 +504,21 @@ def pacificAtlantic(self, matrix):
         self.findEdge(colIdx, len(matrix[0]) - 1, matrix, a, -1)   
     return list(p&a)
                 
+
+def threeSum(self, nums: List[int]) -> List[List[int]]:
+    if not nums: return []
+    memo = collections.defaultdict(set)   
+    for i, n in enumerate(nums):
+        memo[n].add(i)
+    results = set()
+    for i1, n1 in enumerate(nums):
+        for i2 in range(i1 + 1, len(nums)):
+            m = memo.get((n1 + nums[i2]) * -1)
+            if m and not (n1, nums[i2], (n1 + nums[i2]) * -1) in results:
+                cur = set([i1, i2])
+                left = m - cur
+                if left:
+                    sol = [n1, nums[i2], nums[left.pop()]]
+                    sol.sort()
+                    results.add(tuple(sol))
+    return list(results)

@@ -107,21 +107,26 @@ class Queue {
       this._items = []
       this._flippedItems = []
   }
+
   is_empty() {
       return this._items === [] && this._flippedItems === [];
   }
+
   enqueue(item) {
       this._items.push(item)
   }
+
   dequeue() {
     if (this._flippedItems.length === 0) {   
       this._flip();
     }
     return this._flippedItems.pop()
   }
+
   size() {
       return this._items.length + this._flippedItems.length;
   }
+
   _flip() {
     while(this._items.length > 0) {
       this._flippedItems.push(this._items.pop());
