@@ -522,3 +522,153 @@ def threeSum(self, nums: List[int]) -> List[List[int]]:
                     sol.sort()
                     results.add(tuple(sol))
     return list(results)
+
+
+# from collections import defaultdict 
+
+# def shortest_substring(target, body): 
+#     counts = defaultdict(lambda: 0)
+#     start, end, count_of_alpha = 0, 0, 0 
+#     min_start = 0
+#     min_end = len(body) - 1
+    
+#     while end < len(body) :
+#         if body[end] in target:
+#             if counts[body[end]] == 0:
+#                 count_of_alpha += 1
+#             counts[body[end]] += 1
+#         while count_of_alpha >= len(target):
+#             if (end - start) < (min_end - min_start):
+#                 min_start = start 
+#                 min_end = end
+#             counts[body[start]] -= 1
+#             if counts[body[start]] == 0:
+#                 count_of_alpha -= 1
+#             start += 1
+#         end += 1 
+#     return body[min_start: min_end + 1]
+
+    
+    
+    
+# print(shortest_substring("abc", "aaccbca"))
+# print(shortest_substring("abc", "aaccbc"))
+
+
+# 1) 
+# write more pseudo code 
+# step to more detailed pseudo code 
+
+# its a lot easier to refactor pseudo code than real code -- make it hapen then
+
+
+# 2) 
+# explain what youre doing and why youre doing it 
+
+# 3)
+# break out the small examples to target the problem or space of uncertintiy 
+
+
+
+"""
+
+ Input:
+   array of positive numbers: [1, 2, 3, 4, 5]
+   length of interval k: 3
+ 
+ Output: [3,4,5]
+ 
+ 
+ Input:
+   arr: [5, 4, 3, 2, 1]
+     k: 3
+
+ Output: [5 4 3]
+ 
+ Input:
+   arr: [1, 2, 5, 2 ,1]
+     k: 3
+  
+ Output: [2, 5, 2]
+
+
+"""
+[1, 1, 1, 1, 1]
+
+[5, 4, 3, 2, 1]
+
+
+max_so_far = 12 
+cur_total = 12 
+start = 0
+end = 3
+
+
+def max_sub_arr(arr, k):
+  if len(arr) < k: 
+    return arr
+  max_so_far = sum(arr[:k])
+  cur_total = max_so_far
+  start, end = 0, k - 1
+  for i in range(k, len(arr)): 
+    cur_total = cur_total + arr[i] - arr[i - k]
+    if cur_total > max_so_far:
+      max_so_far = cur_total
+      start = i - k + 1
+      end = i 
+  return arr[start:end + 1]
+
+
+"""
+ Input:
+   array of positive numbers: [1, 2, 3, 4, 5, 6, 7]
+   length of interval k: 2
+
+ Output: [2,3], [4, 5], [6,7]
+ 
+
+  k = 2
+arr = [ 1 6 6 1 2 4  7  8  5 1 ]
+      [           15 15 13 6 0 ]
+                     <-- 
+      [                         ]
+                    -->
+      
+ 
+"""
+
+"""
+make two dynamic arrays comupting my best pair coming from the right side, and from the left side 
+
+loop through our original array looking at one pair at a time , starting at the 2nd pair and ending before the last
+
+we take our best options from the left and right of us and check them against a max
+update max if needed 
+
+repeat until the end 
+
+return max 
+
+"""
+
+
+[ 1 6 6 1 2 4 7 8 5 1 ]
+
+[ 0 0 13 ]
+
+def max_3sub_arrays(arr, k): 
+  max_from_left = [0] * k - 1
+  max_from_right = [0] * k - 1
+  max_so_far = 0
+  
+  for i in range(0, len(arr) - 1):
+    max_so_far = max(max_so_far, arr[i] + arr[i + 1])
+    max_from_left.append(max_so_far)
+    
+  i = len(arr) - 2
+  max_so_far = 0
+  while i >= 0:
+    max_so_far = max(max_so_far, arr[i] + arr[i - 1])
+    max_from_right.append(max_so_far)
+    i -= 1
+  max_from_right.reverse()
