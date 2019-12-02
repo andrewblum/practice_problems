@@ -672,3 +672,10 @@ def max_3sub_arrays(arr, k):
     max_from_right.append(max_so_far)
     i -= 1
   max_from_right.reverse()
+
+
+
+    
+# more attention to detail 
+# finding edge cases on basic verification 
+# thinking through the impacts of each line of code added 
