@@ -679,3 +679,18 @@ def max_3sub_arrays(arr, k):
 # more attention to detail 
 # finding edge cases on basic verification 
 # thinking through the impacts of each line of code added 
+
+# always ask yourself "can i do better?"
+# measure TWICE, cut once 
+
+# think more carefully about the solutions you come up with
+# can it be simpler, can it be cleaner
+
+# pick better examples
+# always check edge cases
+# then pick smallest, significant example
+# to check for typos / logic errors and so on
+
+
+# YET MORE PSEUDO CODE 
+# find the answers to your examples ahead of time
