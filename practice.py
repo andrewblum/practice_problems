@@ -694,3 +694,10 @@ def max_3sub_arrays(arr, k):
 
 # YET MORE PSEUDO CODE 
 # find the answers to your examples ahead of time
+
+
+def isLongPressedName(name, typed):
+  # gather all of a similar letter from the name, count how many we saw
+  # gathr all of that letter from typed until consumed we hit a new letter, count how many we saw
+  # if we didnt see at least count, fail 
+  # if we get to the end of both strings, success
