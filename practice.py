@@ -701,3 +701,16 @@ def isLongPressedName(name, typed):
   # gathr all of that letter from typed until consumed we hit a new letter, count how many we saw
   # if we didnt see at least count, fail 
   # if we get to the end of both strings, success
+
+
+import collections
+def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+  # convert anagram to sorted count comparable object 
+  # compare and group all similar 
+  # put similar into lists
+  if not strs: return []
+  result = collections.defaultdict(list)
+  for wd in strs:
+      result[''.join(sorted(wd))].append(wd)
+  return [x for x in result.values()]
+
