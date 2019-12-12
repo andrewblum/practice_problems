@@ -714,3 +714,17 @@ def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
       result[''.join(sorted(wd))].append(wd)
   return [x for x in result.values()]
 
+
+def merge(self, intervals: List[List[int]]) -> List[List[int]]:
+    result = []
+    i = 0
+    intervals.sort(key=lambda x: x[0])
+    while i < len(intervals): 
+        start_of_interval = intervals[i][0]
+        end_of_interval = intervals[i][1]
+        while i < len(intervals) - 1 and end_of_interval >= intervals[i + 1][0]:
+            i += 1
+            end_of_interval = max(end_of_interval, intervals[i][1])
+        result.append([start_of_interval, end_of_interval])
+        i += 1
+    return result
