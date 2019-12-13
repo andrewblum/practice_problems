@@ -728,3 +728,27 @@ def merge(self, intervals: List[List[int]]) -> List[List[int]]:
         result.append([start_of_interval, end_of_interval])
         i += 1
     return result
+
+def orangesRotting(self, grid: List[List[int]]) -> int:
+    for rI, row in enumerate(grid): 
+        for cI, col in enumerate(row): 
+            if col == 2:
+                self.dfs(grid, rI, cI, 2)
+    time = 2
+    for row in grid: 
+        for item in row: 
+            time = max(time, item)
+            if item == 1:
+                return -1
+    return time - 2
+    
+def dfs(self, grid, x, y, count):
+    if x < 0 or y < 0: return 
+    if x >= len(grid) or y >= len(grid[0]): return 
+    if grid[x][y] == 0: return 
+    if grid[x][y] >= count or grid[x][y] == 1: 
+        grid[x][y] = count
+        self.dfs(grid, x + 1, y, count + 1)
+        self.dfs(grid, x - 1, y, count + 1)
+        self.dfs(grid, x, y + 1, count + 1)
+        self.dfs(grid, x, y - 1, count + 1)
