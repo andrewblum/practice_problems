@@ -752,3 +752,27 @@ def dfs(self, grid, x, y, count):
         self.dfs(grid, x - 1, y, count + 1)
         self.dfs(grid, x, y + 1, count + 1)
         self.dfs(grid, x, y - 1, count + 1)
+
+
+def orangesRottingBFS(self, grid: List[List[int]]) -> int:
+    rotten_oranges = deque()
+    fresh_oranges = 0
+    for rI, row in enumerate(grid): 
+        for cI, cell in enumerate(row): 
+            if cell == 2:
+                rotten_oranges.append((rI, cI, 0))
+            if cell == 1: 
+                fresh_oranges += 1
+    if fresh_oranges == 0: return 0      
+    while rotten_oranges: 
+        c_x, c_y, time = rotten_oranges.popleft()
+        for x, y in [(c_x + 1, c_y), (c_x - 1, c_y), (c_x, c_y + 1), (c_x, c_y - 1)]:
+            if x < 0 or y < 0: continue
+            if x >= len(grid) or y >= len(grid[0]): continue
+            if grid[x][y] != 1: continue
+            grid[x][y] = 2
+            fresh_oranges -= 1
+            if fresh_oranges == 0: return time + 1
+            rotten_oranges.append((x, y, time + 1))
+    if fresh_oranges > 0: return -1
+    return 0
