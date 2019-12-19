@@ -776,3 +776,6 @@ def orangesRottingBFS(self, grid: List[List[int]]) -> int:
             rotten_oranges.append((x, y, time + 1))
     if fresh_oranges > 0: return -1
     return 0
+
+def invertTree(self, root: TreeNode) -> TreeNode:
+    
