@@ -805,3 +805,7 @@ class AllNodesKDistance:
         if getattr(root, 'p', None):
             result += self.find_distance(root.p, count + 1, limit)   
         return result 
+
+        
+def invertTree(self, root: TreeNode) -> TreeNode:
+    
