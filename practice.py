@@ -777,5 +777,35 @@ def orangesRottingBFS(self, grid: List[List[int]]) -> int:
     if fresh_oranges > 0: return -1
     return 0
 
+class AllNodesKDistance:
+    def distanceK(self, root: TreeNode, target: TreeNode, K: int) -> List[int]:
+        if not root: return []
+        result = []
+        if root.val == target.val:
+            result += self.find_distance(root, 0, K)
+        if root.right:
+            setattr(root.right, 'p', root)
+            result += self.distanceK(root.right, target, K)
+        if root.left: 
+            setattr(root.left, 'p', root)
+            result += self.distanceK(root.left, target, K)
+        return result
+            
+    def find_distance(self, root, count, limit):        
+        if not root: return []
+        if getattr(root, 'seen', None): return []
+        if count == limit: return [root.val]
+        if count > limit: return
+        setattr(root, 'seen', True)
+        result = []
+        if root.right:
+            result += self.find_distance(root.right, count + 1, limit)
+        if root.left:
+            result += self.find_distance(root.left, count + 1, limit)
+        if getattr(root, 'p', None):
+            result += self.find_distance(root.p, count + 1, limit)   
+        return result 
+
+        
 def invertTree(self, root: TreeNode) -> TreeNode:
     
