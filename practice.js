@@ -1629,3 +1629,15 @@ var isIsomorphic = function(s, t) {
   }
   return true
 };
+
+
+def titleToNumber(self, s: str) -> int:
+    if not s: return
+    alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    alpha = {l:i + 1 for i, l in enumerate(alphabet)}
+    total = 0
+    i = len(s) - 1
+    for l in s: 
+        total += int(alpha[l]) * (26 ** i)
+        i -= 1
+    return total
