@@ -1641,3 +1641,24 @@ def titleToNumber(self, s: str) -> int:
         total += int(alpha[l]) * (26 ** i)
         i -= 1
     return total
+
+def isBipartite(self, graph: List[List[int]]) -> bool:
+    colors = {}
+
+    def can_be_colored(node):
+        for child in graph[node]:
+            if child in colors:
+                if colors[child] == colors[node]:
+                    return False
+            else:
+                colors[child] = colors[node] * -1
+                if not can_be_colored(child):
+                    return False
+        return True
+    
+    for node, _ in enumerate(graph): 
+        if node not in colors: 
+            colors[node] = 1
+            if not can_be_colored(node):
+                return False 
+    return True
