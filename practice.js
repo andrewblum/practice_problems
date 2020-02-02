@@ -1662,3 +1662,34 @@ def isBipartite(self, graph: List[List[int]]) -> bool:
             if not can_be_colored(node):
                 return False 
     return True
+
+def gameOfLife(board: List[List[int]]) -> None:
+    """
+    Do not return anything, modify board in-place instead.
+    """
+    result = [board[i][:] for i, _ in enumerate(board)]
+    for x, row in enumerate(board):
+        for y, cell in enumerate(row):
+            result[x][y] = helper(x, y, board, cell)
+
+    for x, row in enumerate(board):
+        for y, cell in enumerate(row):
+            board[x][y] = result[x][y]
+    
+def helper(oldx, oldy, board, cell):
+    neighbors = 0
+    for x in [-1, 0, 1]:
+        for y in [-1, 0, 1]:
+            if x == 0 and y == 0: continue
+            newx = oldx + x
+            newy = oldy + y
+            if newx < 0 or newy < 0: continue
+            if newx >= len(board) or newy >= len(board[0]): continue
+            if board[newx][newy] == 1:
+                neighbors += 1
+    
+    if neighbors == 3: 
+        return 1
+    if cell == 1 and neighbors == 2:
+        return 1
+    return 0
