@@ -807,5 +807,100 @@ class AllNodesKDistance:
         return result 
 
         
-def invertTree(self, root: TreeNode) -> TreeNode:
+class eventNode:
+    def __init__(self, s, e):
+        self.s = s
+        self.e = e
+        self.left = None
+        self.right = None
+
+class MyCalendar:
+
+    def __init__(self):
+        self.root = None
+
+    def book(self, start: int, end: int) -> bool:
+        if not self.root: 
+            self.root = eventNode(start, end)
+            return True
     
+        to_visit = [self.root]
+        while to_visit: 
+            cur = to_visit.pop()
+            if start >= cur.e:
+                if cur.right:
+                    to_visit.append(cur.right)
+                else: 
+                    cur.right = eventNode(start, end)
+                    return True
+            elif end <= cur.s:
+                if cur.left:
+                    to_visit.append(cur.left)
+                else: 
+                    cur.left = eventNode(start, end)
+                    return True
+            else: 
+                return False
+    
+def titleToNumber(self, s: str) -> int:
+    if not s: return
+    alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    alpha = {l:i + 1 for i, l in enumerate(alphabet)}
+    total = 0
+    i = len(s) - 1
+    for l in s: 
+        total += int(alpha[l]) * (26 ** i)
+        i -= 1
+    return total
+
+def isBipartite(self, graph: List[List[int]]) -> bool:
+    colors = {}
+
+    def can_be_colored(node):
+        for child in graph[node]:
+            if child in colors:
+                if colors[child] == colors[node]:
+                    return False
+            else:
+                colors[child] = colors[node] * -1
+                if not can_be_colored(child):
+                    return False
+        return True
+    
+    for node, _ in enumerate(graph): 
+        if node not in colors: 
+            colors[node] = 1
+            if not can_be_colored(node):
+                return False 
+    return True
+
+def gameOfLife(board: List[List[int]]) -> None:
+    """
+    Do not return anything, modify board in-place instead.
+    """
+    result = [board[i][:] for i, _ in enumerate(board)]
+    for x, row in enumerate(board):
+        for y, cell in enumerate(row):
+            result[x][y] = helper(x, y, board, cell)
+
+    for x, row in enumerate(board):
+        for y, cell in enumerate(row):
+            board[x][y] = result[x][y]
+    
+def helper(oldx, oldy, board, cell):
+    neighbors = 0
+    for x in [-1, 0, 1]:
+        for y in [-1, 0, 1]:
+            if x == 0 and y == 0: continue
+            newx = oldx + x
+            newy = oldy + y
+            if newx < 0 or newy < 0: continue
+            if newx >= len(board) or newy >= len(board[0]): continue
+            if board[newx][newy] == 1:
+                neighbors += 1
+    
+    if neighbors == 3: 
+        return 1
+    if cell == 1 and neighbors == 2:
+        return 1
+    return 0
