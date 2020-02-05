@@ -919,3 +919,18 @@ def invertBT(n):
     if root:
         n.right, n.left = invertBT(n.left), invertBT(n.right)
         return root
+
+def diameterOfBinaryTree(self, root: TreeNode) -> int:
+    self.ans = 0 
+    def max_depth(n):
+        if not n: return 0
+        right = max_depth(n.right)
+        left = max_depth(n.left)
+        # if i know the max depths of the paths to the left and right of me
+        # then the diameter is those added, or my currrent biggest
+        self.ans = max(self.ans, left + right)
+        # if i have the longest depths of the left and right
+        # then my answer it the bigger path + 1 to account for the node i am on
+        return 1 + max(left, right)
+    max_depth(root)
+    return self.ans
