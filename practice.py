@@ -914,3 +914,8 @@ def mergeTrees(self, t1: TreeNode, t2: TreeNode) -> TreeNode:
         return t1
     else:
         return t1 or t2
+
+def invertBT(n):
+    if root:
+        n.right, n.left = invertBT(n.left), invertBT(n.right)
+        return root
