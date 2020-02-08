@@ -934,3 +934,19 @@ def diameterOfBinaryTree(self, root: TreeNode) -> int:
         return 1 + max(left, right)
     max_depth(root)
     return self.ans
+
+def minPathSum(self, grid: List[List[int]]) -> int:
+    for x, cur in enumerate(grid[0]):
+        if x > 0: 
+            grid[0][x] = grid[0][x - 1] + cur
+    for y, cur in enumerate(grid):
+        if y > 0: 
+            grid[y][0] = grid[y - 1][0] + grid[y][0]
+    
+    
+    for x, row in enumerate(grid):
+        for y, _ in enumerate(row):
+            if x > 0 and y > 0:
+                grid[x][y] = min(grid[x - 1][y], grid[x][y - 1]) + grid[x][y]
+        
+    return grid[-1][-1]
