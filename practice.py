@@ -954,3 +954,21 @@ def minPathSum(self, grid: List[List[int]]) -> int:
 def minCostToMoveChips(self, chips: List[int]) -> int:
     odds = sum(x % 2 for x in chips)
     return min(odds, len(chips) - odds)
+
+def findWords(self, words: List[str]) -> List[str]:
+    def sr(word):
+        r1 = set(['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'])
+        r2 = set(['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'])
+        r3 = set(['z', 'x', 'c', 'v', 'b', 'n', 'm'])
+        for s in [r1, r2, r3]:
+            for i, l in enumerate(word):
+                if l.lower() not in s: 
+                    break
+                elif i == len(word) - 1:
+                    return True
+        return False
+    
+    result = []
+    for word in words:
+        if sr(word): result.append(word)
+    return result 
