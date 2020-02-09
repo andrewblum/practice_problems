@@ -950,3 +950,7 @@ def minPathSum(self, grid: List[List[int]]) -> int:
                 grid[x][y] = min(grid[x - 1][y], grid[x][y - 1]) + grid[x][y]
         
     return grid[-1][-1]
+
+def minCostToMoveChips(self, chips: List[int]) -> int:
+    odds = sum(x % 2 for x in chips)
+    return min(odds, len(chips) - odds)
