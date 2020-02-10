@@ -960,15 +960,27 @@ def findWords(self, words: List[str]) -> List[str]:
         r1 = set(['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'])
         r2 = set(['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'])
         r3 = set(['z', 'x', 'c', 'v', 'b', 'n', 'm'])
-        for s in [r1, r2, r3]:
-            for i, l in enumerate(word):
-                if l.lower() not in s: 
-                    break
-                elif i == len(word) - 1:
-                    return True
-        return False
+        s = r3
+        if word[0].lower() in r1: 
+            s = r1
+        elif word[0].lower() in r2: 
+            s = r2
+        for i, l in enumerate(word):
+            if l.lower() not in s: 
+                return False
+        return True
     
     result = []
     for word in words:
         if sr(word): result.append(word)
     return result 
+
+def numberOfSteps (self, num: int) -> int:
+    steps = 0
+    while num > 0:
+        if num % 2 == 0: 
+            num = num / 2
+        else: 
+            num -= 1
+        steps += 1
+    return steps
