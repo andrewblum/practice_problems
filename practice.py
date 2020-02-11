@@ -1086,3 +1086,17 @@ def cloneGraph(self, node: 'Node') -> 'Node':
             newnodes[adj[0]].neighbors.append(newnodes[adj[1]])
             
         return newnodes[node.val]
+
+def cloneGraph2(self, node: 'Node') -> 'Node':
+        if not node: return
+        newnodes = {}
+        newnodes[node.val] = Node(node.val)
+        q = [node]
+        while q: 
+            cur = q.pop()
+            for n in cur.neighbors: 
+                if n.val not in newnodes:
+                    newnodes[n.val] = Node(n.val)
+                    q.append(n)
+                newnodes[cur.val].neighbors.append(newnodes[n.val]) 
+        return newnodes[node.val]
