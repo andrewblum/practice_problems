@@ -1100,3 +1100,21 @@ def cloneGraph2(self, node: 'Node') -> 'Node':
                     q.append(n)
                 newnodes[cur.val].neighbors.append(newnodes[n.val]) 
         return newnodes[node.val]
+
+from collections import defaultdict
+def deepestLeavesSum(self, root: TreeNode) -> int:
+    if not root: return 0
+    max_depth =  0
+    depths = defaultdict(list)
+    q = [(root, 0)]
+    while q: 
+        cur, depth = q.pop()
+        if cur: 
+            if depth > max_depth: max_depth = depth
+            depths[depth].append(cur)
+            q.append((cur.left, depth + 1))
+            q.append((cur.right, depth + 1))
+    
+    return sum([node.val for node in depths[max_depth]])
+
+
