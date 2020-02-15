@@ -1117,4 +1117,28 @@ def deepestLeavesSum(self, root: TreeNode) -> int:
     
     return sum([node.val for node in depths[max_depth]])
 
-
+def sumEvenGrandparent(self, root: TreeNode) -> int:
+    def adder(node):
+        total = 0
+        if node.right: 
+            if node.right.right:
+                total += node.right.right.val
+            if node.right.left:
+                total += node.right.left.val
+        if node.left:
+            if node.left.right:
+                total += node.left.right.val
+            if node.left.left:
+                total += node.left.left.val
+        return total 
+    
+    q = [root]
+    total = 0
+    while q:
+        cur = q.pop() 
+        if cur:
+            if cur.val % 2 == 0: 
+                total += adder(cur)
+            q.append(cur.left)
+            q.append(cur.right)
+    return total 
