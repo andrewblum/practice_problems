@@ -1161,3 +1161,71 @@ def queensAttacktheKing(self, queens: List[List[int]], king: List[int]) -> List[
     
     return result
     
+
+
+        def dfs(queen,diag1,diag2,col):
+            
+            if len(queen)==n:
+                res.append(queen+[])
+                return
+            i=len(queen)
+            
+            for j in range(n):
+                if (i+j in diag1) or (i-j in diag2) or (j in col):
+                    continue
+                else:
+                    diag1.add(i+j)
+                    diag2.add(i-j)
+                    col.add(j)
+                    queen.append(j)
+                    
+                    dfs(queen,diag1,diag2,col)
+                    
+                    queen.pop()
+                    col.remove(j)
+                    diag2.remove(i-j)
+                    diag1.remove(i+j)
+                    
+        res=[]
+        dfs([],set(),set(),set())
+        return [  ["."*j+'Q'+ (n-j-1)*'.' for j in ans] for ans in res]
+
+def nqueens(n):
+    def checkDiag(board, x, y):
+        for rowi, row in enumerate(board):
+            if board[rowi][y] == 'Q':
+                return False
+        return True
+
+
+    def checkCol(board, x, y):          
+        for x2 in [1, -1]:
+            for y2 in [1, -1]:
+                nx = x + x2
+                ny = y + y2
+                while nx >= 0 and ny >= 0 and nx < n and ny < n:
+                    if board[nx][ny] == 'Q': 
+                        return False 
+                    nx += x2
+                    ny += y2
+        return True
+
+
+    def helper(board, queens, srow):
+        if queens == n:
+            solutions.append(board)
+            return
+        for rowi in range(srow, len(board)):
+            row = board[rowi]
+            for coli, col in enumerate(row):
+                if board[rowi][coli] == '.':
+                    if checkDiag(board, rowi, coli) and checkCol(board, rowi, coli):
+                        if row.count('Q') == 0:
+                            copy = board[:]
+                            copy[rowi] = copy[rowi][:coli] + 'Q' + copy[rowi][coli+1:]
+                            helper(copy, queens + 1, rowi + 1)
+
+    solutions = []
+    board = ["." * n for _ in range(n)]
+    helper(board, 0, 0) 
+    return solutions 
