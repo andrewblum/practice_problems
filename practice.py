@@ -1142,3 +1142,22 @@ def sumEvenGrandparent(self, root: TreeNode) -> int:
             q.append(cur.left)
             q.append(cur.right)
     return total 
+
+def queensAttacktheKing(self, queens: List[List[int]], king: List[int]) -> List[List[int]]:
+    result = []
+            
+    def search(startx, starty, movex, movey):
+        if startx < 0 or starty < 0: return
+        if startx > 7 or starty > 7: return
+        if [startx, starty] in queens:
+            result.append([startx, starty])
+            return
+        search(startx + movex, starty + movey, movex, movey)
+    
+    for x in [1, 0, -1]:
+        for y in [1, 0, -1]:
+            if x == 0 and y == 0: continue
+            search(king[0], king[1], x, y)
+    
+    return result
+    
