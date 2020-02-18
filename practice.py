@@ -1229,3 +1229,36 @@ def nqueens(n):
     board = ["." * n for _ in range(n)]
     helper(board, 0, 0) 
     return solutions 
+
+def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
+    self.max_path = 0
+    self.memo = {}
+    
+    def dfs(x, y, prev):
+
+        if x < 0 or y < 0: 
+            return 0
+        
+        if x >= len(matrix) or y >= len(matrix[0]): 
+            return 0
+        
+        if prev >= matrix[x][y]: 
+            return 0
+            
+        if (x, y) in self.memo:
+            return self.memo[(x,y)]
+        
+        a = dfs(x+1, y, matrix[x][y])
+        b = dfs(x-1, y, matrix[x][y])
+        c = dfs(x, y+1, matrix[x][y])
+        d = dfs(x, y-1, matrix[x][y])
+        
+        path = max(a,b,c,d) + 1
+        self.memo[(x,y)] = path
+        self.max_path = max(path, self.max_path)
+        return path
+
+    for x in range(len(matrix)):
+        for y in range(len(matrix[0])):
+            dfs(x, y, -100000)
+    return self.max_path
