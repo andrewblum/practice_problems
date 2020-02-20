@@ -1163,32 +1163,32 @@ def queensAttacktheKing(self, queens: List[List[int]], king: List[int]) -> List[
     
 
 
-        def dfs(queen,diag1,diag2,col):
+def dfs(queen,diag1,diag2,col):
+    
+    if len(queen)==n:
+        res.append(queen+[])
+        return
+    i=len(queen)
+    
+    for j in range(n):
+        if (i+j in diag1) or (i-j in diag2) or (j in col):
+            continue
+        else:
+            diag1.add(i+j)
+            diag2.add(i-j)
+            col.add(j)
+            queen.append(j)
             
-            if len(queen)==n:
-                res.append(queen+[])
-                return
-            i=len(queen)
+            dfs(queen,diag1,diag2,col)
             
-            for j in range(n):
-                if (i+j in diag1) or (i-j in diag2) or (j in col):
-                    continue
-                else:
-                    diag1.add(i+j)
-                    diag2.add(i-j)
-                    col.add(j)
-                    queen.append(j)
-                    
-                    dfs(queen,diag1,diag2,col)
-                    
-                    queen.pop()
-                    col.remove(j)
-                    diag2.remove(i-j)
-                    diag1.remove(i+j)
-                    
-        res=[]
-        dfs([],set(),set(),set())
-        return [  ["."*j+'Q'+ (n-j-1)*'.' for j in ans] for ans in res]
+            queen.pop()
+            col.remove(j)
+            diag2.remove(i-j)
+            diag1.remove(i+j)
+            
+res=[]
+dfs([],set(),set(),set())
+return [  ["."*j+'Q'+ (n-j-1)*'.' for j in ans] for ans in res]
 
 def nqueens(n):
     def checkDiag(board, x, y):
@@ -1255,10 +1255,22 @@ def longestIncreasingPath(self, matrix: List[List[int]]) -> int:
         
         path = max(a,b,c,d) + 1
         self.memo[(x,y)] = path
-        self.max_path = max(path, self.max_path)
+        self.max_path = max(path, self.max_path) 
         return path
 
     for x in range(len(matrix)):
         for y in range(len(matrix[0])):
             dfs(x, y, -100000)
     return self.max_path
+    
+def removeOuterParentheses(self, S: str) -> str:
+    ans = ''
+    count = 0 
+    for i in range(len(S)):
+        if S[i] == ')':
+            count -= 1
+        if count != 0:
+            ans += S[i]
+        if S[i] == '(':
+            count += 1
+    return ans
