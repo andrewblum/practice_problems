@@ -1274,3 +1274,17 @@ def removeOuterParentheses(self, S: str) -> str:
         if S[i] == '(':
             count += 1
     return ans
+
+
+def productExceptSelf(self, nums: List[int]) -> List[int]:
+    if len(nums) == 1: return nums
+    prods = nums[:]
+    prod_so_far = 1
+    for i in range(len(nums)):
+        prods[i] = prod_so_far
+        prod_so_far *= nums[i]
+    prod_so_far = 1
+    for i in range(len(nums) - 1, -1, -1):
+        prods[i] *= prod_so_far 
+        prod_so_far *= nums[i] 
+    return prods
