@@ -1331,18 +1331,14 @@ def superBal2(node):
 
 def get_permutations(string):
     # Generate all permutations of the input string
-    if len(string) == 0:
-        return set([''])
-    if len(string) == 1: 
+    if len(string) <= 1: 
         return set([string])
     ans = set()
     cur = string[0]
     string = string[1:]
     for s in get_permutations(string):
-        for i in range(len(s)):
+        for i in range(len(s) + 1):
             n = s[:i] + cur + s[i:]
             ans.add(n)
-        ans.add(cur + s)
-        ans.add(s + cur)
 
     return ans
