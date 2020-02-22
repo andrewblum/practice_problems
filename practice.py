@@ -1288,3 +1288,61 @@ def productExceptSelf(self, nums: List[int]) -> List[int]:
         prods[i] *= prod_so_far 
         prod_so_far *= nums[i] 
     return prods
+
+
+def superBal(node):
+    return abs(maxD(node) - minD(node)) < 2
+
+def maxD(node):
+    if not node: 
+        return 0
+    left = maxD(node.left)
+    right = maxD(node.right)
+    return max(left, right) + 1
+
+def minD(node):
+    if not node: return 0
+    left = minD(node.left)
+    right = minD(node.right)
+    if left == 0: 
+        return right + 1
+    if right == 0:
+        return left + 1
+    return min(left, right) + 1
+
+def superBal2(node):
+    first = True
+    minD, maxD = 0, 0 
+    q = [(node, 1)]
+    while q: 
+        cur, lvl = q.pop()
+        if cur: 
+            if not cur.left and not cur.right and first:
+                first = False
+                minD = lvl
+                maxD = lvl
+            if not cur.left and not cur.right and first:
+                minD = min(lvl, minD)
+                maxD = max(lvl, maxD) 
+            q.append((cur.right, lvl + 1))
+            q.append((cur.left, lvl + 1))
+    print(minD, maxD)
+    return abs(maxD - minD) < 2
+
+def get_permutations(string):
+    # Generate all permutations of the input string
+    if len(string) == 0:
+        return set([''])
+    if len(string) == 1: 
+        return set([string])
+    ans = set()
+    cur = string[0]
+    string = string[1:]
+    for s in get_permutations(string):
+        for i in range(len(s)):
+            n = s[:i] + cur + s[i:]
+            ans.add(n)
+        ans.add(cur + s)
+        ans.add(s + cur)
+
+    return ans
