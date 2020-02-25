@@ -1342,3 +1342,24 @@ def get_permutations(string):
             ans.add(n)
 
     return ans
+
+def change_possibilities(amount, denominations):
+
+    # Calculate the number of ways to make change
+    
+    def helper(amount, denominations, memo):
+        if amount == 0: return 1
+        if amount < 0: return 0
+        if not denominations: return 0
+        ways = 0
+        c = denominations[0] 
+        while amount >= 0:
+                if amount in memo: 
+                    ways += memo[amount]
+                memo[amount] = change_possibilities(amount, denominations[1:])
+                ways += memo[amount]
+                amount -= c
+        return ways
+    
+    m = {}
+    return helper(amount, denominations, m)
