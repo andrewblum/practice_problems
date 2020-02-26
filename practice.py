@@ -1363,3 +1363,16 @@ def change_possibilities(amount, denominations):
     
     m = {}
     return helper(amount, denominations, m)
+
+def change_possibilities2(amount, denominations):
+
+    # Calculate the number of ways to make change
+    
+    m = [0] * (amount + 1)
+    m[0] = 1
+    
+    for c in denominations: 
+        for amt in range(c, amount + 1):
+            m[amt] += ( m[amt - c] )
+            print(m)
+    return m[-1]
