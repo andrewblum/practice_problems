@@ -1376,3 +1376,13 @@ def change_possibilities2(amount, denominations):
             m[amt] += ( m[amt - c] )
             print(m)
     return m[-1]
+
+def sortByBits(self, arr: List[int]) -> List[int]:
+    bits = defaultdict(list)
+    for n in arr:
+        ones = bin(n).count('1')
+        bits[ones].append(n)
+    ans = []
+    for k in sorted(bits.keys()):
+        ans += sorted(bits[k])
+    return ans
