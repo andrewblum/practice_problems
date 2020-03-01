@@ -1386,3 +1386,39 @@ def sortByBits(self, arr: List[int]) -> List[int]:
     for k in sorted(bits.keys()):
         ans += sorted(bits[k])
     return ans
+
+class eventNode:
+    def __init__(self, s, e):
+        self.s = s
+        self.e = e
+        self.left = None
+        self.right = None
+
+class MyCalendarTwo:
+
+    def __init__(self):
+        self.root = None
+
+    def book(self, start: int, end: int) -> bool:
+        if not self.root: 
+            self.root = eventNode(start, end)
+            return True
+    
+        to_visit = [self.root]
+        while to_visit: 
+            cur = to_visit.pop()
+            
+            if start >= cur.e:
+                if cur.right:
+                    to_visit.append(cur.right)
+                else: 
+                    cur.right = eventNode(start, end)
+                    return True
+            elif end <= cur.s:
+                if cur.left:
+                    to_visit.append(cur.left)
+                else: 
+                    cur.left = eventNode(start, end)
+                    return True
+            else: 
+                return False
