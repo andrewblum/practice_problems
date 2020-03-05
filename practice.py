@@ -1394,7 +1394,7 @@ class eventNode:
         self.left = None
         self.right = None
 
-class MyCalendarTwo:
+class MyCalendar:
 
     def __init__(self):
         self.root = None
