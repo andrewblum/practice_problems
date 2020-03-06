@@ -1422,3 +1422,14 @@ class MyCalendar:
                     return True
             else: 
                 return False
+
+class Solution:
+    def postorder(self, root: 'Node') -> List[int]:
+        self.t = []
+        def trav(node):
+            if not node: return 
+            for c in node.children:
+                trav(c)
+            self.t.append(node.val)
+        trav(root)
+        return self.t
