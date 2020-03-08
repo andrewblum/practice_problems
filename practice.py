@@ -1450,28 +1450,20 @@ def maxSubArray(self, nums: List[int]) -> int:
 def matrixScore(self, A: List[List[int]]) -> int:
     for i in range(len(A)): 
         if A[i][0] == 0: 
-            arr = []
-            for n in A[i]:
-                if n == 1:
-                    arr.append(0) 
-                else: 
-                    arr.append(1)
-            A[i] = arr
-    
+            A[i] = [int(not n) for n in A[i]]
+
     for col in range(1, len(A[0])):
-        zeros, ones = 0, 0
+        zeros = 0
         for row in range(len(A)): 
             if A[row][col] == 0: 
                 zeros += 1
-            if A[row][col] == 1:
-                ones += 1
-        if zeros > ones:
+                
+        if zeros > len(A) - zeros:
             for row in range(len(A)): 
-                if A[row][col] == 0: 
-                    A[row][col] = 1
-                else: 
-                    A[row][col] = 0
+                A[row][col] = int(not A[row][col])
+
     s = 0
     for row in A: 
         s += int(''.join([str(n) for n in row]), base=2)
     return s
+    
