@@ -1466,4 +1466,29 @@ def matrixScore(self, A: List[List[int]]) -> int:
     for row in A: 
         s += int(''.join([str(n) for n in row]), base=2)
     return s
-    
+
+def minWindow(self, s: str, t: str) -> str:
+        min_window = None
+        counts = {} 
+        for l in t: 
+            counts[l] = counts.get(l, 0) + 1
+        q = deque()
+        missing = set(t)
+        for i, l in enumerate(s): 
+            if l in counts: 
+                q.append((l, i))
+                counts[l] -= 1
+                if counts[l] == 0 and l in missing:
+                    missing.remove(l)
+                        
+            while not missing:
+                if not min_window or ((q[-1][1] + 1) - q[0][1]) < len(min_window): 
+                    min_window = s[q[0][1]:q[-1][1] + 1]
+                removed_letter, idx = q.popleft()
+                counts[removed_letter] += 1
+                if counts[removed_letter] > 0:
+                    missing.add(removed_letter)
+                
+        if not min_window:
+            return ''
+        return min_window
