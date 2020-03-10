@@ -1492,3 +1492,57 @@ def minWindow(self, s: str, t: str) -> str:
         if not min_window:
             return ''
         return min_window
+
+class Node: 
+    def __init__(self, val):
+        self.val = val
+        self.children = {}
+        self.is_word = False
+
+class Trie:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.root = Node('')
+        
+
+    def insert(self, word: str) -> None:
+        """
+        Inserts a word into the trie.
+        """
+        current = self.root
+        for i, letter in enumerate(word): 
+            if current.children.get(letter):
+                current = current.children.get(letter)
+            else:
+                current.children[letter] = Node(letter)
+                current = current.children[letter]
+            if i == len(word) - 1:
+                current.is_word = True
+            
+
+    def search(self, word: str) -> bool:
+        """
+        Returns if the word is in the trie.
+        """
+        current = self.root
+        for letter in word: 
+            current = current.children.get(letter)
+            if not current:
+                return False
+        return current.is_word
+            
+        
+
+    def startsWith(self, prefix: str) -> bool:
+        """
+        Returns if there is any word in the trie that starts with the given prefix.
+        """
+        current = self.root
+        for letter in prefix: 
+            current = current.children.get(letter)
+            if not current:
+                return False
+        return True
