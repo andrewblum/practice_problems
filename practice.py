@@ -1546,3 +1546,47 @@ class Trie:
             if not current:
                 return False
         return True
+
+
+class Node: 
+    def __init__(self, val):
+        self.val = val
+        self.children = {}
+        self.is_word = False
+
+class Trie:
+    def __init__(self):
+        self.root = Node('')
+        
+    def insert(self, word: str) -> None:
+        current = self.root
+        for i, letter in enumerate(word): 
+            if current.children.get(letter):
+                current = current.children.get(letter)
+            else:
+                current.children[letter] = Node(letter)
+                current = current.children[letter]
+            if i == len(word) - 1:
+                current.is_word = True
+
+
+class StreamChecker:
+
+    def __init__(self, words: List[str]):
+        self.pointers = []
+        self.trie = Trie()
+        for word in words:
+            self.trie.insert(word)
+
+            
+    def query(self, letter: str) -> bool:
+        # traverse pointers down trie by the letter
+        # remove pointers without the letter child       
+        new = []
+        for pointer in self.pointers + [self.trie.root]:
+            if letter in pointer.children:
+                new.append(pointer.children[letter])
+        self.pointers = new
+            
+        # see if any of the pointers are now on a word 
+        return any(pointer.is_word for pointer in self.pointers)
