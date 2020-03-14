@@ -1590,3 +1590,14 @@ class StreamChecker:
             
         # see if any of the pointers are now on a word 
         return any(pointer.is_word for pointer in self.pointers)
+
+import random
+
+def get_random(floor, ceiling):
+    return random.randrange(floor, ceiling + 1)
+
+def shuffle(the_list):
+    for i in range(len(the_list)):
+        selection_idx = get_random(i, len(the_list) - 1)
+        selected_num = the_list.pop(selection_idx)
+        the_list.insert(0, selected_num)
