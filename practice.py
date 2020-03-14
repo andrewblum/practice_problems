@@ -1599,5 +1599,6 @@ def get_random(floor, ceiling):
 def shuffle(the_list):
     for i in range(len(the_list)):
         selection_idx = get_random(i, len(the_list) - 1)
-        selected_num = the_list.pop(selection_idx)
-        the_list.insert(0, selected_num)
+        the_list[i], the_list[selection_idx] = the_list[selection_idx], the_list[i]
+        # selected_num = the_list.pop(selection_idx)
+        # the_list.insert(0, selected_num)
