@@ -1602,3 +1602,24 @@ def shuffle(the_list):
         the_list[i], the_list[selection_idx] = the_list[selection_idx], the_list[i]
         # selected_num = the_list.pop(selection_idx)
         # the_list.insert(0, selected_num)
+
+def rand5():
+    return random.randint(1, 5)
+
+
+def rand7():
+
+    results = [
+        [1, 2, 3, 4, 5],
+        [6, 7, 1, 2, 3],
+        [4, 5, 6, 7, 1],
+        [2, 3, 4, 5, 6],
+        [7, 0, 0, 0, 0],
+    ]
+    
+    row = 4
+    col = 4
+    while row >= 4 and col > 0:
+        row = rand5() - 1
+        col = rand5() - 1
+    return results[row][col]
