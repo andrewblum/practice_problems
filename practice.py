@@ -1623,3 +1623,33 @@ def rand7():
         row = rand5() - 1
         col = rand5() - 1
     return results[row][col]
+
+def networkDelayTime(self, times: List[List[int]], N: int, K: int) -> int:
+    graph, dist, prev = {}, {}, {}
+    heap = []
+    # build our graph into a dictonary   
+    for edge in times: 
+        source = edge[0]
+        target = edge[1]
+        weight = edge[2]
+        node = graph.get(source, [])
+        node.append((target, weight))
+        graph[source] = node
+    # setup for dijkstras
+    for node in graph.keys():
+        dist[node] = float('inf')
+        prev[node] = None
+        heapq.heappush(heap, node)
+        if node == K:
+            dist[node] = 0
+    
+    while heap: 
+        cur = heapq.heappop(heap)
+        for neighbor in graph[cur]:
+            alt_dis = dist[cur] + neighbor[1]
+            if alt_dis < dist.get(neighbor[0], 0): 
+                dist[neighbor[0]] = alt_dis
+                prev[neighbor[0]] = cur
+    
+    print(dist)
+    print(prev)
