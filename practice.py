@@ -1651,5 +1651,23 @@ def networkDelayTime(self, times: List[List[int]], N: int, K: int) -> int:
                 dist[neighbor[0]] = alt_dis
                 prev[neighbor[0]] = cur
     
-    print(dist)
-    print(prev)
+def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+    def explore(x, y, grid): 
+        if (x < 0 or y < 0 or 
+        x >= len(grid) or y >= len(grid[0]) or 
+        grid[x][y] != 1): 
+            return 0 
+        grid[x][y] = 'x'
+        area = 0
+        area += explore(x - 1, y, grid) 
+        area += explore(x, y - 1, grid) 
+        area += explore(x + 1, y, grid) 
+        area += explore(x, y + 1, grid) 
+        return area + 1
+    
+    max_area = 0
+    for x, row in enumerate(grid):
+        for y, space in enumerate(row): 
+            if space == 1:
+                max_area = max(explore(x, y, grid), max_area)
+    return max_area
