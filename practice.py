@@ -1671,3 +1671,16 @@ def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
             if space == 1:
                 max_area = max(explore(x, y, grid), max_area)
     return max_area
+
+def isSubtree(self, s: TreeNode, t: TreeNode) -> bool:
+    if not s or not t:
+        return False
+    
+    def check_trees(t):
+        if not t: return ''
+        return str(t.val) + check_trees(t.left) + check_trees(t.right)
+        
+    if s.val == t.val: 
+        if check_trees(t) == check_trees(s):
+            return True
+    return self.isSubtree(s.left, t) or self.isSubtree(s.right, t)
