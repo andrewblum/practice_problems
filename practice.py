@@ -1684,3 +1684,18 @@ def isSubtree(self, s: TreeNode, t: TreeNode) -> bool:
         if check_trees(t) == check_trees(s):
             return True
     return self.isSubtree(s.left, t) or self.isSubtree(s.right, t)
+
+
+def suggestedProducts_slow(products: List[str], searchWord: str) -> List[List[str]]:
+    products = sorted(products)
+    result = []
+    for i in range(len(searchWord)): 
+        sub_result = []
+        for word in products: 
+            if len(sub_result) == 3: 
+                break
+            if searchWord[0:i+1] == word[0:i+1]:
+                sub_result.append(word)
+        result.append(sub_result)
+    return result
+            
