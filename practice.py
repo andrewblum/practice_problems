@@ -1691,11 +1691,17 @@ def suggestedProducts_slow(products: List[str], searchWord: str) -> List[List[st
     result = []
     for i in range(len(searchWord)): 
         sub_result = []
+        prefix = searchWord[0:i+1]
         for word in products: 
             if len(sub_result) == 3: 
                 break
-            if searchWord[0:i+1] == word[0:i+1]:
+            if word.startswith(prefix):
                 sub_result.append(word)
         result.append(sub_result)
     return result
+
+#   to improve store words in a trie 
+
+#   could also binary search for a starting point in the products list instead of
+#   looping through the whole thing 
             
