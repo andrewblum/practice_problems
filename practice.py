@@ -1705,3 +1705,14 @@ def suggestedProducts_slow(products: List[str], searchWord: str) -> List[List[st
 #   could also binary search for a starting point in the products list instead of
 #   looping through the whole thing 
             
+# 946 
+def validateStackSequences(self, pushed: List[int], popped: List[int]) -> bool:
+    stack = []
+    for p in pushed: 
+        stack.append(p)
+        while stack[-1] == popped[0]:
+            popped.pop(0)
+            stack.pop()
+            if not stack:
+                break
+    return not stack and not popped
