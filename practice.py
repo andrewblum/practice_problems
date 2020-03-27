@@ -1716,3 +1716,19 @@ def validateStackSequences(self, pushed: List[int], popped: List[int]) -> bool:
             if not stack:
                 break
     return not stack and not popped
+
+def findPairs(self, nums: List[int], k: int) -> int:
+    if k < 0: 
+        return 0
+    result = set()
+    dic = {}
+    for i, x in enumerate(nums): 
+        dic[x] = dic.get(x, []) + [i]
+        
+    for i, n in enumerate(nums):
+        if (n - k) in dic and (len(dic[n-k]) > 1 or dic[n-k][0] != i):
+            result.add(tuple(sorted([n, n-k])))
+        elif (n + k) in dic and (len(dic[n+k]) > 1 or dic[n+k][0] != i): 
+            result.add(tuple(sorted([n, n+k])))
+            
+    return len(result)
