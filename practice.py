@@ -1732,3 +1732,34 @@ def findPairs(self, nums: List[int], k: int) -> int:
             result.add(tuple(sorted([n, n+k])))
             
     return len(result)
+
+class QuadTree:
+    def construct(self, grid: List[List[int]]) -> 'Node':
+        return self.helper(0, 0, len(grid), len(grid[0]), grid)
+ 
+    
+    def helper(self, start_x, start_y, end_x, end_y, grid):
+        root = Node(True, True, None, None, None, None)
+        if start_x >= end_x or start_y >= end_y: 
+            return None
+        
+        if not self.all_same(start_x, start_y, end_x, end_y, grid):
+            root.isLeaf = False
+            # divide into 4 parts 
+            half_x = len(grid) // 2
+            half_y = len(grid[0]) // 2
+            root.topLeft = self.helper(start_x, start_y, end_x//2, end_y//2, grid)
+            root.topRight = self.helper(start_x, start_y + half_y, end_x//2, end_y, grid)
+            root.bottomLeft = self.helper(start_x + half_x, start_y, end_x, end_y//2, grid)
+            root.bottomRight = self.helper(start_x +half_x, start_y + half_y, end_x, end_y, grid)
+        else: 
+            root.val = grid[start_x][start_y]
+        return root
+    
+    def all_same(self, start_x, start_y, end_x, end_y, grid):
+        all_same = grid[start_x][start_y]
+        for x in range(start_x, end_x): 
+            for y in range(start_y, end_y):
+                if grid[x][y] != all_same:
+                    return False
+        return True
