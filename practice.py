@@ -1746,12 +1746,11 @@ class QuadTree:
         if not self.all_same(start_x, start_y, end_x, end_y, grid):
             root.isLeaf = False
             # divide into 4 parts 
-            half_x = len(grid) // 2
-            half_y = len(grid[0]) // 2
+            half = len(grid) // 2
             root.topLeft = self.helper(start_x, start_y, end_x//2, end_y//2, grid)
-            root.topRight = self.helper(start_x, start_y + half_y, end_x//2, end_y, grid)
-            root.bottomLeft = self.helper(start_x + half_x, start_y, end_x, end_y//2, grid)
-            root.bottomRight = self.helper(start_x +half_x, start_y + half_y, end_x, end_y, grid)
+            root.topRight = self.helper(start_x, start_y + half, end_x//2, end_y, grid)
+            root.bottomLeft = self.helper(start_x + half, start_y, end_x, end_y//2, grid)
+            root.bottomRight = self.helper(start_x + half, start_y + half, end_x, end_y, grid)
         else: 
             root.val = grid[start_x][start_y]
         return root
@@ -1763,3 +1762,10 @@ class QuadTree:
                 if grid[x][y] != all_same:
                     return False
         return True
+
+
+def singleNumber(self, nums: List[int]) -> int:
+    n = nums[0]
+    for i in range(1, len(nums)): 
+        n ^= nums[i]
+    return n 
