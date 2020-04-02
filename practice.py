@@ -1769,3 +1769,26 @@ def singleNumber(self, nums: List[int]) -> int:
     for i in range(1, len(nums)): 
         n ^= nums[i]
     return n 
+
+def closedIsland(self, grid: List[List[int]]) -> int:
+    def explore(x, y, grid):
+        # we go out of bounds, so can't be surrounded by water         
+        if (x < 0 or y < 0 or x >= len(grid) or y >= len(grid[0])): 
+            return False 
+        # we hit water which is fine and a dead end
+        if grid[x][y] == 1 or grid[x][y] == 'x':
+            return True
+        # mark as seen       
+        grid[x][y] = 'x'
+        up = explore(x - 1, y, grid) 
+        left = explore(x, y - 1, grid) 
+        down = explore(x + 1, y, grid) 
+        right = explore(x, y + 1, grid) 
+        return up and down and left and right
+            
+    closed_islands = 0
+    for x, row in enumerate(grid):
+        for y, space in enumerate(row): 
+            if space == 0:
+                closed_islands += explore(x, y, grid)
+    return closed_islands
