@@ -1794,3 +1794,10 @@ def closedIsland(self, grid: List[List[int]]) -> int:
     return closed_islands
 
 # floyd's cycle detection! 
+def isHappy(self, n: int) -> bool:
+    next_num = lambda n: sum([int(x)**2 for x in str(n)]) 
+    slow, fast = n, n
+    while True:
+        slow, fast = next_num(slow), next_num(next_num(fast))
+        if slow == 1: return True
+        if slow == fast: return False 
