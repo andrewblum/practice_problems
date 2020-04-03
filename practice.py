@@ -1772,13 +1772,13 @@ def singleNumber(self, nums: List[int]) -> int:
 
 def closedIsland(self, grid: List[List[int]]) -> int:
     def explore(x, y, grid):
-        # we go out of bounds, so can't be surrounded by water         
+        # we go went of bounds, so can't be surrounded by water         
         if (x < 0 or y < 0 or x >= len(grid) or y >= len(grid[0])): 
             return False 
-        # we hit water which is fine and a dead end
+        # we hit water which is fine but a dead end
         if grid[x][y] == 1 or grid[x][y] == 'x':
             return True
-        # mark as seen       
+        # mark as seen and continue exploring island   
         grid[x][y] = 'x'
         up = explore(x - 1, y, grid) 
         left = explore(x, y - 1, grid) 
@@ -1788,7 +1788,9 @@ def closedIsland(self, grid: List[List[int]]) -> int:
             
     closed_islands = 0
     for x, row in enumerate(grid):
-        for y, space in enumerate(row): 
+        for y, space in enumerate(row):
             if space == 0:
                 closed_islands += explore(x, y, grid)
     return closed_islands
+
+# floyd's cycle detection! 
