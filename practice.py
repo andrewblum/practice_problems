@@ -1801,3 +1801,152 @@ def isHappy(self, n: int) -> bool:
         slow, fast = next_num(slow), next_num(next_num(fast))
         if slow == 1: return True
         if slow == fast: return False 
+
+
+
+
+
+H E L L O   :) 
+
+
+Given a 2d grid map of '1's (land) and '0's (water), count the number of islands. 
+An island is surrounded by water and is formed by connecting adjacent 
+lands horizontally or vertically. 
+You may assume all four edges of the grid are all surrounded by water.
+
+Example 1:
+
+Input:
+11110
+11010
+11000
+00000
+
+Output: 1
+
+Example 2:
+
+Input:
+11010
+11110
+00100
+00011
+
+Output: 2
+
+
+Stuff ive already counted: 
+(x, y)
+0,0
+0,1
+
+
+
+Can only go in 4 directions 
+What should I return if the input is [] 
+Input will always be valid 
+
+
+Going through the grid 
+When I see a 1, I count it as an island, and keep going 
+BUT, I dont wanna count any of the 1s that were touching it, ever again 
+
+touching it, or touching one that touched it, and so on, forever 
+
+
+starting at some X, Y cordinates, go UP , LEFT, DOWN, and RIGHT 
+if its a 1, mark it/ keep track of it/ put it into our seen data structure 
+and then keep going UP, LEFT, DOWN, RIGHT etc 
+if its not a 1 (a 0 for instance), exit
+
+
+*** 
+[x0x00]
+[xxxx0]
+[00x00]
+[00011]
+*** 
+
+0, 0 
+
+def number_of_islands(grid): 
+    island_count = 0
+    for x_index, row in enumerate(grid):
+        for y_index, square in enumerate(row):
+            if square == 1: 
+                island_count += 1
+                mark_all_connected_stuff(x_index, y_index, grid)
+    return island_count 
+
+def mark_all_connected_stuff(x, y, grid): 
+    places_to_go = [(x, y)]
+    while places_to_go: 
+        x, y = places_to_go.pop()
+        # current_square is valid/in bounds/exsists and a 1
+        if (x >= 0 and y >= 0 and 
+           x < len(grid) and 
+           y < len(grid[0]) and
+           grid[x][y] == 1): 
+            # marking this square as SEEN, explored, processed, previously visited, etc
+            grid[x][y] = 'x'
+            places_to_go.append((x + 1, y)) # DOWN
+            places_to_go.append((x - 1, y)) # UP
+            places_to_go.append((x, y + 1)) # RIGHT
+            places_to_go.append((x, y - 1)) # LEFT
+
+
+class GraphNode():
+    __init__(self):
+        self.value 
+        self.children = []
+
+
+def andrews_dfs_iterative(graph_node):
+    stack = [graph_node]
+    seen = set()
+    while stack:
+        current = stack.pop()
+        if current not in seen: 
+            seen.add(current)
+            # DO SOME STUFF, whatever we want
+            print(current.val)
+            for child in current.children: 
+                stack.append(child)
+
+import deque from collections
+def andrews_bfs_iterative(graph_node):
+    q = deque()
+    q.append(graph_node)
+    seen = set()
+    while q:
+        current = q.popleft()
+        if current not in seen: 
+            seen.add(current)
+            # DO SOME STUFF, whatever we want
+            print(current.val)
+            for child in current.children: 
+                q.append(child)
+
+def andrews_dfs_recursive(graph_node, seen = set()):
+    if graph_node in seen: return
+    seen.add(graph_node)
+    print(graph_node.val)
+    for child in graph_node.children:
+        andrews_dfs_recursive(child, seen)
+
+def moveZeroes(self, nums: List[int]) -> None:
+    front = 0
+    for idx, n in enumerate(nums): 
+        if n != 0: 
+            nums[front], nums[idx] = nums[idx], nums[front]
+            front += 1    
+    
+
+
+        
+
+
+
+
+
+
