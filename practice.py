@@ -1939,8 +1939,15 @@ def moveZeroes(self, nums: List[int]) -> None:
     for idx, n in enumerate(nums): 
         if n != 0: 
             nums[front], nums[idx] = nums[idx], nums[front]
-            front += 1    
-    
+            front += 1
+
+
+def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+    anas = {}
+    for word in strs:
+        sw = ''.join(sorted(word))
+        anas[sw] = anas.get(sw, []) + [word]
+    return anas.values() 
 
 
         
