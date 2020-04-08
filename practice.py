@@ -1964,7 +1964,68 @@ def middleNode(self, head: ListNode) -> ListNode:
     slow, fast = head, head
     while fast and fast.next: 
         slow, fast = slow.next, fast.next.next
-    return slow 
+    return slow
+
+
+ 
+
+
+
+# https://fellowship.hackbrightacademy.com/materials/challenges/sort-ab/index.html#sort-ab
+
+# GIVEN:
+# a = [1, 3, 4]
+#         ^ 
+# b = [2, 8, 10]
+#      ^
+
+# i_a = 1
+# i_b = 0
+
+# new_list = [1]
+
+# we want to produce one new list out of these two lists, that is in order
+
+# OUTPUT:
+# we want to return [1, 2, 3, 5, 6, 7, 8, 10]
+
+# new_list = a + b
+
+# new_list = [1, 3, 5, 7, 2, 6, 8, 10]
+
+
+# compare the front numbers in each list with each other
+# take the smaller one out and add it to our new list 
+# repeat until one of the lists is empty 
+# add the other list to the back of our new list
+# done
+
+# # works, but its slow, O(n log n)
+# def sort_two_lists(a, b):
+#     return sorted(a + b)
+
+# # works and is optimal, runtime is O(n)
+# def sort_two_lists2(a, b):
+#     new_list = []
+#     i_a, i_b = 0, 0
+#     while i_a < len(a) and i_b < len(b):
+#         if a[i_a] <= b[i_b]:
+#             new_list.append(a[a_i]) 
+#             i_a += 1
+#         else: 
+#             new_list.append(b[i_b])
+#             i_b += 1
+#     return new_list + a[i_a:] + b[i_b:]
+
+
+#     new_list = [1, 2, 3, 5, 6, 7] 
+#     [1, 2, 3, 5, 6, 7] + [8, 10] + []
+
+
+
+
+
+
 
 
 
