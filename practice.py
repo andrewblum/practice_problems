@@ -1950,7 +1950,21 @@ def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
     return anas.values() 
 
 
-        
+       # 1.5 * n time, count the len first
+def middleNode(self, head: ListNode) -> ListNode:
+    cur, length = head, 0
+    while cur: 
+        length, cur = length + 1, cur.next
+    for _ in range(length // 2): 
+        head = head.next
+    return head
+
+# N time, Flyod's again
+def middleNode(self, head: ListNode) -> ListNode:
+    slow, fast = head, head
+    while fast and fast.next: 
+        slow, fast = slow.next, fast.next.next
+    return slow 
 
 
 
