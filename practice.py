@@ -1967,7 +1967,24 @@ def middleNode(self, head: ListNode) -> ListNode:
     return slow
 
 
- 
+def backspaceCompare(self, S: str, T: str) -> bool:
+    def get_letters(s):
+        deletes = 0 
+        for l in reversed(s): 
+            if  l == '#':
+                deletes += 1
+            elif deletes > 0:
+                deletes -= 1
+            else:
+                yield l
+        yield ''
+    S, T = get_letters(S), get_letters(T)
+    ls, lt = next(S), next(T)
+    while ls and lt: 
+        if ls != lt:
+            return False
+        ls, lt = next(S), next(T)
+    return not ls and not lt
 
 
 
