@@ -2040,11 +2040,28 @@ def backspaceCompare(self, S: str, T: str) -> bool:
 
 
 
+class MinStack:
 
+    def __init__(self):
+        self.s = []
+        self.min = float("inf")
+        
+    def push(self, x: int) -> None:
+        self.min = min(self.min, x)
+        self.s.append((x, self.min))
+        
+    def pop(self) -> None:
+        top = self.s.pop()[0]
+        if self.s and self.s[-1][1] > self.min:
+            self.min = self.s[-1][1]
+        if not self.s: self.min = float("inf")
+        return top 
+    
+    def top(self) -> int:
+        return self.s[-1][0]
 
-
-
-
+    def getMin(self) -> int:
+        return self.min
 
 
 
