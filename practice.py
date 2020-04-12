@@ -2076,8 +2076,16 @@ def diameterOfBinaryTree(self, root: TreeNode) -> int:
 
 
 
-
-
+import heapq
+def lastStoneWeight(self, stones: List[int]) -> int:
+    h = [n * -1 for n in stones]
+    heapq.heapify(h)
+    while len(h) > 1: 
+        stone1, stone2 = heapq.heappop(h)*-1, heapq.heappop(h)*-1
+        new_stone = max(stone1, stone2) - min(stone1, stone2)
+        if new_stone: 
+            heapq.heappush(h, new_stone * -1)
+    return h[0] * -1 if h else 0
 
 
 
