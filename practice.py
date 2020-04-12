@@ -2064,5 +2064,26 @@ class MinStack:
         return self.min
 
 
+def diameterOfBinaryTree(self, root: TreeNode) -> int:
+    self.ans = 0 
+    def max_depth(n):
+        if not n: return 0
+        right, left = max_depth(n.right), max_depth(n.left)
+        self.ans = max(self.ans, left + right)
+        return 1 + max(left, right)
+    max_depth(root)
+    return self.ans
+
+
+
+
+
+
+
+
+
+
+
+
 
 
