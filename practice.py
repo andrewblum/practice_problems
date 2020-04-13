@@ -2087,6 +2087,38 @@ def lastStoneWeight(self, stones: List[int]) -> int:
             heapq.heappush(h, new_stone * -1)
     return h[0] * -1 if h else 0
 
+# n^2
+def findMaxLength(self, nums: List[int]) -> int:
+    best = 0
+    for i, n in enumerate(nums):
+        balance = 0
+        for y in range(i, len(nums)):
+            balance += 2 * nums[y] - 1
+            if balance == 0:
+                best = max(best, (y - i) + 1)
+    return best
+
+# n
+def findMaxLength(self, nums: List[int]) -> int:
+    current_balance, longest = 0, 0
+    counts = {0: -1}
+    for idx, n in enumerate(nums):
+        # balance +1 for 1's and -1 for 0's
+        # our balance is how many more 0's or 1's weve seen at this point
+        current_balance += n and 1 or -1
+        if current_balance in counts: 
+            # if at any point we can look back and see the same balance in our dict
+            # it means between our current location and that location 
+            # we must have seen a balanced number of 0's and 1's
+            # to have arrived back at the same current balance 
+            # this this trick allows us to check every "sub array" weve seen before us in constant time
+            longest = max(longest, idx - counts[current_balance])
+        else:
+            # if weve never had this number of 1's and 0's before then there is no valid subarray right now
+            # so we just update our dict with the current balance and index
+            counts[current_balance] = idx
+    return longest
+
 
 
 
