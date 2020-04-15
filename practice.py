@@ -2212,6 +2212,41 @@ def stringShift(self, s: str, shift: List[List[int]]) -> str:
     i = sum([a, -a][d] for d, a in shift) % len(s)
     return s[s:] + s[:s]
 
+def productExceptSelf(self, nums: List[int]) -> List[int]:
+    if len(nums) == 1: return nums      
+    # the major trick youre supposed to take away from this problem is called prefix sum (or product)
+    # we can preprocess some of our information, in this case products, both forwards and backwards
+    # into two different arrays like so: 
+    # original = 1 2 3 4
+    # forward product array = 1 2 6 24 
+    # backward product array = 24 24 12 4
+    # for our answer, since it is the product of every number except the one youre on
+    # we can look to the product to our left in the forward array
+    # and the product to our right in the backward array 
+    # and multiply them together for the answer in any given position:
+    # answer[current] = forward[current - 1] * backward[current + 1]
+    
+    # there is a special case in that the end numbers should just be * 1, so here is my solution
+    # create a prefix product array, but starting with 1 and ending one product early
+    # then run a backwards product on our nums in the same way,
+    # starting with a 1 and ending a product early
+    # our sequences look like this:
+    # 1  2  3 4  == original 
+    # 1  1  2 6  --> forwards prod starting with a 1 and ending early
+    # 24 12 4 1  <-- backwards prod starting with a 1 and ending early
+    # 24 12 8 6  == answer 
+    # we can update our array as we go by multiplying the two together 
+    
+    scan, prod = [], 1
+    for n in nums:
+        scan.append(prod)
+        prod *= n
+        
+    prod = 1
+    for i in range(len(nums)-1, -1, -1):
+        scan[i] *= prod
+        prod *= nums[i]
+    return scan
 
 
 
