@@ -2189,6 +2189,14 @@ def stringShift(self, s: str, shift: List[List[int]]) -> str:
       s = s[-amt:] + s[:-amt]
   return s
 
+def stringShift(self, s: str, shift: List[List[int]]) -> str:
+    total_moves = {0:0, 1:0}
+    for move, amt in shift:
+        total_moves[move] += amt 
+    amt = abs(total_moves[0] - total_moves[1])
+    amt = amt % len(s)
+    return s[-amt:] + s[:-amt]
+
 # since were just going to make a single decisive move now, we dont need the deque or loops 
 def stringShift(self, s: str, shift: List[List[int]]) -> str:
     total_move = 0
@@ -2200,6 +2208,9 @@ def stringShift(self, s: str, shift: List[List[int]]) -> str:
     amt %= len(s)
     return s[-amt:] + s[:-amt]
 
+def stringShift(self, s: str, shift: List[List[int]]) -> str:
+    i = sum([a, -a][d] for d, a in shift) % len(s)
+    return s[s:] + s[:s]
 
 
 
