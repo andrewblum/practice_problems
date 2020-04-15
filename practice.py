@@ -2173,6 +2173,33 @@ def stringShift(self, s: str, shift: List[List[int]]) -> str:
           q.appendleft(q.pop())
   return ''.join(list(q))
 
+def stringShift(self, s: str, shift: List[List[int]]) -> str:
+  total_moves = {0:0, 1:0}
+  for move, amt in shift:
+      total_moves[move] += amt 
+# left
+  if total_moves[0] > total_moves[1]:
+      amt = total_moves[0] - total_moves[1]
+      amt = amt % len(s)
+      s = s[:-amt] + s[-amt:]
+# right
+  if total_moves[1] > total_moves[0]:
+      amt = total_moves[1] - total_moves[0]
+      amt = amt % len(s)
+      s = s[-amt:] + s[:-amt]
+  return s
+
+# since were just going to make a single decisive move now, we dont need the deque or loops 
+def stringShift(self, s: str, shift: List[List[int]]) -> str:
+    total_move = 0
+    for move, amt in shift:
+        if move:
+            total_move += amt
+        else:
+            total_move -= amt
+    amt %= len(s)
+    return s[-amt:] + s[:-amt]
+
 
 
 
