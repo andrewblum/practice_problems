@@ -2119,6 +2119,59 @@ def findMaxLength(self, nums: List[int]) -> int:
             counts[current_balance] = idx
     return longest
 
+Input: s = "abcdefg", shift = [[1,1],[1,1],[0,2],[1,3]]
+Output: "efgabcd"
+
+[1 2 3 4 5]
+
+[1,1] means shift to right by 1. "abcdefg" -> "gabcdef"
+[1,1] means shift to right by 1. "gabcdef" -> "fgabcde"
+[0,2] means shift to left by 2. "fgabcde" -> "abcdefg"
+[1,3] means shift to right by 3. "abcdefg" -> "efgabcd"
+
+# naive. do each shift as instructed, in order, by hand.
+def stringShift(self, s: str, shift: List[List[int]]) -> str:
+    q = deque(list(s)) 
+    for s in shift: 
+        #right
+        if s[0]:
+            for _ in range(s[1]+1):
+                q.appendleft(q.pop())
+        #left 
+        else:
+            for _ in range(s[1]+1):
+                q.append(q.popleft())
+    return ''.join(list(q))
+  
+# we need to notice 3 things to do better:
+
+# 1) it doesnt matter what order we do the shifts in. this is the same as 
+# order not mattering for + and - on a numberline
+# because of this we can simply accumulate a single total for left and right moves
+
+# 2) there is no point in making moves that end up canceling each other out, 
+# so we only need to move left or right by the greater number of moves minus the lesser 
+
+# 3) since we are rotating in circles, there is no point in any set of moves that results in a complete circle 
+# as we would simply end up where we started. I.E. on a length 3 string moving 1 has the same outcome as moving 4
+# so we can mod the amount we are to move by the length of the string to avoid unessecary moves
+
+def stringShift(self, s: str, shift: List[List[int]]) -> str:
+  total_moves = {0:0, 1:0}
+  q = deque(list(s)) 
+  for move, amt in shift: 
+      total_moves[move] =  total_moves[move] + amt 
+  if total_moves[0] > total_moves[1]:
+      amt = total_moves[0] - total_moves[1]
+      amt = amt % len(s)
+      for _ in range(amt):
+          q.append(q.popleft())
+  if total_moves[1] > total_moves[0]:
+      amt = total_moves[1] - total_moves[0]
+      amt = amt % len(s)
+      for _ in range(amt):
+          q.appendleft(q.pop())
+  return ''.join(list(q))
 
 
 
