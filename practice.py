@@ -2249,6 +2249,40 @@ def productExceptSelf(self, nums: List[int]) -> List[int]:
     return scan
 
 
+# n^3 recursive with memo, passes 55/58 test cases, times out
+def checkValidString(self, s: str) -> bool:
+    def check(idx, count):
+        key = (idx, count)
+        if key in memo:
+            return memo[key]
+        for i in range(idx, len(s)): 
+            c = s[i]
+            if c == '(':
+                count += 1
+            elif c == '*':
+                a = check(i+1, count-1)
+                b = check(i+1, count+1)
+                c = check(i+1, count)
+                return a or b or c
+            else: 
+                count -= 1
+                if count < 0: 
+                    memo[key] = False
+                    return False
+        memo[key] = count == 0
+        return count == 0
+    
+    memo = {}
+    return check(0, 0)
+                
+# hours of hating yourself later, you get this:
+def checkValidString(self, s: str) -> bool:
+    L = R = 0
+    for i in range(len(s)):
+        L += 1 if s[i] in "(*" else -1 
+        R += 1 if s[len(s)-i-1] in "*)" else -1
+        if L < 0  or R < 0: return False
+    return True
 
 
 
