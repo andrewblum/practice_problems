@@ -2286,4 +2286,25 @@ def checkValidString(self, s: str) -> bool:
 
 
 
+# we could try every path and take the min but the runtime sucks 
+# being greedy is vulerable to edge cases 
+# we could use a priority Q and do better, but still not optimal 
+# luckily, the fact we can only move down or right makes precomputing the optimal cost of arrival 
+# at each location pretty easily 
+# compute the prefix sum of the top row going right 
+# compute the prefix sum of the first column going down 
+# finally, at each square take the min of having come from UP or from LEFT
+# this is DP and can be best visualized by drawing out the grid we construct 
+# once were done, whatever the bottom right value is is guranteed to be the lowest sum path
+# O(n) time, constant space
+
+def minPathSum(self, grid: List[List[int]]) -> int:
+    for i in range(1, len(grid[0])):
+        grid[0][i] += grid[0][i-1]
+    for i in range(1, len(grid)):
+        grid[i][0] += grid[i-1][0]
+    for x in range(1, len(grid)):
+        for y in range(1, len(grid[0])):
+            grid[x][y] += min(grid[x-1][y], grid[x][y-1])
+    return grid[-1][-1]
 
