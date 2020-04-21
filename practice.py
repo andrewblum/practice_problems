@@ -2308,3 +2308,11 @@ def minPathSum(self, grid: List[List[int]]) -> int:
             grid[x][y] += min(grid[x-1][y], grid[x][y-1])
     return grid[-1][-1]
 
+def bstFromPreorder(self, preorder: List[int]) -> TreeNode:
+    if not preorder: return
+    root, i = TreeNode(preorder.pop(0)), 0
+    while i < len(preorder) and preorder[i] < root.val: 
+        i += 1
+    root.left = self.bstFromPreorder(preorder[:i])
+    root.right = self.bstFromPreorder(preorder[i:])
+    return root
