@@ -2316,3 +2316,27 @@ def bstFromPreorder(self, preorder: List[int]) -> TreeNode:
     root.left = self.bstFromPreorder(preorder[:i])
     root.right = self.bstFromPreorder(preorder[i:])
     return root
+
+def leftMostColumnWithOne(self, binaryMatrix: 'BinaryMatrix') -> int:
+    # binary search each row
+    # our target is a space that is a 1 AND to the right of a 0
+    # making it the left most 1 
+    def firstOne(row):
+        l, r = 0, width - 1
+        while r >= l:
+            mid = l + (r - l) // 2
+            n = binaryMatrix.get(row, mid)   
+            if n == 1 and mid == 0 or n == 1 and binaryMatrix.get(row, mid-1) == 0:
+                return mid
+            if n == 1: 
+                r = mid - 1
+            else: 
+                l = mid + 1 
+        return 101
+    
+    height, width = binaryMatrix.dimensions()
+    leftest = 101
+    for row in range(height):
+        leftest = min(firstOne(row), leftest)
+    return leftest if leftest < 101 else -1
+    
