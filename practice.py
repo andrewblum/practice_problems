@@ -2339,4 +2339,16 @@ def leftMostColumnWithOne(self, binaryMatrix: 'BinaryMatrix') -> int:
     for row in range(height):
         leftest = min(firstOne(row), leftest)
     return leftest if leftest < 101 else -1
+
+def leftMostColumnWithOne(self, binaryMatrix: 'BinaryMatrix') -> int:
+height, width = binaryMatrix.dimensions()
+row, col, last = 0, width - 1, -1
+while row < height and col > -1:
+    p = binaryMatrix.get(row, col)   
+    if p == 0: 
+        row += 1
+    else: 
+        last = col
+        col -= 1
+return last
     
