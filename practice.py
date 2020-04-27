@@ -2370,9 +2370,8 @@ def maximalSquare(self, matrix: List[List[str]]) -> int:
             x, y = x+1, y+1
         return best
 
-    for ri, row in enumerate(matrix): 
-        for si, square in enumerate(row): 
-            matrix[ri][si] = int(square)
+    for i in range(len(matrix)):
+        matrix[i] = [int(n) for n in matrix[i]]
     
     max_so_far = 0
     for ri, row in enumerate(matrix): 
