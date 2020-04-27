@@ -2351,4 +2351,32 @@ while row < height and col > -1:
         last = col
         col -= 1
 return last
+
+
+def maximalSquare(self, matrix: List[List[str]]) -> int:
+    def is_square(top_x, top_y, b_x, b_y):
+        for i in range((b_x - top_x) +1):
+            if sum(matrix[top_x + i][top_y:b_y+1]) != (b_x - top_x) + 1:
+                return False
+        return True
     
+    def max_square(x, y):
+        org_x, org_y = x, y
+        best = 1
+        while x < len(matrix) and y < len(matrix[0]):
+            if not is_square(org_x, org_y, x, y): 
+                break
+            best = (x + 1 - org_x)**2
+            x, y = x+1, y+1
+        return best
+
+    for ri, row in enumerate(matrix): 
+        for si, square in enumerate(row): 
+            matrix[ri][si] = int(square)
+    
+    max_so_far = 0
+    for ri, row in enumerate(matrix): 
+        for si, square in enumerate(row): 
+            if square == 1: 
+                max_so_far = max(max_so_far, max_square(ri, si))
+    return max_so_far 
