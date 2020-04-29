@@ -2379,3 +2379,21 @@ def maximalSquare(self, matrix: List[List[str]]) -> int:
             if square == 1: 
                 max_so_far = max(max_so_far, max_square(ri, si))
     return max_so_far 
+
+
+class FirstUnique:
+
+    def __init__(self, nums: List[int]):
+        self.q = nums
+        self.c = {}
+        for n in nums:
+            self.c[n] = self.c.get(n, 0) + 1
+        
+    def showFirstUnique(self) -> int:
+        while self.q and self.q[0] in self.c and self.c[self.q[0]] > 1:
+            self.q.pop(0)
+        return self.q[0] if self.q else -1 
+    
+    def add(self, value: int) -> None:
+        self.c[value] = self.c.get(value, 0) + 1
+        self.q.append(value)
