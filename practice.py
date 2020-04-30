@@ -2423,3 +2423,13 @@ def maxPathSum(self, root: TreeNode) -> int:
         rb, rt = helper(root.right)
         return [max(root.val, root.val+lb , root.val+rb), max(lt, lb, rb, rt, root.val+rb+lb)]
     return max(helper(root))
+
+
+def isValidSequence(self, root: TreeNode, arr: List[int]) -> bool:
+    if not root or not arr or root.val != arr[0]: 
+        return False 
+    if len(arr) == 1 and not root.left and not root.right: 
+        return True
+    l = self.isValidSequence(root.left, arr[1:])            
+    r = self.isValidSequence(root.right, arr[1:])   
+    return l or r
