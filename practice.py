@@ -2397,3 +2397,29 @@ class FirstUnique:
     def add(self, value: int) -> None:
         self.c[value] = self.c.get(value, 0) + 1
         self.q.append(value)
+
+
+def maxPathSum(self, root: TreeNode) -> int:
+    def helper(root):
+        if not root: 
+            return [float('-inf'), float('-inf')] 
+        left_best, left_terminal_best = helper(root.left)
+        right_best, right_terminal_best = helper(root.right)
+        current_only = root.val 
+        current_and_left = root.val + left_best
+        current_and_right = root.val + right_best
+        current_and_both_sides = root.val + right_best + left_best
+        best = max(current_only, current_and_left, current_and_right)
+        terminal_best = max(left_terminal_best, left_best, right_best, right_terminal_best, current_and_both_sides)
+        return [best, terminal_best]
+    return max(helper(root))
+    
+    
+# but thats way too easy to read right? i got you 
+def maxPathSum(self, root: TreeNode) -> int:
+    def helper(root):
+        if not root: return [float('-inf'), float('-inf')] 
+        lb, lt = helper(root.left)
+        rb, rt = helper(root.right)
+        return [max(root.val, root.val+lb , root.val+rb), max(lt, lb, rb, rt, root.val+rb+lb)]
+    return max(helper(root))
