@@ -2433,3 +2433,16 @@ def isValidSequence(self, root: TreeNode, arr: List[int]) -> bool:
     l = self.isValidSequence(root.left, arr[1:])            
     r = self.isValidSequence(root.right, arr[1:])   
     return l or r
+
+def firstValidVersion(n):
+    if n == 1: return n
+    lo, hi = 1, n
+    while lo <= hi: 
+        cur = lo + ((hi - lo) // 2)
+        bad = isBadVersion(cur)
+        if bad and (cur == 0 or not isBadVersion(cur-1)):
+            return cur
+        if bad: 
+            hi = cur - 1
+        else:   
+            lo = cur + 1
