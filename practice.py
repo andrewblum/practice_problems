@@ -2446,3 +2446,12 @@ def firstValidVersion(n):
             hi = cur - 1
         else:   
             lo = cur + 1
+
+import collections
+def firstUniqChar(self, s: str) -> int:
+    seen = collections.Counter(s)
+    for i, l in enumerate(s): 
+        if seen[l] == 1:
+            return i
+    return -1
+
