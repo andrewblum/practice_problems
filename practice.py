@@ -2455,3 +2455,21 @@ def firstUniqChar(self, s: str) -> int:
             return i
     return -1
 
+
+
+class Dog: 
+    hunger_level = 10
+    swims = True
+    diet = "pescitarian"
+    name = None
+    species = 'dog'
+
+    def speak(self):
+        print(f'Woof! I am {self.name} the {self.species}')
+
+    def graduate(self):
+        self.name = f'Dr. {self.name}'
+
+
+    
+
