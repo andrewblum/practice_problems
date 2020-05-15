@@ -2470,6 +2470,51 @@ class Dog:
     def graduate(self):
         self.name = f'Dr. {self.name}'
 
+class Trie:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.t = {}
+
+    def insert(self, word: str) -> None:
+        """
+        Inserts a word into the trie.
+        """
+        if not word: return
+        cur = self.t
+        for l in word: 
+            if not cur.get(l):
+                cur[l] = {}
+            cur = cur[l]
+        cur['isWord'] = True
+        
+
+    def search(self, word: str) -> bool:
+        """
+        Returns if the word is in the trie.
+        """
+        if not word: return
+        cur = self.t
+        for l in word:
+            if l not in cur: 
+                return False 
+            cur = cur[l]
+        return 'isWord' in cur
+
+    def startsWith(self, prefix: str) -> bool:
+        """
+        Returns if there is any word in the trie that starts with the given prefix.
+        """
+        if not prefix: return
+        cur = self.t
+        for l in prefix:
+            if l not in cur: 
+                return False 
+            cur = cur[l]
+        return True
+
 
     
 
