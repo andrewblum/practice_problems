@@ -2516,5 +2516,30 @@ class Trie:
         return True
 
 
+# https://leetcode.com/problems/surrounded-regions/
+def solve(self, board: List[List[str]]) -> None:
+    def follow(x, y):
+        if x < 0 or y < 0: return 
+        if x >= len(board) or y >= len(board[0]): return 
+        if board[x][y] != 'O': return 
+        board[x][y] = '*'
+        follow(x+1, y)
+        follow(x, y+1)
+        follow(x-1, y)
+        follow(x, y-1)
+        
+    for x, row in enumerate(board):
+        for y, cell in enumerate(row): 
+            if (cell == 'O' and 
+                (x == 0 or y == 0 or 
+                x == len(board)-1 or y == len(row)-1)):
+                    follow(x, y)
     
-
+    for x, row in enumerate(board):
+        for y, cell in enumerate(row): 
+            if cell == 'O':
+                board[x][y] = 'X'
+            if cell == '*':
+                board[x][y] = 'O'
+    
+    return board
