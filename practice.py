@@ -2543,3 +2543,13 @@ def solve(self, board: List[List[str]]) -> None:
                 board[x][y] = 'O'
     
     return board
+
+
+import pickle 
+example_dict = {1:"6",2:"2",3:"f"}
+mystery = pickle.dumps(example_dict)
+print(mystery)
+dict2 = pickle.loads(mystery)
+print(dict2)
+
+
