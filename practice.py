@@ -2553,3 +2553,41 @@ dict2 = pickle.loads(mystery)
 print(dict2)
 
 
+import random
+class RandomizedSet:
+
+    def __init__(self):
+        """
+        Initialize your data structure here.
+        """
+        self.l = []
+        self.h = {}
+        
+
+    def insert(self, val: int) -> bool:
+        """
+        Inserts a value to the set. Returns true if the set did not already contain the specified element.
+        """
+        if val in self.h: return False
+        self.l.append(val)
+        self.h[val] = len(self.l) - 1
+        return True
+
+    def remove(self, val: int) -> bool:
+        """
+        Removes a value from the set. Returns true if the set contained the specified element.
+        """
+        if val not in self.h: return False
+        idx = self.h[val]
+        del self.h[val]
+        if idx != len(self.l) - 1:
+            self.l[idx], self.l[len(self.l) -1] = self.l[len(self.l) -1], self.l[idx]
+            self.h[self.l[idx]] = idx
+        self.l.pop()
+        return True
+
+    def getRandom(self) -> int:
+        """
+        Get a random element from the set.
+        """
+        return random.choice(self.l)
