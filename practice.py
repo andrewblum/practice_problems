@@ -2596,3 +2596,12 @@ def runningSum(self, nums: List[int]) -> List[int]:
     for i in range(1, len(nums)):
         nums[i] = nums[i] + nums[i-1]
     return nums
+
+def arrangeCoins(self, n: int) -> int:
+    counter = 1
+    total = 0
+    while n >= counter: 
+        total += 1
+        n -= counter
+        counter += 1
+    return total    
