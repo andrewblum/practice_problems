@@ -2624,3 +2624,7 @@ def plusOne(self, digits: List[int]) -> List[int]:
         else: 
             digits[i] = 0
     return [1] + digits
+
+def widthOfBinaryTree(self, root: TreeNode) -> int:
+    max = 0 
+    return max
