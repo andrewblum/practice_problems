@@ -2629,16 +2629,10 @@ def widthOfBinaryTree(self, root: TreeNode) -> int:
     m = 0 
     q = [(root, 0)]
     while q: 
-        lvl = q
-        q = []
-        ma = -9999999999999
-        mi = 99999999999999
-        while lvl:
-            cur = lvl.pop(0)
-            if cur[0]: 
-                ma = max(ma, cur[1])
-                mi = min(mi, cur[1])
-                q.append((cur[0].right,cur[1]+1))
-                q.append((cur[0].left,cur[1]-1))
-            m = max(m, ma + (mi * -1))
+        m = max(m, q[-1][1] - q[0][1] + 1)
+        n = []
+        for child, number in q: 
+            if child.right: n.append((child.right, 2 * number))
+            if child.left: n.append((child.left, (2 * number) + 1))
+        q = n
     return m
