@@ -2636,3 +2636,9 @@ def widthOfBinaryTree(self, root: TreeNode) -> int:
             if child.left: n.append((child.left, (2 * number) + 1))
         q = n
     return m
+
+def subsets(self, nums: List[int]) -> List[List[int]]:
+    result = [[]]
+    for n in nums: 
+        result += [[n] + i for i in result]
+    return result
