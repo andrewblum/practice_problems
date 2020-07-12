@@ -2642,3 +2642,25 @@ def subsets(self, nums: List[int]) -> List[List[int]]:
     for n in nums: 
         result += [[n] + i for i in result]
     return result
+
+class FlattenSolution:
+    def flatten(self, head: 'Node') -> 'Node':
+        h, t = self.flatten2(head)
+        return h
+    
+    def flatten2(self, head: 'Node') -> 'Node':
+        cur = head
+        prev = head
+        while cur:
+            if cur.child: 
+                stored_next = cur.next
+                cur.next = cur.child 
+                cur.child.prev = cur 
+                _, end = self.flatten2(cur.child)
+                cur.child = None
+                end.next = stored_next 
+                if stored_next:
+                    stored_next.prev = end
+            prev = cur
+            cur = cur.next
+        return (head, prev)
