@@ -2643,6 +2643,7 @@ def subsets(self, nums: List[int]) -> List[List[int]]:
         result += [[n] + i for i in result]
     return result
 
+
 class FlattenSolution:
     def flatten(self, head: 'Node') -> 'Node':
         h, t = self.flatten2(head)
@@ -2664,3 +2665,27 @@ class FlattenSolution:
             prev = cur
             cur = cur.next
         return (head, prev)
+
+def angleClock(self, hour: int, minutes: int) -> float:
+    if hour == 12:
+        hour = 0 
+    hour = (hour * 30) + (minutes * 0.5)
+    minutes = minutes * 6
+    dif = abs(hour - minutes)
+    return min(dif, 360 - dif)
+        
+
+
+# highlight, click, double click, paren matching 
+# definition, peek
+# autocomplete 
+
+# CMD F 
+# CMD SHIFT F 
+# CMD SHIFT T 
+
+# open and close side panel with CMD B 
+# open and close side panel with CMD J
+
+# OPTION up and down
+# OPTION SHIFT up and down 
