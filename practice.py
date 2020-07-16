@@ -2674,6 +2674,12 @@ def angleClock(self, hour: int, minutes: int) -> float:
     dif = abs(hour - minutes)
     return min(dif, 360 - dif)
         
+def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
+    if not p and not q:
+        return True 
+    if not p or not q or p.val != q.val:
+        return False 
+    return self.isSameTree(p.left, q.left) and self.isSameTree(p.right, q.right)
 
 
 # highlight, click, double click, paren matching 
