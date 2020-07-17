@@ -2695,3 +2695,12 @@ def isSameTree(self, p: TreeNode, q: TreeNode) -> bool:
 
 # OPTION up and down
 # OPTION SHIFT up and down 
+
+
+def numIdenticalPairs(self, nums: List[int]) -> int:
+  count = 0 
+  for i1 in range(len(nums)): 
+      for i2 in range(i1+1,len(nums)):
+          if nums[i1] == nums[i2]:
+              count += 1
+  return count
