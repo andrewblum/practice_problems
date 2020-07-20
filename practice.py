@@ -2704,3 +2704,29 @@ def numIdenticalPairs(self, nums: List[int]) -> int:
           if nums[i1] == nums[i2]:
               count += 1
   return count
+
+
+ycombinator = lambda func: \
+                (lambda self: func(lambda n: (self(self))(n)))(
+                        lambda self: func(lambda n: (self(self))(n)))
+
+factorial = lambda recurse: \
+                   lambda n: \
+                     1 if n == 0 else n * recurse(n - 1)
+
+u = lambda i: i + 1   
+
+f = lambda z: lambda y: z + y
+
+e = lambda x: lambda y: lambda z: x + y + z
+
+e(1)(2)(3)
+
+higher_order_lambda = lambda f: lambda x: f(x)
+g = lambda x: x * x
+higher_order_lambda(2)(g)
+
+
+curry = lambda f: lambda x: lambda y: f(x, y)
+add = lambda x, y: x + y
+curry(add)(5)
