@@ -2730,3 +2730,27 @@ higher_order_lambda(2)(g)
 curry = lambda f: lambda x: lambda y: f(x, y)
 add = lambda x, y: x + y
 curry(add)(5)
+
+
+#awful large group positions
+def largeGroupPositions(self, S: str) -> List[List[int]]:
+    prev1, prev2 = '', ''
+    repeats = []
+    flag = False
+    sub = [-1, -1]
+    for i, n in enumerate(S): 
+        if prev1 == prev2 and prev2 == n:
+            if not flag:
+                sub[0] = i-2
+            flag = True
+        else:
+            if flag:
+                sub[1] = i-1
+                repeats.append(sub)
+                sub = [-1, -1]
+            flag = False
+        prev1, prev2 = n, prev1
+    if flag:
+        sub[1] = i
+        repeats.append(sub)
+    return repeats
