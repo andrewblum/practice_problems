@@ -2754,3 +2754,19 @@ def largeGroupPositions(self, S: str) -> List[List[int]]:
         sub[1] = i
         repeats.append(sub)
     return repeats
+
+def flatten(self, root: TreeNode) -> None:
+    """
+    Do not return anything, modify root in-place instead.
+    """
+    q = [root]
+    prev = TreeNode()
+    while q: 
+        cur = q.pop()
+        if cur:
+            prev.right = cur
+            prev.left = None
+            prev = cur
+            q.append(cur.right)
+            q.append(cur.left)
+    return root
