@@ -2770,3 +2770,30 @@ def flatten(self, root: TreeNode) -> None:
             q.append(cur.right)
             q.append(cur.left)
     return root
+
+def expressiveWords(self, S: str, words: List[str]) -> int:
+    
+    def makeCounts(s):
+        if not s: return []
+        counts = [[s[0], 1]]
+        for i in range(1, len(s)): 
+            if s[i] == s[i-1]:
+                counts[-1] = [counts[-1][0], counts[-1][1] + 1]
+            else: 
+                counts.append([s[i], 1])
+        return counts
+    
+    
+    if not S or not words: return 0
+    count = len(words)
+    S = makeCounts(S)
+    
+    for word in [makeCounts(word) for word in words]:
+        if len(word) != len(S): 
+            count -= 1
+            continue 
+        for wordS, word2 in zip(S, word):
+            if not (word2[0] == wordS[0] and (word2[1] == wordS[1] or (wordS[1] > 2 and word2[1] < wordS[1]))):
+                count -= 1 
+                break
+    return count
